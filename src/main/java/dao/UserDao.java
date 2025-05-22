@@ -1,4 +1,4 @@
-package controller.dao;
+package dao;
 
 import model.usuario.TipoUsuario;
 import model.usuario.Usuario;
