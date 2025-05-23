@@ -1,51 +1,16 @@
 package model.conta.investimento;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 public class Investimento {
     private int idContaInvestimento;
     private int contaId;
     private PerfilRisco perfilRisco;
     private BigDecimal valorMinimo;
     private BigDecimal taxaRendimentoBase;
-
-    public int getIdContaInvestimento() {
-        return idContaInvestimento;
-    }
-
-    public void setIdContaInvestimento(int idContaInvestimento) {
-        this.idContaInvestimento = idContaInvestimento;
-    }
-
-    public int getContaId() {
-        return contaId;
-    }
-
-    public void setContaId(int contaId) {
-        this.contaId = contaId;
-    }
-
-    public PerfilRisco getPerfilRisco() {
-        return perfilRisco;
-    }
-
-    public void setPerfilRisco(PerfilRisco perfilRisco) {
-        this.perfilRisco = perfilRisco;
-    }
-
-    public BigDecimal getValorMinimo() {
-        return valorMinimo;
-    }
-
-    public void setValorMinimo(BigDecimal valorMinimo) {
-        this.valorMinimo = valorMinimo;
-    }
-
-    public BigDecimal getTaxaRendimentoBase() {
-        return taxaRendimentoBase;
-    }
-
-    public void setTaxaRendimentoBase(BigDecimal taxaRendimentoBase) {
-        this.taxaRendimentoBase = taxaRendimentoBase;
-    }
 }

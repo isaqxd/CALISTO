@@ -1,7 +1,7 @@
 package dao;
 
 import model.usuario.Usuario;
-import service.UsuarioService.UsuarioService;
+import service.UsuarioService;
 import util.Conexao;
 
 import java.sql.*;

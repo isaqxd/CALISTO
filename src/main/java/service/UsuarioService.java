@@ -1,4 +1,4 @@
-package service.UsuarioService;
+package service;
 
 import model.usuario.TipoUsuario;
 import model.usuario.Usuario;

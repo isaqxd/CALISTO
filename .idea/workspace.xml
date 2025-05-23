@@ -5,15 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="587bd95b-0cf1-4cd0-9d3f-010469db39b4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/relatorio/Relatorio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/relatorio/TipoDeTransacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/UsuarioService/UsuarioService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/AgenciaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/AuditoriaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaCorrenteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaInvestimentoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaPoupancaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/EnderecoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/FuncionarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WebContent/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/agencia/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/agencia/Agencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/auditoria/Auditoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/auditoria/Auditoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/cliente/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/cliente/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/conta/Conta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/corrente/Corrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/conta/corrente/Corrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/investimento/Investimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/conta/investimento/Investimento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/poupanca/Poupanca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/conta/poupanca/Poupanca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/endereco/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/endereco/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/funcionario/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/funcionario/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/relatorio/Relatorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/relatorio/Relatorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/UsuarioService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UsuarioService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +67,9 @@
     "extract.method.default.visibility": "private",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/CALISTO",
+    "last_opened_file_path": "D:/CALISTO",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,8 +89,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.109" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
       </set>
     </attachedChunks>
   </component>
@@ -86,6 +104,7 @@
       <updated>1747835093021</updated>
       <workItem from="1747875150519" duration="1078000" />
       <workItem from="1747945553476" duration="7344000" />
+      <workItem from="1748009865413" duration="3349000" />
     </task>
     <servers />
   </component>
