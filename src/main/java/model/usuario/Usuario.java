@@ -1,8 +1,9 @@
 package model.usuario;
 
+import util.Conexao;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 
 public class Usuario {
     private int idUsuario;
