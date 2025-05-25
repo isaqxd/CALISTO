@@ -25,7 +25,7 @@
             
             <div class="nav-actions">
                 <a href="#login" class="btn-login">Não possui uma conta? Cadastre-se agora</a>
-                <a href="/src/main/WebContent/landpage.jsp" class="btn-login">Sair</a>
+                <a href="/src/main/java/WebContent/landpage.jsp" class="btn-login">Sair</a>
 
             </div>
         </div>
