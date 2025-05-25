@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="587bd95b-0cf1-4cd0-9d3f-010469db39b4" name="Changes" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/WebContent/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/WebContent/index.jsp" afterDir="false" />
 =======
@@ -20,6 +21,19 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/service/FuncionarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/AgenciaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/AuditoriaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaCorrenteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaInvestimentoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaPoupancaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ContaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/EnderecoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/FuncionarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 9fd762e39b38b4226f4650c5511dc256887c4f0e
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/agencia/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/agencia/Agencia.java" afterDir="false" />
@@ -35,6 +49,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/usuario/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/UsuarioService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UsuarioService.java" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> 9fd762e39b38b4226f4650c5511dc256887c4f0e
+=======
 >>>>>>> 9fd762e39b38b4226f4650c5511dc256887c4f0e
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,6 +178,9 @@
         <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
       </set>
     </attachedChunks>
+<<<<<<< HEAD
+>>>>>>> 9fd762e39b38b4226f4650c5511dc256887c4f0e
+=======
 >>>>>>> 9fd762e39b38b4226f4650c5511dc256887c4f0e
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
