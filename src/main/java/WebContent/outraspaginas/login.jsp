@@ -102,7 +102,7 @@
         }
 
         .logo-image {
-            height: 90px;
+            height: 60px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
@@ -220,31 +220,30 @@
         }
 
         .login-form {
-            
             background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 400px;
             position: relative;
-            padding: 3rem;
             z-index: 2;
             backdrop-filter: blur(10px);
         }
 
         .form-title {
-
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .cliente-side .form-title {
             color: #BF7A24;
-            text-align: center;
         }
 
         .funcionario-side .form-title {
             color: #260A04;
-            text-align: center;
-
         }
 
         .form-group {
@@ -455,7 +454,7 @@
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <img src="/src/main/WebContent/imagens/image.svg" alt="Callisto Bank" class="logo-image">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cpath d='M20 15c-8 0-15 7-15 15s7 15 15 15 15-7 15-15-7-15-15-15zm0 25c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z' fill='%23000'/%3E%3Ctext x='50' y='35' font-family='Arial, sans-serif' font-size='24' font-weight='bold' fill='%23000'%3ECallisto%3C/text%3E%3Ctext x='50' y='50' font-family='Arial, sans-serif' font-size='12' fill='%23666'%3EBANK%3C/text%3E%3C/svg%3E" alt="Callisto Bank" class="logo-image">
         </div>
     </header>
 
@@ -484,16 +483,14 @@
                         <div class="form-group">
                             <label class="form-label">Senha</label>
                             <div class="password-container">
-                                <input type="password" id="myPassword">
-                                <button onclick="togglePassword('myPassword')">
-                                    <img src="/src/main/WebContent/imagens/iconeyeopen.png" alt="Mostrar senha" width="20">
-                                </button>
+                                <input type="password" class="form-input" placeholder="Senha" id="clientePassword" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('clientePassword')">👁</button>
                             </div>
                         </div>
 
                         <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
 
-                        <button type="submit" class="login-btn">Entrar</button>
+                        <button type="submit" class="login-btn">LOG IN</button>
 
                         <div class="forgot-password">
                             <a href="#forgot">Esqueceu a senha? Sair</a>
@@ -506,7 +503,6 @@
                     </form>
                 </div>
             </div>
-
 
             <!-- Funcionário Side -->
             <div class="login-side funcionario-side">
@@ -537,7 +533,7 @@
 
                         <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
 
-                        <button type="submit" class="login-btn">Entrar</button>
+                        <button type="submit" class="login-btn">Confirmar</button>
 
                         <div class="forgot-password">
                             <a href="#forgot">Esqueceu a senha? Sair</a>
@@ -549,13 +545,52 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
         let isFuncionarioMode = false;
+
+        // Função para detectar qual modo usar baseado na URL
+        function detectModeFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            const hash = window.location.hash;
+            
+            // Verifica parâmetro ?mode=funcionario ou ?mode=employee
+            if (mode === 'funcionario' || mode === 'employee') {
+                return true;
+            }
+            
+            // Verifica hash #funcionario ou #employee
+            if (hash === '#funcionario' || hash === '#employee') {
+                return true;
+            }
+            
+            // Verifica se a URL contém palavras-chave
+            const url = window.location.href.toLowerCase();
+            if (url.includes('funcionario') || url.includes('employee') || url.includes('staff')) {
+                return true;
+            }
+            
+            return false; // Por padrão, cliente
+        }
+
+        // Função para definir o modo inicial
+        function setInitialMode() {
+            const shouldBeFuncionarioMode = detectModeFromURL();
+            
+            if (shouldBeFuncionarioMode) {
+                isFuncionarioMode = true;
+                document.body.classList.remove('cliente-mode');
+                document.body.classList.add('funcionario-mode');
+            } else {
+                isFuncionarioMode = false;
+                document.body.classList.remove('funcionario-mode');
+                document.body.classList.add('cliente-mode');
+            }
+        }
 
         function toggleMode() {
             const body = document.body;
@@ -564,28 +599,28 @@
             if (isFuncionarioMode) {
                 body.classList.remove('cliente-mode');
                 body.classList.add('funcionario-mode');
+                // Opcionalmente, atualiza a URL
+                history.replaceState(null, null, '?mode=funcionario');
             } else {
                 body.classList.remove('funcionario-mode');
                 body.classList.add('cliente-mode');
+                // Opcionalmente, atualiza a URL
+                history.replaceState(null, null, '?mode=cliente');
             }
         }
 
         function togglePassword(fieldId) {
             const field = document.getElementById(fieldId);
             const button = field.nextElementSibling;
-            const img = button.querySelector('img');
             
-    if (field.type === 'password') {
-        field.type = 'text';
-        img.src = ''; // imagem de olho fechado
-        img.alt = 'Ocultar senha';
-    } else {
-        field.type = 'password';
-        img.src = 'eye.png'; // imagem de olho aberto
-        img.alt = 'Mostrar senha';
-    }
-}
-
+            if (field.type === 'password') {
+                field.type = 'text';
+                button.textContent = '🙈';
+            } else {
+                field.type = 'password';
+                button.textContent = '👁';
+            }
+        }
 
         // Form submissions
         document.getElementById('clienteForm').addEventListener('submit', function(e) {
@@ -600,6 +635,9 @@
 
         // Smooth transitions on page load
         window.addEventListener('load', function() {
+            // Define o modo inicial baseado na URL
+            setInitialMode();
+            
             document.body.style.opacity = '0';
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
