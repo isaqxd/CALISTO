@@ -139,20 +139,20 @@ public class UsuarioService {
     }
 
     /**
-     * Valida o telefone do usuário seguindo o formato brasileiro padrão.
+     * Valida o telefone do usuário no formato brasileiro de números celulares.
      *
-     * O telefone deve:
-     * - Ser obrigatório (não pode ser nulo ou vazio).
-     * - Conter exatamente 11 dígitos numéricos após remover caracteres especiais.
-     * - Estar no formato válido: DDD (dois dígitos entre 1 e 9) + número
-     *   iniciando com dígito entre 2-8 ou 9 seguido de dígito entre 1-9,
-     *   seguido de mais 7 dígitos.
+     * Regras de validação:
+     * - O telefone é obrigatório (não pode ser nulo ou vazio).
+     * - Deve conter exatamente 11 dígitos numéricos após remover qualquer caractere especial.
+     * - Formato válido: DDD (dois dígitos entre 1 e 9) + '9' (prefixo de celulares) + 8 dígitos numéricos.
+     * - Exemplos válidos: "21987654321", "11912345678".
+     * - Não aceita telefones fixos, apenas números de celular no padrão atual brasileiro.
      *
-     * Caso algum requisito não seja atendido, adiciona mensagens descritivas
+     * Caso alguma dessas regras não seja atendida, mensagens de erro são adicionadas
      * na lista de erros informada.
      *
-     * @param telefone telefone a ser validado, pode conter caracteres especiais
-     * @param erros    lista onde serão adicionadas mensagens de erro, caso haja falhas na validação
+     * @param telefone telefone a ser validado, pode conter ou não caracteres especiais
+     * @param erros    lista onde serão adicionadas mensagens descritivas caso ocorram falhas na validação
      */
     private void validarTelefone(String telefone, List<String> erros) {
         if (telefone == null || telefone.trim().isEmpty()) {
