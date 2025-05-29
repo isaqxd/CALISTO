@@ -1,21 +1,24 @@
 package calisto.model.conta;
 
+import calisto.model.agencia.Agencia;
+import calisto.model.cliente.Cliente;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Conta {
     private int idConta;
     private String numeroConta;
-    private int agenciaId;
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private Agencia agencia;
+    private BigDecimal saldo;
     private TipoConta tipoConta;
-    private int clienteId;
-    private LocalDateTime dataAbertura = LocalDateTime.now();
-    private Status status = Status.ATIVO;
+    private Cliente cliente;
+    private LocalDateTime dataAbertura;
+    private Status status;
 }
-

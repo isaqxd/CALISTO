@@ -1,52 +1,209 @@
 package calisto.service;
 
 import calisto.dao.UserDao;
+import calisto.model.usuario.TipoUsuario;
 import calisto.model.usuario.Usuario;
+import org.jetbrains.annotations.NotNull;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Serviço responsável pela validação e processamento de usuários no sistema.
+ * Esta classe gerencia as operações relacionadas aos usuários, incluindo:
+ * - Validação de dados
+ * - Geração de OTP (One-Time Password)
+ * - Persistência no banco de dados
+ *
+ * @author isaqxd
+ * @since 1.0
+ */
 public class UsuarioService {
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    public UsuarioService() {
-        this.userDao = new UserDao();
+    /**
+     * Construtor que inicializa o serviço com o DAO necessário.
+     *
+     * @param userDao DAO responsável pela persistência de usuários
+     */
+    public UsuarioService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public void verificarUsuario(Usuario usuario) throws IllegalArgumentException {
-        if (usuario.getNome() == null || usuario.getNome().trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome do usuário é obrigatório.");
+    /**
+     * Realiza a validação completa dos dados do usuário e processa sua inserção.
+     * Verifica todos os campos obrigatórios e suas respectivas regras de negócio.
+     *
+     * @param usuario o usuário a ser validado e processado
+     * @throws IllegalArgumentException quando encontrados erros de validação
+     */
+    public Usuario verificarUsuario(@NotNull Usuario usuario) {
+        List<String> erros = new ArrayList<>();
+
+        validarNome(usuario.getNome(), erros);
+        validarCPF(usuario.getCpf(), erros);
+        validarDataNascimento(usuario.getDataNascimento(), erros);
+        validarTelefone(usuario.getTelefone(), erros);
+        validarTipoUsuario(usuario.getTipoUsuario(), erros);
+        validarSenha(usuario.getSenhaHash(), erros);
+
+        if (!erros.isEmpty()) {
+            throw new RuntimeException("Erro ao cadastrar usuário. " + String.join(", ", erros));
         }
 
-        if (usuario.getCpf() == null || usuario.getCpf().trim().isEmpty()) {
-            throw new IllegalArgumentException("CPF do usuário é obrigatório.");
-        }
-
-        if (!isValidCPF(usuario.getCpf())) {
-            throw new IllegalArgumentException("CPF inválido.");
-        }
-
-        if (usuario.getDataNascimento() == null) {
-            throw new IllegalArgumentException("Data de nascimento do usuário é obrigatório.");
-        }
-
-        if (usuario.getTelefone() == null || usuario.getTelefone().trim().isEmpty()) {
-            throw new IllegalArgumentException("Telefone do usuário é obrigatório.");
-        }
-
-        if (usuario.getTipoUsuario() == null) {
-            throw new IllegalArgumentException("Tipo de usuário é obrigatório.");
-        }
-
-        if (usuario.getSenhaHash() == null || usuario.getSenhaHash().trim().isEmpty()) {
-            throw new IllegalArgumentException("Senha do usuário é obrigatório.");
-        }
-
-        gerarOTP(usuario);
-
-        userDao.criarUsuario(usuario);
+        return processarUsuario(usuario);
     }
 
+    /**
+     * Realiza o processamento de um usuário já validado.
+     * Gera o OTP e persiste o usuário no banco de dados.
+     *
+     * @param usuario usuário válido a ser processado
+     */
+    private Usuario processarUsuario(Usuario usuario) {
+        try {
+            gerarOTP(usuario);
+            return userDao.insert(usuario);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Falha ao processar usuário: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Valida o nome do usuário.
+     *
+     * @param nome  nome a ser validado
+     * @param erros lista onde serão adicionados os erros encontrados
+     */
+    private void validarNome(String nome, List<String> erros) {
+        if (nome == null || nome.trim().isEmpty()) {
+            erros.add("Nome é obrigatório.");
+            return;
+        }
+
+        if (nome.trim().length() < 3) {
+            erros.add("Nome deve ter no mínimo 3 caracteres.");
+        }
+
+        if (!nome.matches("^[a-zA-ZÀ-ÿ\\s]+$")) {
+            erros.add("Nome deve conter apenas letras e espaços.");
+        }
+    }
+
+    /**
+     * Valida o CPF do usuário.
+     *
+     * @param cpf   CPF a ser validado
+     * @param erros lista onde serão adicionados os erros encontrados
+     */
+    private void validarCPF(String cpf, List<String> erros) {
+        if (cpf == null || cpf.trim().isEmpty()) {
+            erros.add("CPF é obrigatório.");
+            return;
+        }
+        if (!isValidCPF(cpf)) {
+            erros.add("CPF inválido.");
+        }
+    }
+
+    /**
+     * Valida a data de nascimento do usuário.
+     *
+     * Regras de validação:
+     * - A data não pode ser nula (obrigatória).
+     * - A data não pode ser futura em relação à data atual.
+     * - O usuário deve ter pelo menos 18 anos (data mínima permitida é 18 anos atrás da data atual).
+     *
+     * Caso alguma dessas regras não seja atendida, mensagens de erro descritivas
+     * são adicionadas à lista informada.
+     *
+     * @param dataNascimento data de nascimento a ser validada
+     * @param erros          lista onde serão adicionados os erros encontrados durante a validação
+     */
+    private void validarDataNascimento(LocalDate dataNascimento, List<String> erros) {
+        if (dataNascimento == null) {
+            erros.add("Data de nascimento é obrigatória.");
+            return;
+        }
+
+        if (dataNascimento.isAfter(LocalDate.now())) {
+            erros.add("Data de nascimento não pode ser futura.");
+        }
+
+        if (dataNascimento.plusYears(18).isAfter(LocalDate.now())) {
+            erros.add("Usuário deve ter no mínimo 18 anos.");
+        }
+    }
+
+    /**
+     * Valida o telefone do usuário seguindo o formato brasileiro padrão.
+     *
+     * O telefone deve:
+     * - Ser obrigatório (não pode ser nulo ou vazio).
+     * - Conter exatamente 11 dígitos numéricos após remover caracteres especiais.
+     * - Estar no formato válido: DDD (dois dígitos entre 1 e 9) + número
+     *   iniciando com dígito entre 2-8 ou 9 seguido de dígito entre 1-9,
+     *   seguido de mais 7 dígitos.
+     *
+     * Caso algum requisito não seja atendido, adiciona mensagens descritivas
+     * na lista de erros informada.
+     *
+     * @param telefone telefone a ser validado, pode conter caracteres especiais
+     * @param erros    lista onde serão adicionadas mensagens de erro, caso haja falhas na validação
+     */
+    private void validarTelefone(String telefone, List<String> erros) {
+        if (telefone == null || telefone.trim().isEmpty()) {
+            erros.add("Telefone é obrigatório.");
+            return;
+        }
+
+        telefone = telefone.replaceAll("\\D", "");
+
+        if (telefone.length() != 11) {
+            erros.add("Telefone deve ter 11 dígitos.");
+            return;
+        }
+
+        String formatoTelefone = "^[1-9]{2}9[0-9]{8}$";
+
+        if (!telefone.matches(formatoTelefone)) {
+            erros.add("Telefone inválido.");
+        }
+    }
+
+    /**
+     * Valida o tipo de usuário do usuário.
+     *
+     * @param tipoUsuario tipo de usuário a ser validado
+     * @param erros       lista onde serão adicionados os erros encontrados
+     */
+    private void validarTipoUsuario(TipoUsuario tipoUsuario, List<String> erros) {
+        if (tipoUsuario == null) {
+            erros.add("Tipo de usuário é obrigatório.");
+        }
+    }
+
+    /**
+     * Valida a senha do usuário.
+     *
+     * @param senha senha a ser validada
+     * @param erros lista onde serão adicionados os erros encontrados
+     */
+    private void validarSenha(String senha, List<String> erros) {
+        if (senha == null || senha.trim().isEmpty()) {
+            erros.add("Senha é obrigatória.");
+        }
+    }
+
+    /**
+     * Verifica se um CPF é válido.
+     *
+     * @param cpf CPF a ser validado
+     * @return true se o CPF for válido, false caso contrário
+     */
     public static boolean isValidCPF(String cpf) {
         cpf = cpf.replaceAll("[^0-9]", "");
 
@@ -81,7 +238,12 @@ public class UsuarioService {
         return digitos[10] == dv2;
     }
 
-    public void gerarOTP(Usuario usuario) {
+    /**
+     * Gera um OTP (One-Time Password) para o usuário.
+     *
+     * @param usuario usuário para o qual o OTP será gerado
+     */
+    public void gerarOTP(@NotNull Usuario usuario) {
         SecureRandom secureRandom = new SecureRandom();
         int number = secureRandom.nextInt(1_000_000);
 

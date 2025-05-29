@@ -12,7 +12,7 @@ public class Test {
     public static void main(String[] args) {
         UserDao dao = new UserDao();
 
-        UsuarioService us = new UsuarioService();
+        UsuarioService us = new UsuarioService(dao);
 
         // ADICIONAR USUARIO
         Usuario u = new Usuario();

@@ -1,5 +1,6 @@
 package calisto.model.conta.poupanca;
 
+import calisto.model.conta.Conta;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,9 +11,8 @@ import java.time.LocalDateTime;
 @Setter
 public class Poupanca {
     private int idContaPoupanca;
-    private int contaId;
+    private Conta conta;
     private BigDecimal taxaRendimento;
     private LocalDateTime ultimoRendimento;
 
 }
-
