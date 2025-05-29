@@ -10,71 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/loginStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/catalina.policy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/catalina.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/jaspic-providers.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/jaspic-providers.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/logging.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/server.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/tomcat-users.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/tomcat-users.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.smarttomcat/servelet-jsp-calisto/conf/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/css/estilo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/Callisto Bank Logo fundo transparente (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/iconeyeclosed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/iconeyeopen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/image.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/imagem cliente.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/imagens/imagem funcionario.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/landpage.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/outraspaginas/login.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WebContent/outraspaginas/loginselect.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/agencia/Agencia.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/auditoria/Auditoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/cliente/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/Conta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/TipoConta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/corrente/Corrente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/investimento/Investimento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/investimento/PerfilRisco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/conta/poupanca/Poupanca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/endereco/Endereco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/funcionario/Cargo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/funcionario/Funcionario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/relatorio/Relatorio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/relatorio/TipoDeTransacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/transacao/Transacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/usuario/TipoUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/usuario/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/AgenciaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/AuditoriaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ClienteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ContaCorrenteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ContaInvestimentoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ContaPoupancaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ContaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/EnderecoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/FuncionarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UsuarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/Conexao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/loginSelectStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -101,32 +54,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
+    "git-widget-placeholder": "isaqBranch",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/calistobank/src/main/java",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "proofread",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\calistobank\src\main\java" />
@@ -141,7 +95,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.105">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="calisto.test.Test" />
       <module name="calistobank" />
@@ -271,6 +225,7 @@
       <workItem from="1748485033151" duration="58000" />
       <workItem from="1748485200679" duration="788000" />
       <workItem from="1748489231429" duration="2076000" />
+      <workItem from="1748493229317" duration="763000" />
     </task>
     <servers />
   </component>
