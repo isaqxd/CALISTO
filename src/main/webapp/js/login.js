@@ -1,115 +1,165 @@
+        let isFuncionarioMode = false;
 
-    let isFuncionarioMode = false;
+        function toggleMode() {
+            const body = document.body;
+            isFuncionarioMode = !isFuncionarioMode;
+            
+            if (isFuncionarioMode) {
+                body.classList.add('funcionario-mode');
+                updateContentForFuncionario();
+            } else {
+                body.classList.remove('funcionario-mode');
+                updateContentForCliente();
+            }
+        }
 
-    // Função para detectar qual modo usar baseado na URL
-    function detectModeFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const mode = urlParams.get('mode');
-    const hash = window.location.hash;
+        function updateContentForFuncionario() {
+            document.getElementById('welcome-subtitle').textContent = 'Portal do Funcionário';
+            document.getElementById('welcome-description').textContent = 'Acesso restrito para colaboradores';
+            document.getElementById('toggle-text').textContent = 'Acesso para clientes?';
+            document.getElementById('toggle-btn').textContent = 'Acesso do Cliente';
+            document.getElementById('form-title').textContent = 'Login Funcionário';
+            document.getElementById('identifier-label').textContent = 'Código do Funcionário';
+            document.getElementById('identifier-input').placeholder = 'FUN00000';
+            document.getElementById('login-btn').textContent = 'Entrar como Funcionário';
+            
+            // Clear form
+            document.getElementById('loginForm').reset();
+            clearOTPInputs();
+        }
 
-    // Verifica parâmetro ?mode=funcionario ou ?mode=employee
-    if (mode === 'funcionario' || mode === 'employee') {
-    return true;
-}
+        function updateContentForCliente() {
+            document.getElementById('welcome-subtitle').textContent = 'Acesso do Cliente';
+            document.getElementById('welcome-description').textContent = 'Gerencie suas finanças com segurança';
+            document.getElementById('toggle-text').textContent = 'Acesso para funcionários?';
+            document.getElementById('toggle-btn').textContent = 'Portal do Funcionário';
+            document.getElementById('form-title').textContent = 'Login Cliente';
+            document.getElementById('identifier-label').textContent = 'CPF';
+            document.getElementById('identifier-input').placeholder = '000.000.000-00';
+            document.getElementById('login-btn').textContent = 'Entrar como Cliente';
+            
+            // Clear form
+            document.getElementById('loginForm').reset();
+            clearOTPInputs();
+        }
 
-    // Verifica hash #funcionario ou #employee
-    if (hash === '#funcionario' || hash === '#employee') {
-    return true;
-}
+        function togglePassword() {
+            const field = document.getElementById('password-input');
+            const icon = field.nextElementSibling;
 
-    // Verifica se a URL contém palavras-chave
-    const url = window.location.href.toLowerCase();
-    if (url.includes('funcionario') || url.includes('employee') || url.includes('staff')) {
-    return true;
-}
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.textContent = '🙈';
+            } else {
+                field.type = 'password';
+                icon.textContent = '👁️';
+            }
+        }
 
-    return false; // Por padrão, cliente
-}
+        function formatCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            return cpf;
+        }
 
-    // Função para definir o modo inicial
-    function setInitialMode() {
-    const shouldBeFuncionarioMode = detectModeFromURL();
+        function setupOTPInputs() {
+            const otpContainer = document.querySelector('.otp-container');
+            otpContainer.addEventListener('input', function(e) {
+                const target = e.target;
+                if (target.matches('.otp-input') && target.value.length === 1) {
+                    const nextInput = target.nextElementSibling;
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
 
-    if (shouldBeFuncionarioMode) {
-    isFuncionarioMode = true;
-    document.body.classList.remove('cliente-mode');
-    document.body.classList.add('funcionario-mode');
-} else {
-    isFuncionarioMode = false;
-    document.body.classList.remove('funcionario-mode');
-    document.body.classList.add('cliente-mode');
-}
-}
+            otpContainer.addEventListener('keydown', function(e) {
+                const target = e.target;
+                if (e.key === 'Backspace' && target.matches('.otp-input') && target.value === '') {
+                    const prevInput = target.previousElementSibling;
+                    if (prevInput) {
+                        prevInput.focus();
+                    }
+                }
+            });
+        }
 
-    function toggleMode() {
-    const body = document.body;
-    isFuncionarioMode = !isFuncionarioMode;
+        function clearOTPInputs() {
+            document.querySelectorAll('.otp-input').forEach(input => input.value = '');
+        }
 
-    if (isFuncionarioMode) {
-    body.classList.remove('cliente-mode');
-    body.classList.add('funcionario-mode');
-    // Opcionalmente, atualiza a URL
-    history.replaceState(null, null, '?mode=funcionario');
-} else {
-    body.classList.remove('funcionario-mode');
-    body.classList.add('cliente-mode');
-    // Opcionalmente, atualiza a URL
-    history.replaceState(null, null, '?mode=cliente');
-}
-}
+        function showMessage(type, message) {
+            const errorDiv = document.getElementById('error-message');
+            const successDiv = document.getElementById('success-message');
+            
+            // Hide both first
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
 
-    function togglePassword(fieldId) {
-    const field = document.getElementById(fieldId);
-    const icon = document.getElementById('icon-' + fieldId);
+            const messageDiv = type === 'error' ? errorDiv : successDiv;
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
 
-    if (field.type === 'password') {
-    field.type = 'text';
-    icon.src = 'img/iconeyeclosed.png'; // Ícone para "ocultar senha"
-    icon.alt = 'Ocultar senha';
-} else {
-    field.type = 'password';
-    icon.src = 'img/iconeyeopen.png'; // Ícone para "mostrar senha"
-    icon.alt = 'Mostrar senha';
-}
-}
-    // Form submissions
-    document.getElementById('clienteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Login de cliente processado!');
-});
+        // Identifier input formatting
+        document.getElementById('identifier-input').addEventListener('input', function(e) {
+            if (!isFuncionarioMode) {
+                e.target.value = formatCPF(e.target.value).substring(0, 14);
+            } else {
+                let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                if (!value.startsWith('FUN')) {
+                    value = 'FUN' + value.replace(/\D/g, '');
+                }
+                e.target.value = value.substring(0, 8);
+            }
+        });
 
-    document.getElementById('funcionarioForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Login de funcionário processado!');
-});
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const identifier = document.getElementById('identifier-input').value;
+            const password = document.getElementById('password-input').value;
+            
+            // Simple validation for demo
+            if (!identifier || !password) {
+                showMessage('error', 'Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            showMessage('success', 'Login simulado com sucesso! Redirecionando...');
+            
+            // In a real app, you would send data to the server here.
+            setTimeout(() => {
+                console.log('Redirecionando para:', isFuncionarioMode ? 'Portal do Funcionário' : 'Dashboard do Cliente');
+            }, 2000);
+        });
 
-    // Smooth transitions on page load
-    window.addEventListener('load', function() {
-    // Define o modo inicial baseado na URL
-    setInitialMode();
+        // Initialize
+        window.addEventListener('load', function() {
+            setupOTPInputs();
+            
+            // Smooth page load
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
 
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-    document.body.style.transition = 'opacity 0.5s ease';
-    document.body.style.opacity = '1';
-}, 100);
-});
+        // Keyboard shortcut for toggling mode
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab' && e.shiftKey && e.ctrlKey) {
+                e.preventDefault();
+                toggleMode();
+            }
+        });
 
-    // Add keyboard navigation
-    document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab' && e.shiftKey && e.ctrlKey) {
-    e.preventDefault();
-    toggleMode();
-}
-});
-
-    // Add subtle hover effects to form inputs
-    document.querySelectorAll('.form-input').forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.style.transform = 'translateY(-2px)';
-    });
-
-    input.addEventListener('blur', function() {
-    this.parentElement.style.transform = 'translateY(0)';
-});
-});
+        console.log('🏦 Callisto Bank - Login System Initialized');
