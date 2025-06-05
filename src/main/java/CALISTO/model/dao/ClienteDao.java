@@ -3,9 +3,12 @@ package CALISTO.model.dao;
 import CALISTO.model.persistence.Endereco.Endereco;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.Conexao;
+import CALISTO.model.persistence.util.TipoUsuario;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDao {
     public Endereco makeEndereco(ResultSet rs) throws SQLException {
@@ -106,5 +109,26 @@ public class ClienteDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Cliente> findAll() {
+        String sql = """
+                SELECT u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.senha_hash, u.tipo_usuario,
+                e.id_endereco, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado, e.complemento
+                FROM cliente c
+                JOIN usuario u ON c.usuario_id = u.id_usuario
+                JOIN endereco e ON u.endereco_id = e.id_endereco
+                """;
+        List<Cliente> clientes = new ArrayList<>();
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                clientes.add(makeCliente(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clientes;
     }
 }

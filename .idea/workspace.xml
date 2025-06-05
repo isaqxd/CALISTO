@@ -9,46 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/ClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/RegistrarClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Auditoria/Auditoria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Corrente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Poupanca.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Relatorio/Relatorio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Funcionario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Cargo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoConta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoDeTransacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoTransacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/ClienteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/erro.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/registrarCliente.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/sucesso.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/cadastroCliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="INtegração total do metodo save no &quot;ClienteDao.java&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/CadastroController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/dao/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/dao/UsuadioDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/service/UsuarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/cadastro.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/sucesso.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
     </list>
-    <list id="2352ecd4-4816-410f-babe-1da980200ef0" name="Changes by pczaum" comment="" />
+    <list id="2352ecd4-4816-410f-babe-1da980200ef0" name="Changes by pczaum" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="isaqBranch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -81,6 +53,16 @@
     &quot;accountId&quot;: &quot;db4dcad7-4e2c-4388-a61e-df0cc6bffecf&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="8" end1="8" start2="9" end2="11" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="10" end1="10" start2="13" end2="42" changelist="2352ecd4-4816-410f-babe-1da980200ef0" />
+        <range start1="80" end1="80" start2="112" end2="133" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+      </ranges>
+    </file>
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -103,41 +85,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.41.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;isaqBranch&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/CALISTO/src/main/java/CALISTO/model/persistence/util&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.41.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
+    "git-widget-placeholder": "branchSucesso",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/CALISTO/src/main/java/CALISTO/model/persistence/util",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.1581092",
+    "project.structure.side.proportion": "0.3647871",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
-      &quot;MySQL&quot;,
-      &quot;GenericSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
+      "MySQL",
+      "GenericSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -294,8 +276,17 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749131605930" duration="25092000" />
-      <workItem from="1749158547876" duration="3098000" />
+      <workItem from="1749158547876" duration="5069000" />
     </task>
+    <task id="LOCAL-00001" summary="INtegração total do metodo save no &quot;ClienteDao.java&quot;">
+      <option name="closed" value="true" />
+      <created>1749161863259</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749161863259</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +302,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="INtegração total do metodo save no &quot;ClienteDao.java&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="INtegração total do metodo save no &quot;ClienteDao.java&quot;" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
