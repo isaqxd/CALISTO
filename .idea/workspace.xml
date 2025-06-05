@@ -10,44 +10,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/loginSelect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/ClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/RegistrarClienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Auditoria/Auditoria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Corrente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Poupanca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Relatorio/Relatorio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Funcionario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Cargo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoConta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoDeTransacao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoTransacao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/TipoUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/erro.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/registrarCliente.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/sucesso.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/cadastroCliente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/CalistoServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/dao/AuditoriaDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/dao/ContaDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/dao/FuncionarioDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/dao/UserDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/agencia/Agencia.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/auditoria/Auditoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/cliente/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/Conta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/TipoConta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/corrente/Corrente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/investimento/Investimento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/investimento/PerfilRisco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/conta/poupanca/Poupanca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/endereco/Endereco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/funcionario/Cargo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/funcionario/Funcionario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/relatorio/Relatorio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/transacao/TipoDeTransacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/transacao/Transacao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/usuario/TipoUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/model/usuario/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/service/UsuarioService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/test/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/calisto/util/Conexao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/CadastroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/dao/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/dao/UsuadioDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/service/UsuarioService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/cadastro.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/sucesso.jsp" beforeDir="false" />
     </list>
+    <list id="2352ecd4-4816-410f-babe-1da980200ef0" name="Changes by pczaum" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,8 +58,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Enum" />
+        <option value="Jspx File" />
+        <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -111,7 +115,7 @@
     &quot;git-widget-placeholder&quot;: &quot;isaqBranch&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/CALISTO/src/main/java/CALISTO/model/persistence/util&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -121,26 +125,34 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
       &quot;mysql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;MySQL&quot;,
+      &quot;GenericSQL&quot;
     ]
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CALISTO\src\main\java\CALISTO\model\persistence\util" />
       <recent name="D:\calistobank\src\main\java" />
       <recent name="D:\calistobank\src\main\java\service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\CALISTO\src\main\webapp" />
+      <recent name="D:\CALISTO\src\main\webapp\views" />
+      <recent name="D:\CALISTO\src\main\java\CALISTO" />
       <recent name="D:\CALISTO\src\main\java" />
       <recent name="D:\calistobank" />
-      <recent name="D:\calistobank\src\main\webapp" />
-      <recent name="D:\calistobank\src\main\webapp\img" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -260,8 +272,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -281,6 +293,8 @@
       <workItem from="1748985195052" duration="360000" />
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
+      <workItem from="1749131605930" duration="25092000" />
+      <workItem from="1749158547876" duration="3098000" />
     </task>
     <servers />
   </component>

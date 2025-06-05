@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/loginSelectStyle.css">
+    <link rel="stylesheet" href="../css/loginSelectStyle.css">
     <title>Callisto Bank</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
     <header class="header" id="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="img/image.svg" alt="Callisto Bank" class="logo-image">
+                <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
             </div>
             
             <nav>
@@ -78,7 +78,7 @@
         </div>
     </footer>
 
-    <script src="js/loginSelect.js">
+    <script src="../js/loginSelect.js">
 
     </script>
 </body>

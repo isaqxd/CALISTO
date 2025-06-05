@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Callisto Bank - Sua Jornada Financeira</title>
-  <link rel="stylesheet" href="css/indexStyle.css">
+  <link rel="stylesheet" href="../css/indexStyle.css">
 </head>
 <body>
 <!-- Header -->
 <header class="header" id="header">
   <div class="nav-container">
     <div class="logo">
-      <img src="img/image.svg" alt="Callisto Bank" class="logo-image">
+      <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
     </div>
 
     <nav>
@@ -145,7 +145,7 @@
   </div>
 </footer>
 
-<script src="js/index.js">
+<script src="../js/index.js">
 </script>
 </body>
 </html>
