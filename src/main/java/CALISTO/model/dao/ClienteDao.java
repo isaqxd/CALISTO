@@ -8,6 +8,35 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class ClienteDao {
+    public Endereco makeEndereco(ResultSet rs) throws SQLException {
+        Endereco end = new Endereco(
+                rs.getString("cep"),
+                rs.getString("local"),
+                rs.getString("numero_casa"),
+                rs.getString("bairro"),
+                rs.getString("cidade"),
+                rs.getString("estado"),
+                rs.getString("complemento")
+        );
+        end.setIdEndereco(rs.getInt("id_endereco"));
+        return end;
+    }
+    public Cliente makeCliente(ResultSet rs) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setIdUsuario(rs.getInt("id_usuario"));
+        cliente.setNome(rs.getString("nome"));
+        cliente.setCpf(rs.getString("cpf"));
+        Date data = rs.getDate("data_nascimento");
+        if (data != null) {
+            cliente.setDataNascimento(data.toLocalDate());
+        }
+        cliente.setTelefone(rs.getString("telefone"));
+        cliente.setSenhaHash(rs.getString("senha_hash"));
+        cliente.setTipoUsuario(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+        cliente.setEndereco(makeEndereco(rs));
+        return cliente;
+    }
+
     public Cliente save(Cliente cliente) {
         String sqlEndereco = "INSERT INTO endereco (cep, local, numero_casa, bairro, cidade, estado, complemento) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String sqlUsuario = "INSERT INTO usuario (nome, cpf, data_nascimento, telefone, senha_hash, tipo_usuario, endereco_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
