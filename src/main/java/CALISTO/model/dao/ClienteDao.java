@@ -42,7 +42,7 @@ public class ClienteDao {
 
     public Cliente save(Cliente cliente) {
         String sqlEndereco = "INSERT INTO endereco (cep, local, numero_casa, bairro, cidade, estado, complemento) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String sqlUsuario = "INSERT INTO usuario (nome, cpf, data_nascimento, telefone, senha_hash, tipo_usuario, endereco_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO usuario (nome, cpf, data_nascimento, telefone, senha_hash, tipo_usuario, endereco_id, otp_ativo, otp_expiracao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sqlCliente = "INSERT INTO cliente (usuario_id) VALUES (?)";
 
         try (Connection conn = Conexao.getConnection()) {
@@ -86,6 +86,13 @@ public class ClienteDao {
                 stmtUsuario.setString(5, cliente.getSenhaHash());
                 stmtUsuario.setString(6, cliente.getTipoUsuario().name());
                 stmtUsuario.setInt(7, enderecoId);
+                stmtUsuario.setString(8, cliente.getOtpAtivo()); // otp_ativo
+                if (cliente.getOtpExpiracao() != null) {
+                    stmtUsuario.setTimestamp(9, java.sql.Timestamp.valueOf(cliente.getOtpExpiracao()));
+                } else {
+                    stmtUsuario.setNull(9, java.sql.Types.TIMESTAMP);
+                }
+
                 stmtUsuario.executeUpdate();
 
                 try (ResultSet rs = stmtUsuario.getGeneratedKeys()) {

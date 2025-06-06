@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +10,7 @@
 <form action="registrarCliente" method="post">
   <label>Nome: <input type="text" name="nome" required></label><br>
   <label>CPF: <input type="text" name="cpf" required></label><br>
-  <label>Data de Nascimento: <input type="date" required></label><br>
+  <label>Data de Nascimento: <input name="data_nascimento" type="date" required></label><br>
   <label>Senha: <input type="password" name="senha" required></label><br>
   <label>Telefone: <input type="text" name="telefone" required></label><br>
   <h3>Endereço</h3>

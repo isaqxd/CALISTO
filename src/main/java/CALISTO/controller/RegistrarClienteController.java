@@ -4,6 +4,7 @@ import CALISTO.model.dao.ClienteDao;
 import CALISTO.model.persistence.Endereco.Endereco;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.TipoUsuario;
+import CALISTO.model.service.ClienteService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,8 +36,8 @@ public class RegistrarClienteController extends HttpServlet {
 
             // Convertendo data
             LocalDate dataNascimento = null;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             if (dataNascimentoStr != null && !dataNascimentoStr.isEmpty()) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 dataNascimento = LocalDate.parse(dataNascimentoStr, formatter);
             }
 
@@ -52,8 +53,9 @@ public class RegistrarClienteController extends HttpServlet {
             cliente.setTipoUsuario(TipoUsuario.CLIENTE);
 
             // Salvando no banco
-            ClienteDao clienteDao = new ClienteDao();
-            Cliente clienteSalvo = clienteDao.save(cliente);
+            ClienteDao dao = new ClienteDao();
+            ClienteService clienteService = new ClienteService(dao);
+            Cliente clienteSalvo = clienteService.verificarCliente(cliente);
 
             if (clienteSalvo != null) {
                 response.sendRedirect("sucesso.jsp");

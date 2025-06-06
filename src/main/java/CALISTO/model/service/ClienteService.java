@@ -5,6 +5,8 @@ import CALISTO.model.dao.ClienteDao;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.TipoUsuario;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -72,6 +74,7 @@ public class ClienteService {
     private Cliente processarCliente(Cliente cliente) {
         try {
             gerarOTP(cliente);
+            gerarMD5(cliente);
             return clienteDao.save(cliente);
         } catch (RuntimeException e) {
             throw new RuntimeException("Falha ao processar cliente: " + e.getMessage(), e);
@@ -253,5 +256,26 @@ public class ClienteService {
 
         cliente.setOtpAtivo(otp);
         cliente.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
+    }
+
+    public void gerarMD5(Cliente cliente) {
+        String SALT = "X@mpl3S@lt2025!";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            String senha = cliente.getSenhaHash();
+            String senhaComSalt = senha + SALT;
+
+            byte[] bytes = md.digest(senhaComSalt.getBytes());
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : bytes) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+
+            cliente.setSenhaHash(sb.toString());
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Erro ao gerar hash MD5: " + e.getMessage(), e);
+        }
     }
 }
