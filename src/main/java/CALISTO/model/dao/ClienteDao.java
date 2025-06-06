@@ -40,6 +40,39 @@ public class ClienteDao {
         return cliente;
     }
 
+    public void statementToEndereco(PreparedStatement stmt, Endereco end) throws SQLException {
+        stmt.setString(1, end.getCep());
+        stmt.setString(2, end.getLocal());
+        stmt.setInt(3, end.getNumeroCasa());
+        stmt.setString(4, end.getBairro());
+        stmt.setString(5, end.getCidade());
+        stmt.setString(6, end.getEstado());
+        stmt.setString(7, end.getComplemento());
+    }
+
+    public void statementToCliente(PreparedStatement stmt, Cliente cliente) throws SQLException {
+        stmt.setString(1, cliente.getNome());
+        stmt.setString(2, cliente.getCpf());
+        LocalDate dataNascimento = cliente.getDataNascimento();
+        if (dataNascimento != null) {
+            stmt.setDate(3, java.sql.Date.valueOf(dataNascimento));
+        } else {
+            stmt.setNull(3, java.sql.Types.DATE);
+        }
+        stmt.setString(4, cliente.getTelefone());
+        stmt.setString(5, cliente.getSenhaHash());
+        stmt.setString(6, cliente.getTipoUsuario().name());
+        stmt.setInt(7, cliente.getEndereco().getIdEndereco());
+        stmt.setString(8, cliente.getOtpAtivo());
+        if (cliente.getOtpExpiracao() != null) {
+            stmt.setTimestamp(9, java.sql.Timestamp.valueOf(cliente.getOtpExpiracao()));
+        } else {
+            stmt.setNull(9, java.sql.Types.TIMESTAMP);
+        }
+    }
+
+
+
     public Cliente save(Cliente cliente) {
         String sqlEndereco = "INSERT INTO endereco (cep, local, numero_casa, bairro, cidade, estado, complemento) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String sqlUsuario = "INSERT INTO usuario (nome, cpf, data_nascimento, telefone, senha_hash, tipo_usuario, endereco_id, otp_ativo, otp_expiracao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -51,20 +84,13 @@ public class ClienteDao {
             // Inserir endereço
             int enderecoId;
             try (PreparedStatement stmtEndereco = conn.prepareStatement(sqlEndereco, Statement.RETURN_GENERATED_KEYS)) {
-                Endereco end = cliente.getEndereco();
-                stmtEndereco.setString(1, end.getCep());
-                stmtEndereco.setString(2, end.getLocal());
-                stmtEndereco.setInt(3, end.getNumeroCasa());
-                stmtEndereco.setString(4, end.getBairro());
-                stmtEndereco.setString(5, end.getCidade());
-                stmtEndereco.setString(6, end.getEstado());
-                stmtEndereco.setString(7, end.getComplemento());
+                statementToEndereco(stmtEndereco, cliente.getEndereco());
                 stmtEndereco.executeUpdate();
 
                 try (ResultSet rs = stmtEndereco.getGeneratedKeys()) {
                     if (rs.next()) {
                         enderecoId = rs.getInt(1);
-                        end.setIdEndereco(enderecoId);
+                        cliente.getEndereco().setIdEndereco(enderecoId);
                     } else {
                         throw new SQLException("Falha ao obter o ID do endereço.");
                     }
@@ -74,25 +100,9 @@ public class ClienteDao {
             // Inserir usuário
             int usuarioId;
             try (PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)) {
-                stmtUsuario.setString(1, cliente.getNome());
-                stmtUsuario.setString(2, cliente.getCpf());
-                LocalDate dataNascimento = cliente.getDataNascimento();
-                if (dataNascimento != null) {
-                    stmtUsuario.setDate(3, java.sql.Date.valueOf(dataNascimento));
-                } else {
-                    stmtUsuario.setNull(3, java.sql.Types.DATE);
-                }
-                stmtUsuario.setString(4, cliente.getTelefone());
-                stmtUsuario.setString(5, cliente.getSenhaHash());
-                stmtUsuario.setString(6, cliente.getTipoUsuario().name());
-                stmtUsuario.setInt(7, enderecoId);
-                stmtUsuario.setString(8, cliente.getOtpAtivo()); // otp_ativo
-                if (cliente.getOtpExpiracao() != null) {
-                    stmtUsuario.setTimestamp(9, java.sql.Timestamp.valueOf(cliente.getOtpExpiracao()));
-                } else {
-                    stmtUsuario.setNull(9, java.sql.Types.TIMESTAMP);
-                }
-
+                // Atualiza o id do endereço no cliente antes de preencher o statement
+                statementToCliente(stmtUsuario, cliente);
+                stmtUsuario.setInt(7, cliente.getEndereco().getIdEndereco()); // Garante o id correto
                 stmtUsuario.executeUpdate();
 
                 try (ResultSet rs = stmtUsuario.getGeneratedKeys()) {
