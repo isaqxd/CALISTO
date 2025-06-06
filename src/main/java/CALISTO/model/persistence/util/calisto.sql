@@ -162,3 +162,5 @@ SELECT
 FROM cliente c
          INNER JOIN usuario u ON c.usuario_id = u.id_usuario
          INNER JOIN endereco e ON u.endereco_id = e.id_endereco;
+
+SELECT * FROM calisto.usuario;
