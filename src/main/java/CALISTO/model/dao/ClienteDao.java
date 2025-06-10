@@ -24,31 +24,31 @@ public class ClienteDao {
                 """;
         String sqlCliente = "INSERT INTO cliente (usuario_id, score_credito) VALUES (?, ?)";
 
-        Connection conn = null;
+        Connection con = null;
         try {
-            conn = Conexao.getConnection();
-            conn.setAutoCommit(false);
+            con = Conexao.getConnection();
+            con.setAutoCommit(false);
 
             // Inserir endereço e obter ID
-            int enderecoId = UsuarioMapper.inserirEndereco(conn, cliente, sqlEndereco);
+            int enderecoId = UsuarioMapper.inserirEndereco(con, cliente, sqlEndereco);
             cliente.getEndereco().setIdEndereco(enderecoId);
 
             // Inserir usuário e obter ID
-            int usuarioId = UsuarioMapper.inserirUsuario(conn, cliente, sqlUsuario);
+            int usuarioId = UsuarioMapper.inserirUsuario(con, cliente, sqlUsuario);
             cliente.setIdUsuario(usuarioId);
 
             // Inserir cliente
-            inserirCliente(conn, cliente, sqlCliente);
+            inserirCliente(con, cliente, sqlCliente);
 
-            conn.commit();
+            con.commit();
 
             return cliente;
 
         } catch (SQLException e) {
-            rollBack(conn);
+            rollBack(con);
             throw new RuntimeException("Erro ao salvar cliente: " + e.getMessage(), e);
         } finally {
-            close(conn);
+            close(con);
         }
     }
 
