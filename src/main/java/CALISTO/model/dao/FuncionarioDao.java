@@ -86,6 +86,39 @@ public class FuncionarioDao {
         }
     }
 
+    public Funcionario findById(int id) {
+        String sql = """
+                SELECT u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.senha_hash,
+                       u.tipo_usuario, u.otp_ativo, u.otp_expiracao,
+                       e.id_endereco, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado, e.complemento,
+                       f.codigo_funcionario, f.cargo, f.id_supervisor
+                FROM funcionario f
+                JOIN usuario u ON f.usuario_id = u.id_usuario
+                JOIN endereco e ON u.endereco_id = e.id_endereco
+                WHERE u.id_usuario = ?
+                """;
+        Funcionario funcionario = null;
+
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            var rs = stmt.executeQuery();
+            if (rs.next()) {
+                funcionario = new Funcionario();
+                UsuarioMapper.fillUsuarioFromResultSet(rs, funcionario);
+                funcionario.setCodigoFuncionario(rs.getString("codigo_funcionario"));
+                funcionario.setCargo(Cargo.valueOf(rs.getString("cargo")));
+                funcionario.setSupervisor(rs.getInt("id_supervisor"));
+            }
+            return funcionario;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar funcionário por ID: " + e.getMessage(), e);
+        }
+    }
+
+
+
+
     private int insertFuncionario(Connection con, Funcionario funcionario, String sql) throws SQLException {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, funcionario.getIdUsuario());
