@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.innerHTML = `
             <h2>Contas de Clientes</h2>
             <div class="conta-box" style="margin-bottom:2rem;">
-                <input type="text" id="novo-nome" placeholder="Nome do cliente" style="margin-bottom:1rem;width:100%;" />
                 <button id="btn-criar-conta" style="width:100%;">Criar Conta</button>
             </div>
             <div class="contas-lista">
@@ -41,49 +40,73 @@ document.addEventListener('DOMContentLoaded', function() {
                         contas.length === 0
                         ? '<li>Nenhuma conta cadastrada.</li>'
                         : contas.map((c, i) =>
-                            `<li style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
-                                <a href="#" class="conta-link" data-idx="${i}" style="flex:1;">${c.nome}</a>
-                                <button class="btn-cartao" data-idx="${i}" style="background:#1976d2;color:#fff;border:none;border-radius:6px;padding:0.3rem 0.8rem;cursor:pointer;">Gerar Cartão</button>
-                                <button class="btn-encerrar" data-idx="${i}" style="background:#bf2424;color:#fff;border:none;border-radius:6px;padding:0.3rem 0.8rem;cursor:pointer;">Encerrar</button>
+                            `<li style="display:flex;align-items:center;gap:1rem;">
+                                <span style="flex:1;">${c.nome} (${c.cpf})</span>
                             </li>`
                         ).join('')
                     }
                 </ul>
             </div>
+            <div style="display: flex; gap: 2rem; margin-top:2rem;">
+                <div class="conta-box" style="flex:1;">
+                    <h4>Encerrar Conta</h4>
+                    <input type="text" id="cpf-encerrar" placeholder="Digite o CPF" maxlength="14" style="margin-right:0.5rem; width:70%;">
+                    <button id="btn-encerrar-conta">Encerrar</button>
+                </div>
+                <div class="conta-box" style="flex:1;">
+                    <h4>Gerar Cartão</h4>
+                    <input type="text" id="cpf-gerar-cartao" placeholder="Digite o CPF" maxlength="14" style="margin-right:0.5rem; width:70%;">
+                    <button id="btn-gerar-cartao">Gerar Cartão</button>
+                </div>
+            </div>
         `;
         sessionStorage.setItem('contas', JSON.stringify(contas));
 
-        document.querySelectorAll('.btn-cartao').forEach(btn => {
-            btn.onclick = function() {
-                const idx = this.getAttribute('data-idx');
-                renderGerarCartao(idx);
-            }
-        });
         document.getElementById('btn-criar-conta').onclick = function() {
-            const nome = document.getElementById('novo-nome').value.trim();
-            if (!nome) {
-                alert('Digite o nome do cliente.');
+            renderFormConta();
+        };
+
+        // Máscara CPF para os campos
+        document.getElementById('cpf-encerrar').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 3) v = v.replace(/^(\d{3})(\d)/, '$1.$2');
+            if (v.length > 6) v = v.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+            if (v.length > 9) v = v.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+            e.target.value = v;
+        });
+        document.getElementById('cpf-gerar-cartao').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 3) v = v.replace(/^(\d{3})(\d)/, '$1.$2');
+            if (v.length > 6) v = v.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+            if (v.length > 9) v = v.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+            e.target.value = v;
+        });
+
+        // Encerrar conta por CPF
+        document.getElementById('btn-encerrar-conta').onclick = function() {
+            const cpf = document.getElementById('cpf-encerrar').value.replace(/\D/g, '');
+            const idx = contas.findIndex(c => c.cpf.replace(/\D/g, '') === cpf);
+            if (idx === -1) {
+                alert('Conta não encontrada para este CPF.');
                 return;
             }
-            renderFormConta(nome.toUpperCase());
+            if (confirm('Tem certeza que deseja encerrar esta conta?')) {
+                contas.splice(idx, 1);
+                sessionStorage.setItem('contas', JSON.stringify(contas));
+                renderListaContas();
+            }
         };
-        document.querySelectorAll('.conta-link').forEach(link => {
-            link.onclick = function(e) {
-                e.preventDefault();
-                const idx = this.getAttribute('data-idx');
-                renderDetalhesConta(idx);
+
+        // Gerar cartão por CPF
+        document.getElementById('btn-gerar-cartao').onclick = function() {
+            const cpf = document.getElementById('cpf-gerar-cartao').value.replace(/\D/g, '');
+            const idx = contas.findIndex(c => c.cpf.replace(/\D/g, '') === cpf);
+            if (idx === -1) {
+                alert('Conta não encontrada para este CPF.');
+                return;
             }
-        });
-        document.querySelectorAll('.btn-encerrar').forEach(btn => {
-            btn.onclick = function() {
-                const idx = parseInt(this.getAttribute('data-idx'));
-                if (confirm('Tem certeza que deseja encerrar esta conta?')) {
-                    contas.splice(idx, 1);
-                    sessionStorage.setItem('contas', JSON.stringify(contas));
-                    renderListaContas();
-                }
-            }
-        });
+            renderGerarCartao(idx);
+        };
     }
 
     // Formulário de criação de conta com ViaCEP
@@ -93,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2>Criar Nova Conta</h2>
             <form id="form-criar-conta" class="conta-box" autocomplete="off">
                 <label for="nome-cliente">Nome Completo</label>
-                <input type="text" id="nome-cliente" required value="${nomeCliente}" readonly />
+                <input type="text" id="nome-cliente" required />
 
                 <label for="cpf-cliente">CPF</label>
                 <input type="text" id="cpf-cliente" required placeholder="000.000.000-00" maxlength="14"/>
@@ -168,8 +191,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             alert('CEP não encontrado.');
                             return;
                         }
+                        // Preenche o campo endereço com rua, bairro, cidade e UF
+                        const enderecoCompleto = `${data.logradouro || ''}${data.bairro ? ', ' + data.bairro : ''}${data.localidade ? ' - ' + data.localidade : ''}${data.uf ? '/' + data.uf : ''}`;
+                        document.getElementById('endereco-cliente').value = enderecoCompleto.trim();
+                        // Se quiser, ainda pode preencher rua-cliente:
                         document.getElementById('rua-cliente').value = data.logradouro || '';
-                        // Se quiser, adicione campos para bairro, cidade, estado e preencha aqui.
                     })
                     .catch(() => alert('Erro ao buscar o CEP.'));
             }
@@ -177,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('form-criar-conta').onsubmit = function(e) {
             e.preventDefault();
-            const nome = nomeCliente;
+            const nome = document.getElementById('nome-cliente').value.trim();
             const cpf = document.getElementById('cpf-cliente').value.trim();
             const agencia = document.getElementById('agencia').value.trim();
             const nascimento = document.getElementById('nascimento-cliente').value;
@@ -648,6 +674,21 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('menu-analise').onclick = function(e) { e.preventDefault(); renderAnaliseConta(); };
     document.getElementById('menu-relatorios').onclick = function(e) { e.preventDefault(); renderRelatorios(); };
 
+    // Atualiza o ano no rodapé automaticamente
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
     // Inicialização
     renderDashboard();
+
+    const btnCriarConta = document.getElementById('abrir-cadastro');
+    const formCadastro = document.getElementById('form-cadastro');
+    if (btnCriarConta && formCadastro) {
+        btnCriarConta.addEventListener('click', function() {
+            formCadastro.style.display = 'block';
+            btnCriarConta.style.display = 'none';
+        });
+    }
 });

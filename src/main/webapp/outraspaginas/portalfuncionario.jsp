@@ -28,7 +28,12 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#dashboard" id="menu-dashboard" class="active"><span class="menu-icon">📊</span><span>Dashboard</span></a></li>
-                    <li><a href="#clientes" id="menu-clientes"><span class="menu-icon">👥</span><span>Contas de clientes</span></a></li>
+                    <li>
+                        <a href="#clientes" id="menu-clientes">
+                            <span class="menu-icon">👥</span>
+                            <span>Contas de clientes</span>
+                        </a>
+                    </li>
                     <li><a href="#transacoes" id="menu-transacoes"><span class="menu-icon">💳</span><span>Transações</span></a></li>
                     <li><a href="#analise" id="menu-analise"><span class="menu-icon">📈</span><span>Análise da Conta</span></a></li>
                     <li><a href="#relatorios" id="menu-relatorios"><span class="menu-icon">📄</span><span>Relatórios</span></a></li>
@@ -41,6 +46,19 @@
 
         <main class="main-content" id="main-content">
             <!-- O JS irá preencher aqui -->
+            <section id="clientes-section" style="display:none;">
+                <button class="btn-criar-conta" id="abrir-cadastro">
+                    Criar Conta
+                </button>
+                <form id="form-cadastro" style="display:none; margin-top:1rem;">
+                    <label>Nome: <input type="text" name="nome" required></label><br>
+                    <label>Email: <input type="email" name="email" required></label><br>
+                    <label>CPF: <input type="text" name="cpf" required></label><br>
+                    <label>Senha: <input type="password" name="senha" required></label><br>
+                    <button type="submit">Cadastrar</button>
+                </form>
+                <!-- Aqui pode ir a tabela/lista de clientes -->
+            </section>
             <button onclick="exportarRelatorioPDF('tabela-extrato')">Exportar PDF</button>
             <button onclick="exportarRelatorioExcel('tabela-extrato')">Exportar Excel</button>
         </main>

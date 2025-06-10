@@ -549,3 +549,19 @@ function renderClientes() {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(38, 10, 4, 0.2);
 }
+
+.btn-criar-conta {
+    margin: 1rem 0 0 2.5rem;
+    padding: 0.6rem 1.5rem;
+    background: #BF7A24;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+}
+.btn-criar-conta:hover {
+    background: #8C480D;
+}
