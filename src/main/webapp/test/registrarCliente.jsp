@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Cadastro de Cliente</h1>
-<form action="registrarCliente" method="post">
+<form action="${pageContext.request.contextPath}/registrarCliente" method="post">
   <label>Nome: <input type="text" name="nome" required></label><br>
   <label>CPF: <input type="text" name="cpf" required></label><br>
   <label>Data de Nascimento: <input name="data_nascimento" type="date" required></label><br>

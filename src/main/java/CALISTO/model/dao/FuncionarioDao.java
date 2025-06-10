@@ -7,6 +7,7 @@ import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -199,7 +200,61 @@ public class FuncionarioDao {
         }
     }
 
-    private int insertFuncionario(Connection con, Funcionario funcionario, String sql) throws SQLException {
+    public boolean delete(int id) {
+        String sqlUpdateSupervisorToNull = """
+                UPDATE funcionario SET id_supervisor = NULL\s
+                WHERE id_supervisor IN (
+                    SELECT id_func FROM (
+                        SELECT id_funcionario as id_func\s
+                        FROM funcionario\s
+                        WHERE usuario_id = ?
+                    ) AS temp
+                )
+                \s""";
+        ;
+        String sqlFuncionario = "DELETE FROM funcionario WHERE usuario_id = ?";
+        String sqlUsuario = "DELETE FROM usuario WHERE id_usuario = ?";
+        String sqlEndereco = "DELETE FROM endereco WHERE id_endereco = (SELECT endereco_id FROM usuario WHERE id_usuario = ?)";
+        Connection conn = null;
+        try {
+            conn = Conexao.getConnection();
+            conn.setAutoCommit(false);
+
+            // Atualizar funcionários supervisionados para ter supervisor NULL
+            try (PreparedStatement stmtUpdateSupervisados = conn.prepareStatement(sqlUpdateSupervisorToNull)) {
+                stmtUpdateSupervisados.setInt(1, id);
+                stmtUpdateSupervisados.executeUpdate();
+            }
+
+            // Deletar funcionário
+            try (PreparedStatement stmtFuncionario = conn.prepareStatement(sqlFuncionario)) {
+                stmtFuncionario.setInt(1, id);
+                stmtFuncionario.executeUpdate();
+            }
+
+            // Deletar usuário
+            try (PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario)) {
+                stmtUsuario.setInt(1, id);
+                stmtUsuario.executeUpdate();
+            }
+
+            // Deletar endereço
+            try (PreparedStatement stmtEndereco = conn.prepareStatement(sqlEndereco)) {
+                stmtEndereco.setInt(1, id);
+                stmtEndereco.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            rollBack(conn);
+            throw new RuntimeException("Erro ao deletar funcionário: " + e.getMessage(), e);
+        } finally {
+            close(conn);
+        }
+    }
+
+    private void insertFuncionario(Connection con, Funcionario funcionario, String sql) throws SQLException {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, funcionario.getIdUsuario());
             stmt.setString(2, funcionario.getCodigoFuncionario());
@@ -212,7 +267,6 @@ public class FuncionarioDao {
 
             stmt.executeUpdate();
         }
-        return 0;
     }
 
 }

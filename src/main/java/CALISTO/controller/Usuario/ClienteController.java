@@ -1,4 +1,4 @@
-package CALISTO.controller;
+package CALISTO.controller.Usuario;
 
 import CALISTO.model.dao.ClienteDao;
 import CALISTO.model.persistence.Endereco.Endereco;
@@ -32,13 +32,13 @@ public class ClienteController extends HttpServlet {
             Cliente clienteSalvo = clienteService.verificarCliente(cliente);
 
             if (clienteSalvo != null) {
-                response.sendRedirect("sucesso.jsp");
+                response.sendRedirect("test/sucesso.jsp");
             } else {
-                response.sendRedirect("erro.jsp");
+                response.sendRedirect("test/erro.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("erro.jsp");
+            response.sendRedirect("test/erro.jsp");
         }
     }
 }

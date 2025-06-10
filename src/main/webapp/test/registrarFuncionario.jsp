@@ -6,8 +6,8 @@
     <title>Cadastro de Funcionario</title>
 </head>
 <body>
-<h1>Cadastro de Cliente</h1>
-<form action="registrarFuncionario" method="post">
+<h1>Cadastro de Funcionario</h1>
+<form action="${pageContext.request.contextPath}/registrarFuncionario" method="post">
     <label>Nome: <input type="text" name="nome" required></label><br>
     <label>CPF: <input type="text" name="cpf" required></label><br>
     <label>Data de Nascimento: <input name="data_nascimento" type="date" required></label><br>

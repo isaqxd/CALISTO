@@ -1,7 +1,6 @@
 package CALISTO.model.mapper;
 
 import CALISTO.model.persistence.Endereco.Endereco;
-import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.Usuario.Usuario;
 import CALISTO.model.persistence.util.TipoUsuario;
 

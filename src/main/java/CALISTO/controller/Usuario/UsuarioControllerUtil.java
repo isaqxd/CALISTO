@@ -1,4 +1,4 @@
-package CALISTO.controller;
+package CALISTO.controller.Usuario;
 
 import CALISTO.model.persistence.Endereco.Endereco;
 import CALISTO.model.persistence.Usuario.Usuario;

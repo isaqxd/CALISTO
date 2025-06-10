@@ -1,4 +1,4 @@
-package CALISTO.controller;
+package CALISTO.controller.Usuario;
 
 import CALISTO.model.dao.FuncionarioDao;
 import CALISTO.model.persistence.Endereco.Endereco;
@@ -35,9 +35,26 @@ public class FuncionarioController extends HttpServlet {
                 response.sendRedirect("erro.jsp");
                 return;
             }
+            String codigo = request.getParameter("codigo_funcionario");
+
+            // Validação do id_supervisor
+            String idSupervisorStr = request.getParameter("id_supervisor");
+            int idSupervisor = 0; // valor padrão caso não haja supervisor
+            if (idSupervisorStr != null && !idSupervisorStr.trim().isEmpty()) {
+                try {
+                    idSupervisor = Integer.parseInt(idSupervisorStr);
+                } catch (NumberFormatException e) {
+                    System.out.println("ID do supervisor inválido: " + idSupervisorStr);
+                    response.sendRedirect("erro.jsp");
+                    return;
+                }
+            }
 
             funcionario.setCargo(cargo);
+            funcionario.setCodigoFuncionario(codigo);
+            funcionario.setSupervisor(idSupervisor);
             funcionario.setTipoUsuario(TipoUsuario.FUNCIONARIO);
+
 
             // Salvando no banco
             FuncionarioDao dao = new FuncionarioDao();
@@ -45,13 +62,13 @@ public class FuncionarioController extends HttpServlet {
             Funcionario funcionarioSalvo = funcionarioService.verificarFuncionario(funcionario);
 
             if (funcionarioSalvo != null) {
-                response.sendRedirect("sucesso.jsp");
+                response.sendRedirect("test/sucesso.jsp");
             } else {
-                response.sendRedirect("erro.jsp");
+                response.sendRedirect("test/erro.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("erro.jsp");
+            response.sendRedirect("test/erro.jsp");
         }
     }
 }
