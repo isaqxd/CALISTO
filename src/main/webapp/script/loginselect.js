@@ -2,7 +2,7 @@
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     const footer = document.querySelector('.footer');
-
+    
     if (window.scrollY > 50) {
         header.classList.add('scrolled');
         footer.classList.add('visible');
@@ -19,33 +19,26 @@ document.querySelectorAll('.selection-card').forEach(card => {
         const icon = this.querySelector('.card-icon');
         icon.style.animation = 'pulse 1s infinite';
     });
-
+    
     card.addEventListener('mouseleave', function() {
         const icon = this.querySelector('.card-icon');
         icon.style.animation = 'none';
     });
 });
 
-// Add pulse animation
-const style = document.createElement('style');
-style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.1); }
-                100% { transform: scale(1); }
-            }
-        `;
-document.head.appendChild(style);
-
-// Add click feedback with sound simulation
+// Add click feedback with sound simulation (funcionalidade original do onclick)
 document.querySelectorAll('.selection-card').forEach(card => {
     card.addEventListener('click', function() {
+        // Efeito visual de clique
         this.style.transform = 'scale(0.98)';
         setTimeout(() => {
             this.style.transform = 'scale(1.02)';
         }, 100);
         setTimeout(() => {
             this.style.transform = '';
+            // Mantém a navegação original que estava no onclick do HTML
+            const url = this.getAttribute('onclick').replace("location.href='", "").replace("'", "");
+            location.href = url;
         }, 200);
     });
 });
@@ -54,7 +47,7 @@ document.querySelectorAll('.selection-card').forEach(card => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href') === '#login' || this.getAttribute('href') === '#') return;
-
+        
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
