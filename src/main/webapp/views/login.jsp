@@ -37,18 +37,18 @@
 
                 <!-- Form Section -->
                 <div class="form-section">
-                    <form class="login-form" id="clienteForm">
+                    <form action="${pageContext.request.contextPath}/loginCliente" class="login-form" id="clienteForm" method="post">
                         <h2 class="form-title">Login</h2>
-                        
+                        <input type="hidden" name="tipo_usuario" value="CLIENTE">
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="seuemail@email.com" required>
+                            <label class="form-label">CPF</label>
+                            <input type="text" name="cpf" class="form-input" placeholder="000.000.000-00" required>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Senha</label>
                             <div class="password-container">
-                                <input type="password" class="form-input" placeholder="Senha" id="clientePassword" required>
+                                <input type="password" class="form-input" name="senha" placeholder="Senha" id="clientePassword" required>
                                 <button type="button" class="password-toggle" onclick="togglePassword('clientePassword')">
                                     <img src="../img/iconeyeclosed.png" alt="Mostrar senha" id="icon-clientePassword" width="20">
                                 </button>

@@ -9,6 +9,7 @@ public class Funcionario extends Usuario{
     private Cargo cargo;
     private int supervisor;
 
+
     public int getIdFuncionario() {
         return idFuncionario;
     }

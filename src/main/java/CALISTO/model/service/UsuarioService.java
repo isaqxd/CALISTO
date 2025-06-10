@@ -215,7 +215,7 @@ public abstract class UsuarioService {
      *
      * @param usuario usuário cuja senha será hasheada
      */
-    protected void gerarMD5(Usuario usuario) {
+    public void gerarMD5(Usuario usuario) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             String senha = usuario.getSenhaHash();

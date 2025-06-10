@@ -71,12 +71,7 @@
     icon.src = 'img/iconeyeopen.png'; // Ícone para "mostrar senha"
     icon.alt = 'Mostrar senha';
 }
-}
-    // Form submissions
-    document.getElementById('clienteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Login de cliente processado!');
-});
+};
 
     document.getElementById('funcionarioForm').addEventListener('submit', function(e) {
     e.preventDefault();
