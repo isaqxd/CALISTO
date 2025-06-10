@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Cliente cadastrado com sucesso!</h1>
-<a href="views/cadastroCliente.jsp">Cadastrar outro</a>
+<a href="../views/cadastroCliente.jsp">Cadastrar outro</a>
 </body>
 </html>
