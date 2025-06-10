@@ -11,8 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static CALISTO.model.mapper.UsuarioMapper.close;
-import static CALISTO.model.mapper.UsuarioMapper.rollBack;
+import static CALISTO.model.mapper.UsuarioMapper.*;
 
 public class FuncionarioDao {
     // CRUD
@@ -150,6 +149,55 @@ public class FuncionarioDao {
         }
     }
 
+    public Funcionario update(Funcionario funcionario) {
+        String sqlEndereco = """
+                    UPDATE endereco SET cep = ?, local = ?, numero_casa = ?, bairro = ?, cidade = ?, estado = ?, complemento = ?\s
+                    WHERE id_endereco = ?
+                \s""";
+
+        String sqlUsuario = """
+                     UPDATE usuario SET nome = ?, cpf = ?, data_nascimento = ?, telefone = ?, senha_hash = ?, tipo_usuario = ?,\s
+                     endereco_id = ?, otp_ativo = ?, otp_expiracao = ?
+                     WHERE id_usuario = ?
+                \s""";
+        String sqlFuncionario = """
+                    UPDATE funcionario SET codigo_funcionario = ?, cargo = ?, id_supervisor = ?
+                    WHERE usuario_id = ?
+                """;
+        try (Connection conn = Conexao.getConnection()) {
+            conn.setAutoCommit(false);
+
+            // Atualizar endereço
+            try (PreparedStatement stmtEndereco = conn.prepareStatement(sqlEndereco)) {
+                fillPreparedStatementEndereco(stmtEndereco, funcionario.getEndereco());
+                stmtEndereco.setInt(8, funcionario.getEndereco().getIdEndereco());
+                stmtEndereco.executeUpdate();
+            }
+            // Atualizar usuário
+            try (PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario)) {
+                fillPreparedStatementUsuario(stmtUsuario, funcionario);
+                stmtUsuario.setInt(10, funcionario.getIdUsuario());
+                stmtUsuario.executeUpdate();
+            }
+            // Atualizar funcionário
+            try (PreparedStatement stmtFuncionario = conn.prepareStatement(sqlFuncionario)) {
+                stmtFuncionario.setString(1, funcionario.getCodigoFuncionario());
+                stmtFuncionario.setString(2, funcionario.getCargo().name());
+                if (funcionario.getSupervisor() == 0) {
+                    stmtFuncionario.setNull(3, java.sql.Types.INTEGER);
+                } else {
+                    stmtFuncionario.setInt(3, funcionario.getSupervisor());
+                }
+                stmtFuncionario.setInt(4, funcionario.getIdUsuario());
+                stmtFuncionario.executeUpdate();
+            }
+            conn.commit();
+            return funcionario;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     private int insertFuncionario(Connection con, Funcionario funcionario, String sql) throws SQLException {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
