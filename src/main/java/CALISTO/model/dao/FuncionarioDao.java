@@ -2,11 +2,14 @@ package CALISTO.model.dao;
 
 import CALISTO.model.mapper.UsuarioMapper;
 import CALISTO.model.persistence.Usuario.Funcionario;
+import CALISTO.model.persistence.util.Cargo;
 import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static CALISTO.model.mapper.UsuarioMapper.close;
 import static CALISTO.model.mapper.UsuarioMapper.rollBack;
@@ -50,6 +53,36 @@ public class FuncionarioDao {
             throw new RuntimeException("Erro ao salvar cliente: " + e.getMessage(), e);
         } finally {
             close(con);
+        }
+    }
+
+    public List<Funcionario> findAll() {
+        String sql = """
+                SELECT u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.senha_hash,
+                       u.tipo_usuario, u.otp_ativo, u.otp_expiracao,
+                       e.id_endereco, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado, e.complemento,
+                       f.codigo_funcionario, f.cargo, f.id_supervisor
+                FROM funcionario f
+                JOIN usuario u ON f.usuario_id = u.id_usuario
+                JOIN endereco e ON u.endereco_id = e.id_endereco
+                """;
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);
+             var rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+                UsuarioMapper.fillUsuarioFromResultSet(rs, funcionario);
+                funcionario.setCodigoFuncionario(rs.getString("codigo_funcionario"));
+                funcionario.setCargo(Cargo.valueOf(rs.getString("cargo")));
+                funcionario.setSupervisor(rs.getInt("id_supervisor"));
+
+                funcionarios.add(funcionario);
+            }
+            return funcionarios;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar funcionários: " + e.getMessage(), e);
         }
     }
 
