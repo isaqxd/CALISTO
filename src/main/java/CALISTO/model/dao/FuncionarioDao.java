@@ -116,7 +116,39 @@ public class FuncionarioDao {
         }
     }
 
+    public List<Funcionario> findByName(String nome) {
+        String sql = """
+                SELECT u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.senha_hash,
+                       u.tipo_usuario, u.otp_ativo, u.otp_expiracao,
+                       e.id_endereco, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado, e.complemento,
+                       f.codigo_funcionario, f.cargo, f.id_supervisor
+                FROM funcionario f
+                JOIN usuario u ON f.usuario_id = u.id_usuario
+                JOIN endereco e ON u.endereco_id = e.id_endereco
+                WHERE u.nome LIKE ?
+                """;
+        List<Funcionario> funcionarios = new ArrayList<>();
 
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);)
+        {
+            stmt.setString(1, "%" + nome + "%");
+            try(ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    Funcionario funcionario = new Funcionario();
+                    UsuarioMapper.fillUsuarioFromResultSet(rs, funcionario);
+                    funcionario.setCodigoFuncionario(rs.getString("codigo_funcionario"));
+                    funcionario.setCargo(Cargo.valueOf(rs.getString("cargo")));
+                    funcionario.setSupervisor(rs.getInt("id_supervisor"));
+
+                    funcionarios.add(funcionario);
+                }
+            }
+            return funcionarios;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar funcionários pelo Nome: " + e.getMessage(), e);
+        }
+    }
 
 
     private int insertFuncionario(Connection con, Funcionario funcionario, String sql) throws SQLException {
