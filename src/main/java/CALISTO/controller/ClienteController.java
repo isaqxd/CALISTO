@@ -12,44 +12,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @WebServlet("/registrarCliente")
 public class ClienteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Pegando parâmetros do formulário
-            String nome = request.getParameter("nome");
-            String cpf = request.getParameter("cpf");
-            String dataNascimentoStr = request.getParameter("data_nascimento");
-            String telefone = request.getParameter("telefone");
-            String senha = request.getParameter("senha");
-            String cep = request.getParameter("cep");
-            String local = request.getParameter("local");
-            String numeroCasa = request.getParameter("numeroCasa");
-            String bairro = request.getParameter("bairro");
-            String cidade = request.getParameter("cidade");
-            String estado = request.getParameter("estado");
-            String complemento = request.getParameter("complemento");
-
-            // Convertendo data
-            LocalDate dataNascimento = null;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            if (dataNascimentoStr != null && !dataNascimentoStr.isEmpty()) {
-                dataNascimento = LocalDate.parse(dataNascimentoStr, formatter);
-            }
-
-            // Criando objetos
-            Endereco endereco = new Endereco(cep, local, numeroCasa, bairro, cidade, estado, complemento);
+            // Usando a classe utilitária para criar o endereço e preencher dados comuns
+            Endereco endereco = UsuarioControllerUtil.criarEndereco(request);
             Cliente cliente = new Cliente();
-            cliente.setNome(nome);
-            cliente.setCpf(cpf);
-            cliente.setDataNascimento(dataNascimento);
-            cliente.setTelefone(telefone);
-            cliente.setSenhaHash(senha);
-            cliente.setEndereco(endereco);
+            UsuarioControllerUtil.preencherDadosUsuario(cliente, request, endereco);
+
+            // Configurando propriedades específicas do cliente
             cliente.setTipoUsuario(TipoUsuario.CLIENTE);
 
             // Salvando no banco
