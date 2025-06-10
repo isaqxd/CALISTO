@@ -2,15 +2,16 @@ CREATE DATABASE calisto;
 USE calisto;
 
 CREATE TABLE `calisto`.`endereco` (
-    `id_endereco` INT NOT NULL AUTO_INCREMENT,
-    `cep` VARCHAR(10) NOT NULL,
-    `local` VARCHAR(100) NOT NULL,
-    `bairro` VARCHAR(50) NOT NULL,
-    `cidade` VARCHAR(50) NOT NULL,
-    `estado` CHAR(2) NOT NULL,
-    `complemento` VARCHAR(50),
-    PRIMARY KEY (`id_endereco`),
-    INDEX `cep_idx` (`cep`)
+   `id_endereco` INT          NOT NULL AUTO_INCREMENT,
+   `cep`         VARCHAR(10)  NOT NULL,
+   `local`       VARCHAR(100) NOT NULL,
+   `numero_casa` INT          NOT NULL,
+   `bairro`      VARCHAR(50)  NOT NULL,
+   `cidade`      VARCHAR(50)  NOT NULL,
+   `estado`      CHAR(2)      NOT NULL,
+   `complemento` VARCHAR(50),
+   PRIMARY KEY (`id_endereco`),
+   INDEX `cep_idx` (`cep`)
 );
 
 CREATE TABLE `calisto`.`usuario` (
