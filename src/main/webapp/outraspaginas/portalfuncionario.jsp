@@ -69,6 +69,7 @@
             </section>
             <button onclick="exportarRelatorioPDF('tabela-extrato')">Exportar PDF</button>
             <button onclick="exportarRelatorioExcel('tabela-extrato')">Exportar Excel</button>
+            <button id="btn-cadastrar-func" style="width:100%;">Cadastrar Novo Funcionário</button>
         </main>
     </div>
     <footer class="app-footer" style="position:fixed; right:0; bottom:0; width:auto; min-width:220px; border-top-left-radius:12px;">

@@ -242,37 +242,22 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('btn-voltar').onclick = renderListaContas;
     }
 
-    // Gerenciamento de Funcionários
+    // Função para gerar código sequencial de funcionário
     function gerarCodigoFuncionario() {
-        if (funcionarios.length === 0) return "FUN0001";
-        const codigos = funcionarios.map(f => parseInt(f.codigo.replace("FUN", ""))).filter(n => !isNaN(n));
+        if (!window.funcionarios || window.funcionarios.length === 0) return "FUN0001";
+        const codigos = window.funcionarios.map(f => parseInt(f.codigo.replace("FUN", ""))).filter(n => !isNaN(n));
         const max = codigos.length ? Math.max(...codigos) : 0;
         return "FUN" + String(max + 1).padStart(4, "0");
     }
 
+    // Gerenciamento de Funcionários
     function renderPerfilFuncionario() {
         setActiveMenu('menu-perfil-funcionario');
+        window.funcionarios = JSON.parse(sessionStorage.getItem('funcionarios')) || [];
         mainContent.innerHTML = `
             <h2>Gerenciamento de Funcionários</h2>
-            <div class="conta-box" style="margin-bottom:2rem;">
+            <div class="conta-box" id="box-cadastrar-func" style="margin-bottom:2rem;">
                 <button id="btn-cadastrar-func" style="width:100%;">Cadastrar Novo Funcionário</button>
-            </div>
-            <div class="funcionarios-lista">
-                <h3>Funcionários</h3>
-                <ul>
-                    ${
-                        funcionarios.length === 0
-                        ? '<li>Nenhum funcionário cadastrado.</li>'
-                        : funcionarios.map((f, i) =>
-                            `<li style="display:flex;align-items:center;gap:1rem;">
-                                <span style="flex:1;">
-                                    <b>${f.codigo}</b> - ${f.nome} (${f.cargo}) - ${f.email}
-                                </span>
-                                <button class="btn-excluir-func" data-idx="${i}" style="background:#bf2424;color:#fff;border:none;border-radius:6px;padding:0.3rem 0.8rem;cursor:pointer;">Excluir</button>
-                            </li>`
-                        ).join('')
-                    }
-                </ul>
             </div>
             <div id="form-funcionario-box" style="display:none; margin-top:2rem;">
                 <h4>Cadastrar Funcionário</h4>
@@ -293,17 +278,35 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" id="btn-cancelar-func">Cancelar</button>
                 </form>
             </div>
+            <div class="funcionarios-lista">
+                <h3>Funcionários</h3>
+                <ul>
+                    ${
+                        window.funcionarios.length === 0
+                        ? '<li>Nenhum funcionário cadastrado.</li>'
+                        : window.funcionarios.map((f, i) =>
+                            `<li style="display:flex;align-items:center;gap:1rem;">
+                                <span style="flex:1;">
+                                    <b>${f.codigo}</b> - ${f.nome} (${f.cargo}) - ${f.email}
+                                </span>
+                                <button class="btn-excluir-func" data-idx="${i}" style="background:#bf2424;color:#fff;border:none;border-radius:6px;padding:0.3rem 0.8rem;cursor:pointer;">Excluir</button>
+                            </li>`
+                        ).join('')
+                    }
+                </ul>
+            </div>
         `;
 
+        // Ao clicar, esconde a box do botão e mostra o formulário
         document.getElementById('btn-cadastrar-func').onclick = function() {
+            document.getElementById('box-cadastrar-func').style.display = 'none';
             document.getElementById('form-funcionario-box').style.display = 'block';
-            this.style.display = 'none';
             document.getElementById('func-codigo').value = gerarCodigoFuncionario();
         };
 
         document.getElementById('btn-cancelar-func').onclick = function() {
             document.getElementById('form-funcionario-box').style.display = 'none';
-            document.getElementById('btn-cadastrar-func').style.display = 'block';
+            document.getElementById('box-cadastrar-func').style.display = 'block';
         };
 
         document.getElementById('form-funcionario').onsubmit = function(e) {
@@ -317,8 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Preencha todos os campos.');
                 return;
             }
-            funcionarios.push({ nome, email, cargo, senha, codigo });
-            sessionStorage.setItem('funcionarios', JSON.stringify(funcionarios));
+            window.funcionarios.push({ nome, email, cargo, senha, codigo });
+            sessionStorage.setItem('funcionarios', JSON.stringify(window.funcionarios));
             renderPerfilFuncionario();
         };
 
@@ -326,8 +329,8 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.onclick = function() {
                 const idx = parseInt(this.getAttribute('data-idx'));
                 if (confirm('Deseja realmente excluir este funcionário?')) {
-                    funcionarios.splice(idx, 1);
-                    sessionStorage.setItem('funcionarios', JSON.stringify(funcionarios));
+                    window.funcionarios.splice(idx, 1);
+                    sessionStorage.setItem('funcionarios', JSON.stringify(window.funcionarios));
                     renderPerfilFuncionario();
                 }
             }
