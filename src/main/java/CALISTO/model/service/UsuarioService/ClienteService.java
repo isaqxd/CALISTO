@@ -1,6 +1,7 @@
 package CALISTO.model.service.UsuarioService;
 
 import CALISTO.model.dao.ClienteDao;
+import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.TipoUsuario;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ClienteService extends UsuarioService {
      * @param cliente o usuário a ser validado e processado
      * @throws IllegalArgumentException quando encontrados erros de validação
      */
-    public CALISTO.model.persistence.Usuario.Cliente verificarCliente(CALISTO.model.persistence.Usuario.Cliente cliente) {
+    public Cliente verifyUsuario(Cliente cliente) {
         List<String> erros = new ArrayList<>();
 
         // VERIFICAÇÃO DE CAMPOS USUARIO
@@ -53,7 +54,7 @@ public class ClienteService extends UsuarioService {
             throw new RuntimeException("Erro ao cadastrar cliente. " + String.join(", ", erros));
         }
 
-        return processarCliente(cliente);
+        return processCliente(cliente);
     }
 
     /**
@@ -62,9 +63,8 @@ public class ClienteService extends UsuarioService {
      *
      * @param cliente cliente válido a ser processado
      */
-    private CALISTO.model.persistence.Usuario.Cliente processarCliente(CALISTO.model.persistence.Usuario.Cliente cliente) {
+    private Cliente processCliente(Cliente cliente) {
         try {
-            gerarOTP(cliente);
             gerarMD5(cliente);
             return clienteDao.save(cliente);
         } catch (RuntimeException e) {

@@ -19,9 +19,9 @@ public class FuncionarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Usando a classe utilitária para criar o endereço e preencher dados comuns
-            Endereco endereco = UsuarioControllerUtil.criarEndereco(request);
+            Endereco endereco = UsuarioControllerUtil.makeEndereco(request);
             CALISTO.model.persistence.Usuario.Funcionario funcionario = new CALISTO.model.persistence.Usuario.Funcionario();
-            UsuarioControllerUtil.preencherDadosUsuario(funcionario, request, endereco);
+            UsuarioControllerUtil.fillDataUsuario(funcionario, request, endereco);
 
             // Configurando propriedades específicas do funcionário
             String cargoStr = request.getParameter("cargo");

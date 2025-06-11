@@ -7,7 +7,11 @@ import CALISTO.model.persistence.util.TipoUsuario;
 import java.sql.*;
 
 public class LoginClienteDao {
-    // Método para buscar um cliente pelo CPF
+    /** Método para buscar um cliente pelo CPF
+     *
+     * @param cpf
+     * @return um objeto Cliente se encontrado, null caso contrário
+     */
     public Cliente findByCpf(String cpf) {
         String sql = "SELECT * FROM usuario WHERE cpf = ?";
         try (Connection con = Conexao.getConnection();
@@ -16,7 +20,7 @@ public class LoginClienteDao {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setIdCliente(rs.getInt("id_usuario"));
+                cliente.setIdUsuario(rs.getInt("id_usuario"));
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setSenhaHash(rs.getString("senha_hash"));
                 cliente.setTipoUsuario(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
@@ -24,6 +28,9 @@ public class LoginClienteDao {
 
                 Timestamp ts = rs.getTimestamp("otp_expiracao");
                 if (ts != null) cliente.setOtpExpiracao(ts.toLocalDateTime());
+
+                System.out.println("Cliente encontrado: " + cliente.getCpf());
+                System.out.println("Id do cliente: " + cliente.getIdUsuario());
                 return cliente;
             }
         } catch (SQLException e) {
@@ -32,7 +39,11 @@ public class LoginClienteDao {
         return null;
     }
 
-    // Método para atualizar o OTP do cliente
+    /** Método para atualizar o OTP do cliente
+     *
+     * @param cliente
+     * @return True se a atualização for bem-sucedida, False caso contrário
+     */
     public boolean updateOtp(Cliente cliente) {
         String sql = "UPDATE usuario SET otp_ativo = ?, otp_expiracao = ? WHERE id_usuario = ?";
         try (Connection con = Conexao.getConnection();

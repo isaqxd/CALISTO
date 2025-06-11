@@ -1,5 +1,6 @@
 package CALISTO.model.service.UsuarioService;
 
+import CALISTO.model.persistence.Usuario.Usuario;
 import CALISTO.model.persistence.util.TipoUsuario;
 
 import java.security.MessageDigest;
@@ -196,25 +197,11 @@ public abstract class UsuarioService {
     }
 
     /**
-     * Gera um OTP (One-Time Password) para o usuário.
-     *
-     * @param usuario usuário para o qual o OTP será gerado
-     */
-    protected void gerarOTP(CALISTO.model.persistence.Usuario.Usuario usuario) {
-        SecureRandom random = new SecureRandom();
-        int otp = 100000 + random.nextInt(900000);
-        usuario.setOtpAtivo(String.valueOf(otp));
-
-        // Definir expiração para 5 minutos a partir de agora
-        usuario.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
-    }
-
-    /**
      * Gera um hash MD5 para a senha do usuário.
      *
      * @param usuario usuário cuja senha será hasheada
      */
-    public void gerarMD5(CALISTO.model.persistence.Usuario.Usuario usuario) {
+    public void gerarMD5(Usuario usuario) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             String senha = usuario.getSenhaHash();

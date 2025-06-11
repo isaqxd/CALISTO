@@ -5,7 +5,7 @@ import CALISTO.model.persistence.Usuario.Usuario;
 import java.time.LocalDateTime;
 
 public class Auditoria {
-    private int idAuditoria; // chave primaria
+    private int idAuditoria;
     private Usuario usuario;
     private String acao;
     private LocalDateTime dataHora;

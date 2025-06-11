@@ -18,9 +18,9 @@ public class ClienteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Usando a classe utilitária para criar o endereço e preencher dados comuns
-            Endereco endereco = UsuarioControllerUtil.criarEndereco(request);
+            Endereco endereco = UsuarioControllerUtil.makeEndereco(request);
             CALISTO.model.persistence.Usuario.Cliente cliente = new CALISTO.model.persistence.Usuario.Cliente();
-            UsuarioControllerUtil.preencherDadosUsuario(cliente, request, endereco);
+            UsuarioControllerUtil.fillDataUsuario(cliente, request, endereco);
 
             // Configurando propriedades específicas do cliente
             cliente.setTipoUsuario(TipoUsuario.CLIENTE);
@@ -28,7 +28,7 @@ public class ClienteController extends HttpServlet {
             // Salvando no banco
             ClienteDao dao = new ClienteDao();
             ClienteService clienteService = new ClienteService(dao);
-            CALISTO.model.persistence.Usuario.Cliente clienteSalvo = clienteService.verificarCliente(cliente);
+            CALISTO.model.persistence.Usuario.Cliente clienteSalvo = clienteService.verifyUsuario(cliente);
 
             if (clienteSalvo != null) {
                 response.sendRedirect("test/sucesso.jsp");
