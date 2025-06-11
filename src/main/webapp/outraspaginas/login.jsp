@@ -80,8 +80,8 @@
                         <h2 class="form-title">Login</h2>
 
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="seuemail@email.com" required>
+                            <label class="form-label">Código do Funcionário</label>
+                            <input type="text" class="form-input" placeholder="Ex: FUN0001" id="funcionarioCodigo" required>
                         </div>
 
                         <div class="form-group">
@@ -93,8 +93,6 @@
                                 </button>
                             </div>
                         </div>
-
-                        <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
 
                         <button type="submit" class="login-btn">Entrar</button>
 

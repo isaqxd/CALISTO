@@ -6,6 +6,7 @@
     <title>Callisto Bank - Painel do Funcionário</title>
     <link rel="stylesheet" href="/src/main/webapp/css/portalfuncionario.css">
     <link rel="stylesheet" href="/src/main/webapp/css/cartao.css">
+    <link rel="stylesheet" href="/src/main/webapp/css/gerenciarfuncionario.css">
 </head>
 <body class="funcionario-mode">
     <div class="background-layer bg-funcionario"></div>
@@ -28,6 +29,12 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#dashboard" id="menu-dashboard" class="active"><span class="menu-icon">📊</span><span>Dashboard</span></a></li>
+                                        <li>
+                        <a href="#perfil-funcionario" id="menu-perfil-funcionario">
+                            <span class="menu-icon">🧑‍💼</span>
+                            <span>gerenciar Funcionário</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#clientes" id="menu-clientes">
                             <span class="menu-icon">👥</span>
@@ -40,6 +47,7 @@
                     <li><a href="#ferramentas" id="menu-ferramentas"><span class="menu-icon">🔧</span><span>Ferramentas Internas</span></a></li>
                     <li><a href="#suporte" id="menu-suporte"><span class="menu-icon">🎧</span><span>Suporte</span></a></li>
                     <li><a href="#configuracoes" id="menu-configuracoes"><span class="menu-icon">⚙️</span><span>Configurações</span></a></li>
+
                 </ul>
             </nav>
         </aside>
