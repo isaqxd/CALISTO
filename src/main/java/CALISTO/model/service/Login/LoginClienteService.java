@@ -1,31 +1,31 @@
 package CALISTO.model.service.Login;
 
 import CALISTO.model.dao.LoginClienteDao;
-import jakarta.servlet.ServletException;
+import CALISTO.model.persistence.Usuario.Cliente;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
 
 public class LoginClienteService {
     protected static final String SALT = "X@mpl3S@lt2025!";
 
-    public boolean validateLoginCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public boolean validateLoginCliente(HttpServletRequest request, HttpServletResponse response) {
         String cpf = request.getParameter("cpf");
         String senha = request.getParameter("senha");
         String tipoUsuario = request.getParameter("tipo_usuario");
 
-        String senhaHash = gerarHashMD5(senha);
+        String senhaHash = generateHashMD5(senha);
 
         LoginClienteDao dao = new LoginClienteDao();
-        CALISTO.model.persistence.Usuario.Cliente cliente = dao.findByCpf(cpf);
-
+        Cliente cliente = dao.findByCpf(cpf);
         if (cliente != null && cliente.getSenhaHash().equals(senhaHash) && tipoUsuario.equals(cliente.getTipoUsuario().toString())) {
             LocalDateTime agora = LocalDateTime.now();
             if (cliente.getOtpAtivo() == null || cliente.getOtpExpiracao() == null || !agora.isBefore(cliente.getOtpExpiracao())) {
-                gerarOTP(cliente);
+                generateOTP(cliente);
                 dao.updateOtp(cliente);
             }
             return true;
@@ -39,7 +39,7 @@ public class LoginClienteService {
      *
      * @param cliente usuário para o qual o OTP será gerado
      */
-    protected void gerarOTP(Cliente cliente) {
+    protected void generateOTP(Cliente cliente) {
         SecureRandom random = new SecureRandom();
         int otp = 100000 + random.nextInt(900000);
         cliente.setOtpAtivo(String.valueOf(otp));
@@ -48,7 +48,7 @@ public class LoginClienteService {
         cliente.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
     }
 
-    private String gerarHashMD5(String input) {
+    private String generateHashMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             String senhaComSalt = input + SALT;
