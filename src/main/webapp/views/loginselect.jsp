@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
     <link rel="stylesheet" href="/src/main/webapp/css/loginselect.css">
+========
+    <link rel="stylesheet" href="../css/loginSelectStyle.css">
+>>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
     <title>Callisto Bank</title>
 </head>
 <body>
     <header class="header" id="header">
         <div class="nav-container">
             <div class="logo">
+<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
                 <img src="/src/main/webapp/imagens/image.svg" alt="Callisto Bank" class="logo-image">
+========
+                <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
+>>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
             </div>
             
             <nav>
@@ -70,6 +78,12 @@
         </div>
     </footer>
 
+<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
     <script src="/src/main/webapp/script/loginselect.js"></script>
+========
+    <script src="../js/loginSelect.js">
+
+    </script>
+>>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
 </body>
 </html>
