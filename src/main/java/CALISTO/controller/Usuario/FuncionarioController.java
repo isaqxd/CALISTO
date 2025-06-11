@@ -2,10 +2,9 @@ package CALISTO.controller.Usuario;
 
 import CALISTO.model.dao.FuncionarioDao;
 import CALISTO.model.persistence.Endereco.Endereco;
-import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.util.Cargo;
 import CALISTO.model.persistence.util.TipoUsuario;
-import CALISTO.model.service.FuncionarioService;
+import CALISTO.model.service.UsuarioService.FuncionarioService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +20,7 @@ public class FuncionarioController extends HttpServlet {
         try {
             // Usando a classe utilitária para criar o endereço e preencher dados comuns
             Endereco endereco = UsuarioControllerUtil.criarEndereco(request);
-            Funcionario funcionario = new Funcionario();
+            CALISTO.model.persistence.Usuario.Funcionario funcionario = new CALISTO.model.persistence.Usuario.Funcionario();
             UsuarioControllerUtil.preencherDadosUsuario(funcionario, request, endereco);
 
             // Configurando propriedades específicas do funcionário
@@ -59,7 +58,7 @@ public class FuncionarioController extends HttpServlet {
             // Salvando no banco
             FuncionarioDao dao = new FuncionarioDao();
             FuncionarioService funcionarioService = new FuncionarioService(dao);
-            Funcionario funcionarioSalvo = funcionarioService.verificarFuncionario(funcionario);
+            CALISTO.model.persistence.Usuario.Funcionario funcionarioSalvo = funcionarioService.verificarFuncionario(funcionario);
 
             if (funcionarioSalvo != null) {
                 response.sendRedirect("test/sucesso.jsp");
