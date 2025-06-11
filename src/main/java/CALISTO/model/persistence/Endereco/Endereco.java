@@ -4,7 +4,6 @@ import CALISTO.model.persistence.Usuario.Usuario;
 
 public class Endereco {
     private int idEndereco;
-//    private Usuario usuario;
     private String cep;
     private String local;
     private int numeroCasa;

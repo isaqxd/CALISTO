@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 public abstract class Usuario {
     private int idUsuario;
-
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
