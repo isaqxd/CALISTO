@@ -23,6 +23,11 @@ public class LoginClienteService {
         CALISTO.model.persistence.Usuario.Cliente cliente = dao.findByCpf(cpf);
 
         if (cliente != null && cliente.getSenhaHash().equals(senhaHash) && tipoUsuario.equals(cliente.getTipoUsuario().toString())) {
+            LocalDateTime agora = LocalDateTime.now();
+            if (cliente.getOtpAtivo() == null || cliente.getOtpExpiracao() == null || !agora.isBefore(cliente.getOtpExpiracao())) {
+                gerarOTP(cliente);
+                dao.updateOtp(cliente);
+            }
             return true;
         } else {
             return false;
