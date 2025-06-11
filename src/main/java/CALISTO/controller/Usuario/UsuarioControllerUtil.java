@@ -18,7 +18,7 @@ public class UsuarioControllerUtil {
      * @param request A requisição HTTP contendo os parâmetros do endereço
      * @return Um objeto Endereco preenchido com os dados da requisição
      */
-    public static Endereco criarEndereco(HttpServletRequest request) {
+    public static Endereco makeEndereco(HttpServletRequest request) {
         String cep = request.getParameter("cep");
         String local = request.getParameter("local");
         String numeroCasa = request.getParameter("numeroCasa");
@@ -35,7 +35,7 @@ public class UsuarioControllerUtil {
      * @param dataNascimentoStr A string contendo a data de nascimento
      * @return Um objeto LocalDate representando a data de nascimento, ou null se a string for inválida
      */
-    public static LocalDate converterData(String dataNascimentoStr) {
+    public static LocalDate transformData(String dataNascimentoStr) {
         if (dataNascimentoStr == null || dataNascimentoStr.isEmpty()) {
             return null;
         }
@@ -50,14 +50,14 @@ public class UsuarioControllerUtil {
      * @param request A requisição HTTP contendo os parâmetros do usuário
      * @param endereco O objeto Endereco a ser associado ao usuário
      */
-    public static void preencherDadosUsuario(Usuario usuario, HttpServletRequest request, Endereco endereco) {
+    public static void fillDataUsuario(Usuario usuario, HttpServletRequest request, Endereco endereco) {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String dataNascimentoStr = request.getParameter("data_nascimento");
         String telefone = request.getParameter("telefone");
         String senha = request.getParameter("senha");
         
-        LocalDate dataNascimento = converterData(dataNascimentoStr);
+        LocalDate dataNascimento = transformData(dataNascimentoStr);
         
         usuario.setNome(nome);
         usuario.setCpf(cpf);
