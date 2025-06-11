@@ -1,126 +1,29 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callisto Bank - Login</title>
-    <link rel="stylesheet" href="../css/loginStyle.css">
+  <title>Login</title>
+  <script>
+    window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('erro')) {
+        alert(urlParams.get('erro'));
+      }
+      if (urlParams.get('sucesso') === 'cadastro') {
+        alert('Cadastro realizado com sucesso! Agora faça login.');
+      }
+    }
+  </script>
 </head>
-<body class="cliente-mode">
-    <!-- Background Layers -->
-    <div class="background-layer bg-cliente"></div>
-    <div class="background-layer bg-funcionario"></div>
+<body>
+<h2>Login</h2>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
-        </div>
-    </header>
+<form action="${pageContext.request.contextPath}/login" method="post">
+  Email: <input type="email" name="email" required><br><br>
+  Senha: <input type="password" name="senha" required minlength="4"><br><br>
+  <button type="submit">Entrar</button>
+</form>
 
-    <!-- Main Container -->
-    <div class="login-container">
-        <div class="content-slider">
-            <!-- Cliente Side -->
-            <div class="login-side cliente-side">
-                <!-- Welcome Section -->
-                <div class="welcome-section">
-                    <h1 class="welcome-title">Bem vindo !</h1>
-                    <h2 class="welcome-subtitle">Acesso do Cliente</h2>
-                    <p class="welcome-description">Gerencie suas finanças com segurança</p><br><br>
-                    <div class="toggle-section">
-                            <p class="toggle-text">Acesso para funcionários?</p>
-                            <button type="button" class="toggle-btn" onclick="toggleMode()">Portal do Funcionário</button>
-                        </div>
-                </div>
-
-                <!-- Form Section -->
-                <div class="form-section">
-                    <form action="${pageContext.request.contextPath}/loginCliente" class="login-form" id="clienteForm" method="post">
-                        <h2 class="form-title">Login</h2>
-                        <input type="hidden" name="tipo_usuario" value="CLIENTE">
-                        <div class="form-group">
-                            <label class="form-label">CPF</label>
-                            <input type="text" name="cpf" class="form-input" placeholder="000.000.000-00" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Senha</label>
-                            <div class="password-container">
-                                <input type="password" class="form-input" name="senha" placeholder="Senha" id="clientePassword" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword('clientePassword')">
-                                    <img src="../img/iconeyeclosed.png" alt="Mostrar senha" id="icon-clientePassword" width="20">
-                                </button>
-                            </div>
-                        </div>
-
-                        <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
-
-                        <button type="submit" class="login-btn">Entrar</button>
-
-                        <div class="forgot-password">
-                            <a href="#forgot">Esqueceu a senha? Sair</a>
-                        </div>
-
-                        <div class="toggle-section">
-                            <p class="toggle-text">Acesso para funcionários?</p>
-                            <button type="button" class="toggle-btn" onclick="location.href='index.jsp'">Sair</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Funcionário Side -->
-            <div class="login-side funcionario-side">
-                <!-- Welcome Section -->
-                <div class="welcome-section">
-                    <h1 class="welcome-title">Bem vindo !</h1>
-                    <h2 class="welcome-subtitle">Portal do Funcionário</h2>
-                    <p class="welcome-description">Acesso restrito para colaboradores</p><br><br>
-                    <div class="toggle-section">
-                            <p class="toggle-text">Acesso para funcionários?</p>
-                            <button type="button" class="toggle-btn" onclick="toggleMode()">Acesso do Cliente</button>
-                        </div>
-                </div>
-
-                <!-- Form Section -->
-                <div class="form-section">
-                    <form class="login-form" id="funcionarioForm">
-                        <h2 class="form-title">Login</h2>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="seuemail@email.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Senha</label>
-                            <div class="password-container">
-                                <input type="password" class="form-input" placeholder="Senha" id="funcionarioPassword" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword('funcionarioPassword')">
-                                    <img src="../img/iconeyeclosed.png" alt="Mostrar senha" id="icon-funcionarioPassword" width="20">
-                                </button>
-                            </div>
-                        </div>
-
-                        <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
-
-                        <button type="submit" class="login-btn">Entrar</button>
-
-                        <div class="forgot-password">
-                            <a href="#forgot">Esqueceu a senha? Sair</a>
-                        </div>
-
-                        <div class="toggle-section">
-                            <p class="toggle-text">Acesso para clientes?</p>
-                            <button type="button" class="toggle-btn" onclick="location.href='index.jsp'">Sair</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<script src="../js/login.js"></script>
+<p>Não tem conta? <a href="${pageContext.request.contextPath}/views/cadastro.jsp">Cadastre-se</a></p>
 </body>
 </html>

@@ -1,14 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/loginSelectStyle.css">
+    <link rel="stylesheet" href="/src/main/webapp/css/loginselect.css">
     <title>Callisto Bank</title>
 </head>
 <body>
-    <!-- Header - Atualizado da landpage -->
     <header class="header" id="header">
         <div class="nav-container">
             <div class="logo">
@@ -25,13 +23,11 @@
             </nav>
             
             <div class="nav-actions">
-                <a href="index.jsp" class="btn-login">Voltar</a>
-
+                <a href="../landpage.jsp" class="btn-login">Voltar</a>
             </div>
         </div>
     </header>
 
-    <!-- Welcome Message Section -->
     <section class="welcome-section">
         <div class="welcome-content">
             <h1 class="welcome-title">Bem-vindo ao Callisto Bank</h1>
@@ -39,10 +35,8 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="main-container">
         <div class="selection-container">
-            <!-- Cliente Card -->
             <div class="selection-card cliente-card" onclick="location.href='login.jsp?mode=cliente'">
                 <div class="card-background"></div>
                 <div class="card-content">
@@ -52,7 +46,6 @@
                 </div>
             </div>
 
-            <!-- Funcionário Card -->
             <div class="selection-card funcionario-card" onclick="location.href='login.jsp?mode=funcionario'">
                 <div class="card-background"></div>
                 <div class="card-content">
@@ -64,7 +57,6 @@
         </div>
     </main>
 
-    <!-- Footer - Atualizado da landpage -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -78,8 +70,6 @@
         </div>
     </footer>
 
-    <script src="../js/loginSelect.js">
-
-    </script>
+    <script src="../js/loginselect.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         if (this.getAttribute('href') === '#login' || this.getAttribute('href') === '#') return;
-
+        
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -46,7 +46,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function goToLoginPage() {
     // Aqui você pode colocar o caminho real da sua página de login
     window.location.href = 'login-selection.html'; // ou o nome que você der para a página de seleção
-
+    
     // Alternativamente, se for no mesmo diretório:
     // window.location.href = './login-selection.html';
 }
@@ -56,7 +56,7 @@ document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-15px) scale(1.02)';
     });
-
+    
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1)';
     });
