@@ -1,7 +1,6 @@
-package CALISTO.model.service;
+package CALISTO.model.service.UsuarioService;
 
 import CALISTO.model.dao.FuncionarioDao;
-import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.util.Cargo;
 import CALISTO.model.persistence.util.TipoUsuario;
 
@@ -29,7 +28,7 @@ public class FuncionarioService extends UsuarioService {
      * @param funcionario O funcionário a ser verificado e processado
      * @return O funcionário salvo ou null se houver erros de validação
      */
-    public Funcionario verificarFuncionario(Funcionario funcionario) {
+    public CALISTO.model.persistence.Usuario.Funcionario verificarFuncionario(CALISTO.model.persistence.Usuario.Funcionario funcionario) {
         List<String> erros = new ArrayList<>();
 
         // Validações
@@ -54,7 +53,7 @@ public class FuncionarioService extends UsuarioService {
      * @param funcionario O funcionário a ser processado
      * @return O funcionário salvo
      */
-    private Funcionario processarFuncionario(Funcionario funcionario) {
+    private CALISTO.model.persistence.Usuario.Funcionario processarFuncionario(CALISTO.model.persistence.Usuario.Funcionario funcionario) {
         // Gerar OTP e hash de senha
         gerarOTP(funcionario);
         gerarMD5(funcionario);

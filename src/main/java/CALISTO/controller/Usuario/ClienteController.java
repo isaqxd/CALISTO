@@ -2,9 +2,8 @@ package CALISTO.controller.Usuario;
 
 import CALISTO.model.dao.ClienteDao;
 import CALISTO.model.persistence.Endereco.Endereco;
-import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.TipoUsuario;
-import CALISTO.model.service.ClienteService;
+import CALISTO.model.service.UsuarioService.ClienteService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ public class ClienteController extends HttpServlet {
         try {
             // Usando a classe utilitária para criar o endereço e preencher dados comuns
             Endereco endereco = UsuarioControllerUtil.criarEndereco(request);
-            Cliente cliente = new Cliente();
+            CALISTO.model.persistence.Usuario.Cliente cliente = new CALISTO.model.persistence.Usuario.Cliente();
             UsuarioControllerUtil.preencherDadosUsuario(cliente, request, endereco);
 
             // Configurando propriedades específicas do cliente
@@ -29,7 +28,7 @@ public class ClienteController extends HttpServlet {
             // Salvando no banco
             ClienteDao dao = new ClienteDao();
             ClienteService clienteService = new ClienteService(dao);
-            Cliente clienteSalvo = clienteService.verificarCliente(cliente);
+            CALISTO.model.persistence.Usuario.Cliente clienteSalvo = clienteService.verificarCliente(cliente);
 
             if (clienteSalvo != null) {
                 response.sendRedirect("test/sucesso.jsp");
