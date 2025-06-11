@@ -4,12 +4,10 @@ import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.Conexao;
 import CALISTO.model.persistence.util.TipoUsuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class LoginClienteDao {
+    // Método para buscar um cliente pelo CPF
     public Cliente findByCpf(String cpf) {
         String sql = "SELECT * FROM usuario WHERE cpf = ?";
         try (Connection con = Conexao.getConnection();
@@ -18,9 +16,14 @@ public class LoginClienteDao {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("id_usuario"));
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setSenhaHash(rs.getString("senha_hash"));
                 cliente.setTipoUsuario(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
+                cliente.setOtpAtivo(rs.getString("otp_ativo"));
+
+                Timestamp ts = rs.getTimestamp("otp_expiracao");
+                if (ts != null) cliente.setOtpExpiracao(ts.toLocalDateTime());
                 return cliente;
             }
         } catch (SQLException e) {
