@@ -1,5 +1,7 @@
 package CALISTO.controller.Login;
 
+import CALISTO.model.dao.AuditoriaDao;
+import CALISTO.model.persistence.Auditoria.Auditoria;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.service.Login.LoginClienteService;
 import jakarta.servlet.ServletException;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/loginCliente")
 public class LoginClienteController extends HttpServlet {
@@ -19,13 +22,17 @@ public class LoginClienteController extends HttpServlet {
         Cliente cliente = new Cliente();
         LoginClienteService service = new LoginClienteService();
 
-        if (service.validateLoginCliente(request, response)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("usuarioLogado", cliente);
-            response.sendRedirect("test/sucesso.jsp");
-        } else {
-            request.setAttribute("erro", "CPF ou senha inválidos.");
-            request.getRequestDispatcher("test/login.jsp").forward(request, response);
+        try {
+            if (service.validateLoginCliente(request, response)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("usuarioLogado", cliente);
+                response.sendRedirect("test/sucesso.jsp");
+            } else {
+                request.setAttribute("erro", "CPF ou senha inválidos.");
+                request.getRequestDispatcher("test/login.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
