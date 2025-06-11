@@ -28,4 +28,19 @@ public class LoginClienteDao {
         }
         return null;
     }
+
+    // Método para atualizar o OTP do cliente
+    public boolean updateOtp(Cliente cliente) {
+        String sql = "UPDATE usuario SET otp_ativo = ?, otp_expiracao = ? WHERE id_usuario = ?";
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, cliente.getOtpAtivo());
+            stmt.setTimestamp(2, Timestamp.valueOf(cliente.getOtpExpiracao()));
+            stmt.setInt(3, cliente.getIdCliente());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
