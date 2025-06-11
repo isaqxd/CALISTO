@@ -29,6 +29,20 @@ public class LoginClienteService {
         }
     }
 
+    /**
+     * Gera um OTP (One-Time Password) para o usuário.
+     *
+     * @param cliente usuário para o qual o OTP será gerado
+     */
+    protected void gerarOTP(Cliente cliente) {
+        SecureRandom random = new SecureRandom();
+        int otp = 100000 + random.nextInt(900000);
+        cliente.setOtpAtivo(String.valueOf(otp));
+
+        // Definir expiração para 5 minutos a partir de agora
+        cliente.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
+    }
+
     private String gerarHashMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
