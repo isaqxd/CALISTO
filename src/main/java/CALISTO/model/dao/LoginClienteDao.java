@@ -28,9 +28,6 @@ public class LoginClienteDao {
 
                 Timestamp ts = rs.getTimestamp("otp_expiracao");
                 if (ts != null) cliente.setOtpExpiracao(ts.toLocalDateTime());
-
-                System.out.println("Cliente encontrado: " + cliente.getCpf());
-                System.out.println("Id do cliente: " + cliente.getIdUsuario());
                 return cliente;
             }
         } catch (SQLException e) {

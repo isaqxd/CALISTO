@@ -9,10 +9,13 @@ target/
 .idea/compiler.xml
 .idea/libraries/
 .idea\dataSources.xml
-src/main/java/CALISTO/model/persistence/test
 *.iws
 *.iml
 *.ipr
+
+### CALISTO ###
+src/main/java/CALISTO/model/persistence/test
+src\main\java\CALISTO\model\persistence\util\Conexao.java
 
 ### Eclipse ###
 .apt_generated

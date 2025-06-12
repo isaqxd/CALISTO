@@ -18,6 +18,7 @@ public class LoginClienteService {
 
     public boolean validateLoginCliente(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         String cpf = request.getParameter("cpf");
+        cpf = cpf.replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CPF
         String senha = request.getParameter("senha");
         String tipoUsuario = request.getParameter("tipo_usuario");
 

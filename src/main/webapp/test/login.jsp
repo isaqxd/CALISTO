@@ -521,25 +521,34 @@
 
     <div class="welcome-section">
         <div class="logo">
-            <img src="logo.png" alt="Logo" class="logo-image">
+            <img src="../img/image.svg" alt="Logo" class="logo-image">
         </div>
         <h1 class="welcome-title">Bem-vindo!</h1>
-        <h2 class="welcome-subtitle">Área do Cliente</h2>
+        <h2 class="welcome-subtitle" id="welcome-subtitle">Área do Cliente</h2>
         <p class="welcome-description">Acesse sua conta para continuar.</p>
     </div>
 
-    <div class="form-container">
+    <!-- Formulário do Cliente -->
+    <div class="form-container" id="cliente-form">
         <form class="login-form" action="${pageContext.request.contextPath}/loginCliente" method="post">
-            <h2 class="form-title">Login</h2>
+            <h2 class="form-title">Área do Cliente</h2>
             <input type="hidden" name="tipo_usuario" value="CLIENTE">
+
+            <%-- Mensagem de erro --%>
+            <% if (request.getParameter("msg") != null && request.getParameter("msg").equals("erro")) { %>
+            <div class="error-message" style="display: block;">
+                CPF ou senha incorretos!
+            </div>
+            <% } %>
+
             <div class="form-group">
-                <label class="form-label" for="text">CPF</label>
-                <input type="text" id="cpf" name="cpf" class="form-input" required>
+                <label class="form-label" for="cpf-cliente">CPF</label>
+                <input type="text" id="cpf-cliente" name="cpf" class="form-input" required>
             </div>
 
             <div class="form-group password-container">
-                <label class="form-label" for="senha">Senha</label>
-                <input type="password" name="senha" id="senha" class="form-input" required>
+                <label class="form-label" for="senha-cliente">Senha</label>
+                <input type="password" name="senha" id="senha-cliente" class="form-input" required>
                 <button type="button" class="password-toggle">👁️</button>
             </div>
 
@@ -551,12 +560,97 @@
 
             <div class="toggle-section">
                 <p class="toggle-text">É funcionário?</p>
-                <button type="button" class="toggle-btn" onclick="document.body.classList.add('funcionario-mode')">Ir
-                    para funcionário
+                <button type="button" class="toggle-btn" onclick="toggleForm('funcionario')">
+                    Ir para funcionário
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Formulário do Funcionário -->
+    <div class="form-container" id="funcionario-form" style="display: none;">
+        <form class="login-form" action="${pageContext.request.contextPath}/loginCliente" method="post">
+            <h2 class="form-title">Área do Funcionário</h2>
+            <input type="hidden" name="tipo_usuario" value="FUNCIONARIO">
+
+            <div class="form-group">
+                <label class="form-label" for="cpf-func">CPF</label>
+                <input type="text" id="cpf-func" name="cpf" class="form-input" required>
+            </div>
+
+            <div class="form-group password-container">
+                <label class="form-label" for="senha-func">Senha</label>
+                <input type="password" name="senha" id="senha-func" class="form-input" required>
+                <button type="button" class="password-toggle">👁️</button>
+            </div>
+
+            <button type="submit" class="login-btn">Entrar</button>
+
+            <div class="forgot-password">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+
+            <div class="toggle-section">
+                <p class="toggle-text">É cliente?</p>
+                <button type="button" class="toggle-btn" onclick="toggleForm('cliente')">
+                    Ir para cliente
                 </button>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function toggleForm(tipo) {
+        const body = document.body;
+        const clienteForm = document.getElementById('cliente-form');
+        const funcionarioForm = document.getElementById('funcionario-form');
+        const welcomeSubtitle = document.getElementById('welcome-subtitle');
+
+        if (tipo === 'funcionario') {
+            body.classList.add('funcionario-mode');
+            clienteForm.style.display = 'none';
+            funcionarioForm.style.display = 'flex';
+            welcomeSubtitle.textContent = 'Área do Funcionário';
+        } else {
+            body.classList.remove('funcionario-mode');
+            clienteForm.style.display = 'flex';
+            funcionarioForm.style.display = 'none';
+            welcomeSubtitle.textContent = 'Área do Cliente';
+        }
+    }
+
+    // Formatação de CPF
+    function formatCPF(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        input.value = value;
+    }
+
+    // Adicionar formatação de CPF aos campos
+    document.getElementById('cpf-cliente').addEventListener('input', function () {
+        formatCPF(this);
+    });
+    document.getElementById('cpf-func').addEventListener('input', function () {
+        formatCPF(this);
+    });
+
+    // Toggle de visibilidade da senha
+    document.querySelectorAll('.password-toggle').forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.previousElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.textContent = '👁️‍🗨️';
+            } else {
+                input.type = 'password';
+                this.textContent = '👁️';
+            }
+        });
+    });
+</script>
 </body>
 </html>
