@@ -1,3 +1,5 @@
+// SUBSTITUA O CONTEÚDO DO SEU ARQUIVO: LoginClienteService.java POR ESTE
+
 package CALISTO.model.service.Login;
 
 import CALISTO.model.dao.AuditoriaDao;
@@ -5,7 +7,6 @@ import CALISTO.model.dao.LoginClienteDao;
 import CALISTO.model.persistence.Auditoria.Auditoria;
 import CALISTO.model.persistence.Usuario.Cliente;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,58 +17,80 @@ import java.time.LocalDateTime;
 public class LoginClienteService {
     protected static final String SALT = "X@mpl3S@lt2025!";
 
-    public boolean validateLoginCliente(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String cpf = request.getParameter("cpf");
-        cpf = cpf.replaceAll("[^0-9]", ""); // Remove caracteres não numéricos do CPF
+    /**
+     * Valida as credenciais do cliente (CPF e Senha).
+     * @return O objeto Cliente se as credenciais forem válidas, caso contrário, retorna null.
+     */
+    public Cliente validateLoginCredentials(HttpServletRequest request) throws SQLException {
+        String cpf = request.getParameter("cpf").replaceAll("[^0-9]", "");
         String senha = request.getParameter("senha");
         String tipoUsuario = request.getParameter("tipo_usuario");
-
-        String senhaHash = generateHashMD5(senha);
 
         LoginClienteDao dao = new LoginClienteDao();
         Cliente cliente = dao.findByCpf(cpf);
 
-        // COMEÇANDO A AUDITORIA
-        AuditoriaDao auditoriaDao = new AuditoriaDao();
-        Auditoria auditoria = new Auditoria();
-        auditoria.setUsuario(cliente);
+        if (cliente == null) {
+            System.err.println("Tentativa de login com CPF não encontrado: " + cpf);
+            return null; // Cliente não encontrado
+        }
 
+        String senhaHash = generateHashMD5(senha);
+
+        // Verifica se a senha e o tipo de usuário estão corretos
         if (cliente.getSenhaHash().equals(senhaHash) && tipoUsuario.equals(cliente.getTipoUsuario().toString())) {
-            // Se o login for bem-sucedido, registrar a tentativa de login na auditoria
-            auditoria.setDetalhes("CPF: " + cpf + ", Tipo de usuário: " + tipoUsuario);
-            auditoria.setDataHora(LocalDateTime.now());
-
-            LocalDateTime agora = LocalDateTime.now();
-            if (cliente.getOtpAtivo() == null || cliente.getOtpExpiracao() == null || !agora.isBefore(cliente.getOtpExpiracao())) {
-                generateOTP(cliente);
-                // Se a OTP não estiver ativo ou expirou, gerar relatorio de auditoria
-                auditoria.setAcao("Tentativa de login com OTP gerado");
-                auditoriaDao.save(auditoria);
-                dao.updateOtp(cliente);
-            }
-            return true;
+            // Credenciais corretas, gera e salva um novo OTP
+            generateOTP(cliente);
+            dao.updateOtp(cliente);
+            // Registra a auditoria
+            saveAudit(cliente, "Credenciais válidas. Novo OTP gerado.", "CPF: " + cpf);
+            return cliente; // Retorna o objeto cliente em caso de sucesso
         } else {
-            // Se o login falhar, registrar a tentativa de login na auditoria
-            auditoria.setAcao("Tentativa de login mal-sucedida");
-            auditoria.setDetalhes("CPF: " + cpf + ", Tipo de usuário: " + tipoUsuario + ", Senha incorreta ou tipo de usuário inválido");
-            auditoria.setDataHora(LocalDateTime.now());
-            // Salvar auditoria no banco de dados
-            auditoriaDao.save(auditoria);
-            return false;
+            // Senha ou tipo de usuário incorretos
+            saveAudit(cliente, "Tentativa de login mal-sucedida", "CPF: " + cpf + ", Senha incorreta.");
+            return null; // Falha na validação
         }
     }
 
     /**
-     * Gera um OTP (One-Time Password) para o usuário.
-     *
-     * @param cliente usuário para o qual o OTP será gerado
+     * Valida o OTP fornecido pelo usuário.
+     * @return true se o OTP for válido e não estiver expirado, false caso contrário.
      */
+    public boolean validateOTP(String cpf, String otpSubmetido) throws SQLException {
+        LoginClienteDao dao = new LoginClienteDao();
+        Cliente cliente = dao.findByCpf(cpf.replaceAll("[^0-9]", ""));
+
+        if (cliente == null || cliente.getOtpAtivo() == null || cliente.getOtpExpiracao() == null) {
+            return false; // Não há OTP ativo para este cliente
+        }
+
+        // Verifica se o OTP não expirou E se o código está correto
+        boolean isOtpValid = LocalDateTime.now().isBefore(cliente.getOtpExpiracao()) &&
+                cliente.getOtpAtivo().equals(otpSubmetido);
+
+        if(isOtpValid) {
+            saveAudit(cliente, "Login concluído com sucesso (OTP Válido)", "CPF: " + cpf);
+        } else {
+            saveAudit(cliente, "Tentativa de login com OTP inválido", "CPF: " + cpf);
+        }
+
+        return isOtpValid;
+    }
+
+    // Método auxiliar para simplificar a criação da auditoria
+    private void saveAudit(Cliente cliente, String acao, String detalhes) throws SQLException {
+        AuditoriaDao auditoriaDao = new AuditoriaDao();
+        Auditoria auditoria = new Auditoria();
+        auditoria.setUsuario(cliente);
+        auditoria.setAcao(acao);
+        auditoria.setDetalhes(detalhes);
+        auditoria.setDataHora(LocalDateTime.now());
+        auditoriaDao.save(auditoria);
+    }
+
     protected void generateOTP(Cliente cliente) {
         SecureRandom random = new SecureRandom();
         int otp = 100000 + random.nextInt(900000);
         cliente.setOtpAtivo(String.valueOf(otp));
-
-        // Definir expiração para 5 minutos a partir de agora
         cliente.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
     }
 
@@ -75,14 +98,11 @@ public class LoginClienteService {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             String senhaComSalt = input + SALT;
-
             byte[] hash = md.digest(senhaComSalt.getBytes());
-
             StringBuilder sb = new StringBuilder();
             for (byte b : hash) {
                 sb.append(String.format("%02x", b & 0xff));
             }
-
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Erro ao gerar hash MD5: " + e.getMessage(), e);

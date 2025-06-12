@@ -1,26 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
-    <link rel="stylesheet" href="/src/main/webapp/css/loginselect.css">
-========
-    <link rel="stylesheet" href="../css/loginSelectStyle.css">
->>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
+    <link rel="stylesheet" href="../css/loginselect.css">
     <title>Callisto Bank</title>
 </head>
 <body>
     <header class="header" id="header">
         <div class="nav-container">
             <div class="logo">
-<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
-                <img src="/src/main/webapp/imagens/image.svg" alt="Callisto Bank" class="logo-image">
-========
                 <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
->>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
             </div>
-            
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#home">Início</a></li>
@@ -31,7 +24,7 @@
             </nav>
             
             <div class="nav-actions">
-                <a href="/src/main/webapp/landpage.jsp" class="btn-login">Voltar</a>
+                <a href="../index.jsp" class="btn-login">Voltar</a>
             </div>
         </div>
     </header>
@@ -77,13 +70,7 @@
             <p>&copy; 2024 Callisto Bank. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-<<<<<<<< HEAD:src/main/webapp/outraspaginas/loginselect.jsp
-    <script src="/src/main/webapp/script/loginselect.js"></script>
-========
-    <script src="../js/loginSelect.js">
-
+    <script src="../js/loginselect.js">
     </script>
->>>>>>>> refs/remotes/origin/branchSucesso:src/main/webapp/views/loginselect.jsp
 </body>
 </html>

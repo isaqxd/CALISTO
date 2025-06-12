@@ -82,9 +82,15 @@
         }
 
         @keyframes float {
-            0% { transform: translateX(-50px) translateY(-20px); }
-            50% { transform: translateX(50px) translateY(20px); }
-            100% { transform: translateX(-50px) translateY(-20px); }
+            0% {
+                transform: translateX(-50px) translateY(-20px);
+            }
+            50% {
+                transform: translateX(50px) translateY(20px);
+            }
+            100% {
+                transform: translateX(-50px) translateY(-20px);
+            }
         }
 
         /* Main Container */
@@ -127,14 +133,14 @@
             height: 80px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
         }
 
         .welcome-title {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             transition: color 0.8s ease;
         }
 
@@ -195,13 +201,13 @@
 
         body:not(.funcionario-mode) .form-container {
             left: 50%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%),
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
             linear-gradient(45deg, #f8f6f3 0%, #f2e8d5 100%);
         }
 
         body.funcionario-mode .form-container {
             left: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%),
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
             linear-gradient(45deg, #f5f5f2 0%, #e8e6e1 100%);
         }
 
@@ -221,13 +227,13 @@
             background: rgba(255, 255, 255, 0.95);
             padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
             width: 100%;
             max-width: 400px;
             position: relative;
             z-index: 2;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .form-title {
@@ -524,12 +530,13 @@
 
         <div class="toggle-section">
             <p class="toggle-text" id="toggle-text">Acesso para funcionários?</p>
-            <button type="button" class="toggle-btn" id="toggle-btn" onclick="toggleMode()">Portal do Funcionário</button>
+            <button type="button" class="toggle-btn" id="toggle-btn" onclick="toggleMode()">Portal do Funcionário
+            </button>
         </div>
     </div>
 
     <div class="form-container">
-        <form class="login-form" id="loginForm" method="post">
+        <form class="login-form" id="loginForm" method="post" action="${pageContext.request.contextPath}/loginCliente">
             <h2 class="form-title" id="form-title">Login Cliente</h2>
 
             <div class="error-message" id="error-message"></div>
@@ -540,13 +547,15 @@
 
             <div class="form-group" id="identifier-group">
                 <label class="form-label" id="identifier-label">CPF</label>
-                <input type="text" name="cpf" class="form-input" id="identifier-input" placeholder="000.000.000-00" required>
+                <input type="text" name="cpf" class="form-input" id="identifier-input" placeholder="000.000.000-00"
+                       required>
             </div>
 
             <div class="form-group" id="password-group">
                 <label class="form-label">Senha</label>
                 <div class="password-container">
-                    <input type="password" name="senha" class="form-input" placeholder="Senha" id="password-input" required>
+                    <input type="password" name="senha" class="form-input" placeholder="Senha" id="password-input"
+                           required>
                     <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
                 </div>
             </div>
@@ -572,7 +581,8 @@
             </div>
 
             <div class="toggle-section">
-                <button type="button" class="exit-btn">Sair</button>
+                <button type="button" class="exit-btn" onclick="window.location.href='../views/loginselect.jsp'">Sair
+                </button>
             </div>
         </form>
     </div>
@@ -608,6 +618,8 @@
         document.getElementById('identifier-input').placeholder = 'FUN00000';
         document.getElementById('login-btn').textContent = 'Entrar como Funcionário';
         document.getElementById('loginForm').action = '${pageContext.request.contextPath}/loginFuncionario';
+        document.querySelector('input[name="tipo_usuario"]').value = 'FUNCIONARIO';
+        console.log('Form action set to: ' + document.getElementById('loginForm').action);
     }
 
     function updateContentForCliente() {
@@ -620,6 +632,7 @@
         document.getElementById('identifier-input').placeholder = '000.000.000-00';
         document.getElementById('login-btn').textContent = 'Entrar como Cliente';
         document.getElementById('loginForm').action = '${pageContext.request.contextPath}/loginCliente';
+        document.querySelector('input[name="tipo_usuario"]').value = 'CLIENTE';
     }
 
     function resetFormState() {
@@ -661,12 +674,12 @@
     }
 
     function formatFuncionarioCode(code) {
+        // Only convert to uppercase and remove special characters
+        // without forcing the FUN prefix
         let value = code.toUpperCase().replace(/[^A-Z0-9]/g, '');
-        if (!value.startsWith('FUN')) {
-            value = 'FUN' + value.replace(/[^0-9]/g, '');
-        }
         return value.substring(0, 8);
     }
+
 
     document.getElementById('identifier-input').addEventListener('input', function (e) {
         if (!isFuncionarioMode) {
@@ -748,7 +761,9 @@
 
             const otpInputs = document.querySelectorAll('.otp-input');
             let otp = '';
-            otpInputs.forEach(input => { otp += input.value; });
+            otpInputs.forEach(input => {
+                otp += input.value;
+            });
 
             if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
                 showMessage('Por favor, insira um código OTP válido de 6 dígitos.', true);
@@ -782,9 +797,11 @@
         const error = urlParams.get('error');
         const lastIdentifier = urlParams.get('lastIdentifier');
 
-        // Check if we need to switch to employee mode based on identifier
+        // Check if we need to switch to employee mode based on identifier or tipo_usuario
         const effectiveIdentifier = identifier || lastIdentifier;
-        if (effectiveIdentifier && effectiveIdentifier.toUpperCase().startsWith('FUN')) {
+        const tipoUsuario = urlParams.get('tipo_usuario');
+
+        if ((effectiveIdentifier && effectiveIdentifier.toUpperCase().startsWith('FUN')) || tipoUsuario === 'FUNCIONARIO') {
             if (!document.body.classList.contains('funcionario-mode')) {
                 toggleMode();
             }
@@ -799,7 +816,7 @@
         // Handle error messages
         if (error) {
             showMessage(decodeURIComponent(error.replace(/\+/g, ' ')), true);
-            if(lastIdentifier) {
+            if (lastIdentifier) {
                 document.getElementById('identifier-input').value = lastIdentifier;
             }
         }

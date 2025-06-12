@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="CALLISTO:war exploded" />
+      <artifact name="aprenderJsp:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,16 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/cartao.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/cartao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/landpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/landpage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/loginselect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/loginselect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/portalfuncionario.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/portalfuncionario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/testLoginClienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/landpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/loginselect.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/loginselect.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/imagem cliente.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem_cliente.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/imagem funcionario.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem_funcionario.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/landpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/landpage.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="luizbranch" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,12 +53,12 @@
     &quot;assignee&quot;: &quot;isaqxd&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/isaqxd/CALISTO.git&quot;,
-    &quot;accountId&quot;: &quot;db4dcad7-4e2c-4388-a61e-df0cc6bffecf&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/isaqxd/CALISTO.git",
+    "accountId": "c554c9ab-2100-4ad4-80cc-08ec9c28394d"
   }
-}</component>
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -77,48 +81,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.41.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;odeioLuiszComSucesso&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.41.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
+    "git-widget-placeholder": "odeioLuiszComSucesso",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/calistobank/src/main/java",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.1581092",
+    "project.structure.side.proportion": "0.3647871",
+    "settings.editor.selected.configurable": "proofread",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\calistobank\src\main\java" />
       <recent name="D:\calistobank\src\main\java\service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\IdeaProjects\CALISTO\src\main\webapp" />
       <recent name="D:\CALISTO\src\main\webapp" />
       <recent name="D:\CALISTO\src\main\java" />
       <recent name="D:\calistobank" />
       <recent name="D:\calistobank\src\main\webapp" />
-      <recent name="D:\calistobank\src\main\webapp\img" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -139,11 +144,12 @@
       </method>
     </configuration>
     <configuration name="Tomcat 10.1.41" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.41" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/aprenderJsp_war_exploded/index.jsp" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="CALLISTO:war exploded">
+        <artifact name="aprenderJsp:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/CALLISTO_war_exploded" />
+            <option name="CONTEXT_PATH" value="/aprenderJsp_war_exploded" />
           </settings>
         </artifact>
       </deployment>
@@ -241,6 +247,7 @@
         <option name="BuildArtifacts" enabled="true">
           <artifact name="calistobank:war exploded" />
           <artifact name="CALLISTO:war exploded" />
+          <artifact name="aprenderJsp:war exploded" />
         </option>
       </method>
     </configuration>
@@ -278,6 +285,7 @@
       <workItem from="1748985195052" duration="360000" />
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
+      <workItem from="1749732744373" duration="10497000" />
     </task>
     <servers />
   </component>

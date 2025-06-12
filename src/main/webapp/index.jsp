@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Callisto Bank - Sua Jornada Financeira</title>
-  <link rel="stylesheet" href="../css/indexStyle.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <!-- Header -->
 <header class="header" id="header">
   <div class="nav-container">
     <div class="logo">
-      <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
+      <img src="img/image.svg" alt="Callisto Bank" class="logo-image">
     </div>
 
     <nav>
@@ -25,7 +25,7 @@
     </nav>
 
     <div class="nav-actions">
-      <a href="loginselect.jsp" class="btn-login">Acessar Conta</a>
+      <a href="views/loginselect.jsp" class="btn-login">Acessar Conta</a>
     </div>
   </div>
 </header>
@@ -36,7 +36,7 @@
     <h1 class="hero-title">Seu Futuro Financeiro Começa Aqui</h1>
     <p class="hero-subtitle">No Callisto Bank, transformamos suas metas financeiras em realidade com soluções inovadoras, segurança incomparável e atendimento personalizado.</p>
     <div class="hero-cta">
-      <a href="loginselect.jsp" class="btn-primary" onclick="goToLoginPage()">Começar Agora</a>
+      <a href="views/loginselect.jsp" class="btn-primary" onclick="goToLoginPage()">Começar Agora</a>
       <a href="#services" class="btn-login">Conhecer Serviços</a>
     </div>
   </div>
@@ -127,7 +127,7 @@
   <div class="cta-content">
     <h2 class="cta-title">Pronto para começar?</h2>
     <p class="cta-subtitle">Abra sua conta em poucos minutos e descubra um novo jeito de cuidar do seu dinheiro</p>
-    <a href="loginselect.jsp" class="btn-cta" onclick="goToLoginPage()">Acessar Minha Conta</a>
+    <a href="views/loginselect.jsp" class="btn-cta" onclick="goToLoginPage()">Acessar Minha Conta</a>
   </div>
 </section>
 
@@ -145,7 +145,7 @@
   </div>
 </footer>
 
-<script src="../js/index.js">
+<script src="js/index.js">
 </script>
 </body>
 </html>

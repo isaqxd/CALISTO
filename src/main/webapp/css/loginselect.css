@@ -208,7 +208,7 @@ body {
 .cliente-card .card-background {
     background-image: 
         linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(17, 8, 5, 0.4) 100%),
-        url("/src/main/webapp/imagens/imagem cliente.jpg");
+        url("../img/imagem_cliente.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -216,7 +216,7 @@ body {
 .funcionario-card .card-background {
     background-image: 
         linear-gradient(135deg, rgba(58, 40, 28, 0.4) 0%, rgba(255, 107, 53, 0.4) 100%),
-        url("/src/main/webapp/imagens/imagem funcionario.png");
+        url("../img/imagem_funcionario.png");
     background-size: cover;
     background-position: center;
 }
