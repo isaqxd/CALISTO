@@ -33,6 +33,5 @@ public class LoginClienteController extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

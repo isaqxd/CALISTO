@@ -36,46 +36,51 @@ public class LoginClienteService {
 
         AuditoriaDao auditoriaDao = new AuditoriaDao();
         LoginClienteDao dao = new LoginClienteDao();
-
-
         Cliente cliente = dao.findByCpf(cpf);
 
-
         Auditoria a = new Auditoria();
-        // SE TIPO DE USUARIO É IGUAL AO DO BANCO E SENHA HASH É IGUAL AO DO BANCO
-        if (!tipoUsuario.equals(cliente.getTipoUsuario().toString()) || !cliente.getSenhaHash().equals(senhaHash)) {
+        // BLOQUEIA MULTIPLAS TENTATIVAS DE LOGIN
+        if (cliente != null && auditoriaDao.blockLoginFromAuditoria(cliente.getIdUsuario())) {
+            a.setAcao("LOGIN_BLOQUEADO");
+            a.setDataHora(HORA_ATUAL);
+            a.setDetalhes("Login bloqueado para o CLIENTE com CPF: " + cpf);
+            a.setUsuario(cliente);
+            auditoriaDao.save(a);
+
+            return false;
+        }
+
+        // CPF ou senha inválidos
+        if (cliente == null || !tipoUsuario.equals(cliente.getTipoUsuario().toString()) || !cliente.getSenhaHash().equals(senhaHash)) {
             a.setAcao("LOGIN_FALHA");
             a.setDetalhes("Tentativa de login com CPF: " + cpf);
             a.setDataHora(LocalDateTime.now());
-            a.setUsuario(cliente);
-            // Salva a auditoria de falha de login
+            if (cliente != null) a.setUsuario(cliente);
             auditoriaDao.save(a);
             return false;
         }
 
-        // Se já existe uma OTP ativa e ainda não expirou, registra auditoria de OTP pendente
+        //  OTP ainda válida
         if (cliente.getOtpAtivo() != null && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
             a.setAcao("OTP_PEDENTE");
             a.setDataHora(LocalDateTime.now());
             a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
-
             return true;
         }
 
-        // SE AGORA FOR 5 MINUTOS DEPOIS DO OTP EXPIRADO OU FOR NULL OU TIVER VAZIO, GERAR NOVA OTP;
+        // Geração de nova OTP
         if (HORA_ATUAL.isAfter(cliente.getOtpExpiracao()) || cliente.getOtpAtivo() == null || cliente.getOtpAtivo().isEmpty()) {
-            // REGISTRA EM AUDITORIA QUE O OTP FOI GERADO
             a.setAcao("OTP_GERADA");
             a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OPT ENVIADA PARA O CLIENTE COM CPF: " + cpf);
+            a.setDetalhes("OTP gerada para o CLIENTE com CPF: " + cpf);
             a.setUsuario(cliente);
-        }
+            auditoriaDao.save(a);
 
-        auditoriaDao.save(a);
-        generateOTP(cliente);
-        dao.updateOtp(cliente);
+            generateOTP(cliente);
+            dao.updateOtp(cliente);
+        }
         return true;
     }
 
