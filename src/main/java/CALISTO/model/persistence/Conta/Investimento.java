@@ -3,7 +3,7 @@ package CALISTO.model.persistence.Conta;
 import java.math.BigDecimal;
 import CALISTO.model.persistence.util.PerfilRisco;
 
-public class Investimento {
+public class Investimento extends Conta {
     private int idContaInvestimento;
     private int contaId;
     private PerfilRisco perfilRisco;

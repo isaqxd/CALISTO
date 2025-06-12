@@ -3,7 +3,7 @@ package CALISTO.model.persistence.Conta;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Poupanca {
+public class Poupanca extends Conta {
     private int idContaPoupanca;
     private Conta conta;
     private BigDecimal taxaRendimento;

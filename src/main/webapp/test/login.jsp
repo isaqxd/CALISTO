@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/loginstyle.css">
     <title>Login Cliente</title>
-    <!-- Aqui você pode colar todo o seu <style> que você mandou -->
+    <link rel="stylesheet" href="css/loginstyle.css">
+
 </head>
 <body>
 <div class="login-container">
@@ -93,6 +93,35 @@
         </form>
     </div>
 </div>
+
+<%
+    String otpParam = request.getParameter("otp_true");
+    boolean mostrarFormularioOtp = "true".equals(otpParam);
+%>
+
+<% if (mostrarFormularioOtp) { %>
+<script>
+    // Esconde os formulários de login
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("cliente-form").style.display = "none";
+        document.getElementById("funcionario-form").style.display = "none";
+        document.getElementById("otp-form").style.display = "block";
+    });
+</script>
+
+<div class="form-container" id="otp-form" style="display: block;">
+    <form class="login-form" action="${pageContext.request.contextPath}/loginOtp" method="post">
+        <h2 class="form-title">Verificação OTP</h2>
+
+        <div class="form-group">
+            <label class="form-label" for="otp">Digite o código OTP</label>
+            <input type="text" id="otp" name="otp" class="form-input" maxlength="6" required>
+        </div>
+
+        <button type="submit" class="login-btn">Validar Código</button>
+    </form>
+</div>
+<% } %>
 
 <script src="js/loginscript.js"></script>
 </body>

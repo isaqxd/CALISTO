@@ -7,6 +7,8 @@ import CALISTO.model.dao.LoginClienteDao;
 import CALISTO.model.persistence.Auditoria.Auditoria;
 import CALISTO.model.persistence.Usuario.Cliente;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,75 +18,107 @@ import java.time.LocalDateTime;
 
 public class LoginClienteService {
     protected static final String SALT = "X@mpl3S@lt2025!";
+    protected static final LocalDateTime HORA_ATUAL = LocalDateTime.now();
 
     /**
      * Valida as credenciais do cliente (CPF e Senha).
      * @return O objeto Cliente se as credenciais forem válidas, caso contrário, retorna null.
      */
-    public Cliente validateLoginCredentials(HttpServletRequest request) throws SQLException {
+    public boolean validateCpfSenha(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        HttpSession session = request.getSession();
         String cpf = request.getParameter("cpf").replaceAll("[^0-9]", "");
+        session.setAttribute("cpfLogin", cpf);
+
         String senha = request.getParameter("senha");
+        String senhaHash = generateHashMD5(senha);
+
         String tipoUsuario = request.getParameter("tipo_usuario");
+
+        AuditoriaDao auditoriaDao = new AuditoriaDao();
+        LoginClienteDao dao = new LoginClienteDao();
+
+
+        Cliente cliente = dao.findByCpf(cpf);
+
+
+        Auditoria a = new Auditoria();
+        // SE TIPO DE USUARIO É IGUAL AO DO BANCO E SENHA HASH É IGUAL AO DO BANCO
+        if (!tipoUsuario.equals(cliente.getTipoUsuario().toString()) || !cliente.getSenhaHash().equals(senhaHash)) {
+            a.setAcao("LOGIN_FALHA");
+            a.setDetalhes("Tentativa de login com CPF: " + cpf);
+            a.setDataHora(LocalDateTime.now());
+            a.setUsuario(cliente);
+            // Salva a auditoria de falha de login
+            auditoriaDao.save(a);
+            return false;
+        }
+
+        // Se já existe uma OTP ativa e ainda não expirou, registra auditoria de OTP pendente
+        if (cliente.getOtpAtivo() != null && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
+            a.setAcao("OTP_PEDENTE");
+            a.setDataHora(LocalDateTime.now());
+            a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
+            a.setUsuario(cliente);
+            auditoriaDao.save(a);
+
+            return true;
+        }
+
+        // SE AGORA FOR 5 MINUTOS DEPOIS DO OTP EXPIRADO OU FOR NULL OU TIVER VAZIO, GERAR NOVA OTP;
+        if (HORA_ATUAL.isAfter(cliente.getOtpExpiracao()) || cliente.getOtpAtivo() == null || cliente.getOtpAtivo().isEmpty()) {
+            // REGISTRA EM AUDITORIA QUE O OTP FOI GERADO
+            a.setAcao("OTP_GERADA");
+            a.setDataHora(LocalDateTime.now());
+            a.setDetalhes("OPT ENVIADA PARA O CLIENTE COM CPF: " + cpf);
+            a.setUsuario(cliente);
+        }
+
+        auditoriaDao.save(a);
+        generateOTP(cliente);
+        dao.updateOtp(cliente);
+        return true;
+    }
+
+    public boolean validateOtp(HttpServletResponse response, HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession();
+        // Obtém o CPF do cliente da sessão
+        String cpf = session.getAttribute("cpfLogin").toString();
+        String otp = request.getParameter("otp");
 
         LoginClienteDao dao = new LoginClienteDao();
         Cliente cliente = dao.findByCpf(cpf);
-
-        if (cliente == null) {
-            System.err.println("Tentativa de login com CPF não encontrado: " + cpf);
-            return null; // Cliente não encontrado
-        }
-
-        String senhaHash = generateHashMD5(senha);
-
-        // Verifica se a senha e o tipo de usuário estão corretos
-        if (cliente.getSenhaHash().equals(senhaHash) && tipoUsuario.equals(cliente.getTipoUsuario().toString())) {
-            // Credenciais corretas, gera e salva um novo OTP
-            generateOTP(cliente);
-            dao.updateOtp(cliente);
-            // Registra a auditoria
-            saveAudit(cliente, "Credenciais válidas. Novo OTP gerado.", "CPF: " + cpf);
-            return cliente; // Retorna o objeto cliente em caso de sucesso
-        } else {
-            // Senha ou tipo de usuário incorretos
-            saveAudit(cliente, "Tentativa de login mal-sucedida", "CPF: " + cpf + ", Senha incorreta.");
-            return null; // Falha na validação
-        }
-    }
-
-    /**
-     * Valida o OTP fornecido pelo usuário.
-     * @return true se o OTP for válido e não estiver expirado, false caso contrário.
-     */
-    public boolean validateOTP(String cpf, String otpSubmetido) throws SQLException {
-        LoginClienteDao dao = new LoginClienteDao();
-        Cliente cliente = dao.findByCpf(cpf.replaceAll("[^0-9]", ""));
-
-        if (cliente == null || cliente.getOtpAtivo() == null || cliente.getOtpExpiracao() == null) {
-            return false; // Não há OTP ativo para este cliente
-        }
-
-        // Verifica se o OTP não expirou E se o código está correto
-        boolean isOtpValid = LocalDateTime.now().isBefore(cliente.getOtpExpiracao()) &&
-                cliente.getOtpAtivo().equals(otpSubmetido);
-
-        if(isOtpValid) {
-            saveAudit(cliente, "Login concluído com sucesso (OTP Válido)", "CPF: " + cpf);
-        } else {
-            saveAudit(cliente, "Tentativa de login com OTP inválido", "CPF: " + cpf);
-        }
-
-        return isOtpValid;
-    }
-
-    // Método auxiliar para simplificar a criação da auditoria
-    private void saveAudit(Cliente cliente, String acao, String detalhes) throws SQLException {
         AuditoriaDao auditoriaDao = new AuditoriaDao();
-        Auditoria auditoria = new Auditoria();
-        auditoria.setUsuario(cliente);
-        auditoria.setAcao(acao);
-        auditoria.setDetalhes(detalhes);
-        auditoria.setDataHora(LocalDateTime.now());
-        auditoriaDao.save(auditoria);
+        Auditoria a = new Auditoria();
+        // Verifica se o OTP é válido e ainda não expirou
+        if (cliente.getOtpAtivo() != null && cliente.getOtpAtivo().equals(otp) && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
+            // Registra auditoria de sucesso no login
+            a.setAcao("LOGIN_SUCESSO");
+            a.setDetalhes("Login bem-sucedido para o CLIENTE com CPF: " + cpf);
+            a.setDataHora(HORA_ATUAL);
+            a.setUsuario(cliente);
+            auditoriaDao.save(a);
+            // Limpa o OTP após o login bem-sucedido
+            cliente.setOtpAtivo(null);
+            dao.updateOtp(cliente);
+            return true;
+        }
+        if (cliente.getOtpAtivo() != null && HORA_ATUAL.isAfter(cliente.getOtpExpiracao())) {
+            // Registra auditoria de falha de login por OTP expirado
+            a.setAcao("OTP_EXPIRADO");
+            a.setDetalhes("Tentativa de login com OTP expirado para o CLIENTE com CPF: " + cpf);
+            a.setDataHora(HORA_ATUAL);
+            a.setUsuario(cliente);
+            auditoriaDao.save(a);
+            return false;
+        } else {
+            // Registra auditoria de falha de login por OTP inválido
+            a.setAcao("OTP_INVALIDO");
+            a.setDetalhes("Tentativa de login com OTP inválido para o CLIENTE com CPF: " + cpf);
+            a.setDataHora(HORA_ATUAL);
+            a.setUsuario(cliente);
+            auditoriaDao.save(a);
+            return false;
+        }
     }
 
     protected void generateOTP(Cliente cliente) {
