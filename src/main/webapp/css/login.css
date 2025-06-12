@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     position: relative;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -25,19 +25,19 @@ body {
 
 .bg-cliente {
     background: linear-gradient(135deg,
-        rgba(242, 185, 80, 0.1) 0%,
-        rgba(191, 122, 36, 0.15) 50%,
-        rgba(140, 72, 13, 0.1) 100%),
-        #f8f6f3;
+    rgba(242, 185, 80, 0.1) 0%,
+    rgba(191, 122, 36, 0.15) 50%,
+    rgba(140, 72, 13, 0.1) 100%),
+    #f8f6f3;
     opacity: 1;
 }
 
 .bg-funcionario {
     background: linear-gradient(135deg,
-        rgba(89, 83, 72, 0.1) 0%,
-        rgba(38, 10, 4, 0.15) 50%,
-        rgba(0, 0, 0, 0.05) 100%),
-        #f5f5f2;
+    rgba(89, 83, 72, 0.1) 0%,
+    rgba(38, 10, 4, 0.15) 50%,
+    rgba(0, 0, 0, 0.05) 100%),
+    #f5f5f2;
     opacity: 0;
 }
 
@@ -78,184 +78,182 @@ body.funcionario-mode .bg-funcionario {
     100% { transform: translateX(-50px) translateY(-20px); }
 }
 
-/* Header */
-.header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem 2rem;
-    z-index: 100;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo-image {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
-}
-
-/* Main Container - CORRIGIDO */
+/* Main Container */
 .login-container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
     width: 100vw;
 }
 
-/* Sliding Content - CORRIGIDO */
-.content-slider {
-    display: flex;
-    width: 200vw; /* Alterado para viewport width */
-    height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(0); /* Estado inicial */
-}
-
-/* Quando em modo funcionário, desliza para a esquerda */
-body.funcionario-mode .content-slider {
-    transform: translateX(-100vw); /* Move uma tela completa para a esquerda */
-}
-
-/* Individual Sides - CORRIGIDO */
-.login-side {
-    width: 100vw; /* Cada lado ocupa a largura total da viewport */
-    height: 100vh;
-    display: flex;
-    flex-shrink: 0; /* Impede que os lados encolham */
-    position: relative;
-}
-
-/* Welcome Section */
+/* Welcome Section - Agora desliza junto */
 .welcome-section {
-    flex: 1;
+    position: absolute;
+    width: 50%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2rem;
     text-align: center;
+    z-index: 1;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Posições da seção de boas-vindas (CORRIGIDO) */
+body:not(.funcionario-mode) .welcome-section {
+    left: 0;
+}
+
+body.funcionario-mode .welcome-section {
+    left: 50%;
+}
+
+.logo {
+    margin-bottom: 2rem;
+}
+
+.logo-image {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
 }
 
 .welcome-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transition: color 0.8s ease;
 }
 
 .welcome-subtitle {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 0.5rem;
+    transition: color 0.8s ease;
 }
 
 .welcome-description {
     font-size: 1rem;
     opacity: 0.8;
+    margin-bottom: 2rem;
+    transition: color 0.8s ease;
 }
 
-/* Cliente Side Styling */
-.cliente-side .welcome-title {
+/* Cliente Mode Styling */
+body:not(.funcionario-mode) .welcome-title {
     color: #BF7A24;
 }
 
-.cliente-side .welcome-subtitle {
+body:not(.funcionario-mode) .welcome-subtitle {
     color: #8C480D;
 }
 
-.cliente-side .welcome-description {
+body:not(.funcionario-mode) .welcome-description {
     color: #595348;
 }
 
-/* Funcionário Side Styling */
-.funcionario-side .welcome-title {
+/* Funcionário Mode Styling */
+body.funcionario-mode .welcome-title {
     color: #260A04;
 }
 
-.funcionario-side .welcome-subtitle {
+body.funcionario-mode .welcome-subtitle {
     color: #595348;
 }
 
-.funcionario-side .welcome-description {
+body.funcionario-mode .welcome-description {
     color: #595348;
 }
 
-/* Login Form Section */
-.form-section {
-    flex: 1;
+/* Form Container - Desliza entre as posições */
+.form-container {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    /* Alterado: background: rgba(255, 255, 255, 0.95); Removido: backdrop-filter: blur(10px); */
-    background: transparent; /* A cor de fundo será definida pelo pseudo-elemento */
-    position: relative;
-    overflow: hidden; /* Importante para que o blur do pseudo-elemento não vaze */
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
 }
 
-.form-section::before {
+/* Posições do formulário (CORRIGIDO) */
+body:not(.funcionario-mode) .form-container {
+    left: 50%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%),
+    linear-gradient(45deg, #f8f6f3 0%, #f2e8d5 100%);
+}
+
+body.funcionario-mode .form-container {
+    left: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%),
+    linear-gradient(45deg, #f5f5f2 0%, #e8e6e1 100%);
+}
+
+.form-container::before {
     content: '';
     position: absolute;
-    top: -20px; /* Expande um pouco para fora para que o blur não crie bordas duras */
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: rgba(255, 255, 255, 0.95); /* A cor de fundo original do form-section */
-    filter: blur(10px); /* Aplica o desfoque DIRETAMENTE ao pseudo-elemento */
-    z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo do .form-section */
-    /* Removido: backdrop-filter: blur(5px); */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.85);
+    filter: blur(15px);
+    z-index: -1;
 }
 
 .login-form {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
     width: 100%;
     max-width: 400px;
-    position: relative; /* Garante que o formulário fique acima do pseudo-elemento */
-    z-index: 2; /* Garante que o formulário fique acima do pseudo-elemento */
-    /* Removido: backdrop-filter: blur(10px); */
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .form-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
+    transition: color 0.8s ease;
 }
 
-.cliente-side .form-title {
+body:not(.funcionario-mode) .form-title {
     color: #BF7A24;
 }
 
-.funcionario-side .form-title {
+body.funcionario-mode .form-title {
     color: #260A04;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    font-size: 0.9rem;
     color: #333;
 }
 
 .form-input {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem;
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     font-size: 1rem;
@@ -269,7 +267,7 @@ body.funcionario-mode .content-slider {
     box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
 }
 
-.funcionario-side .form-input:focus {
+body.funcionario-mode .form-input:focus {
     border-color: #260A04;
     box-shadow: 0 0 0 3px rgba(38, 10, 4, 0.1);
 }
@@ -280,14 +278,42 @@ body.funcionario-mode .content-slider {
 
 .password-toggle {
     position: absolute;
-    right: 1rem;
+    right: 0.8rem;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
     color: #666;
+    font-size: 1rem;
+}
+
+.otp-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.otp-input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
     font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+    outline: none;
+    border-color: #BF7A24;
+    box-shadow: 0 0 0 2px rgba(191, 122, 36, 0.2);
+}
+
+body.funcionario-mode .otp-input:focus {
+    border-color: #260A04;
+    box-shadow: 0 0 0 2px rgba(38, 10, 4, 0.2);
 }
 
 .form-note {
@@ -302,30 +328,30 @@ body.funcionario-mode .content-slider {
     padding: 1rem;
     border: none;
     border-radius: 25px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 1rem;
 }
 
-.cliente-side .login-btn {
+body:not(.funcionario-mode) .login-btn {
     background: linear-gradient(135deg, #F2B950 0%, #BF7A24 100%);
     color: white;
 }
 
-.cliente-side .login-btn:hover {
+body:not(.funcionario-mode) .login-btn:hover {
     background: linear-gradient(135deg, #BF7A24 0%, #8C480D 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(191, 122, 36, 0.3);
 }
 
-.funcionario-side .login-btn {
+body.funcionario-mode .login-btn {
     background: linear-gradient(135deg, #595348 0%, #260A04 100%);
     color: white;
 }
 
-.funcionario-side .login-btn:hover {
+body.funcionario-mode .login-btn:hover {
     background: linear-gradient(135deg, #260A04 0%, #000000 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
@@ -333,32 +359,24 @@ body.funcionario-mode .content-slider {
 
 .forgot-password {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .forgot-password a {
     color: #BF7A24;
     text-decoration: none;
+    font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
-.funcionario-side .forgot-password a {
+body.funcionario-mode .forgot-password a {
     color: #260A04;
-}
-
-.forgot-password a:hover {
-    color: #8C480D;
-}
-
-.funcionario-side .forgot-password a:hover {
-    color: #595348;
 }
 
 /* Toggle Section */
 .toggle-section {
     text-align: center;
     padding: 1rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .toggle-text {
@@ -375,7 +393,9 @@ body.funcionario-mode .content-slider {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    margin: 0 0.5rem;
 }
 
 .toggle-btn:hover {
@@ -384,25 +404,77 @@ body.funcionario-mode .content-slider {
     transform: translateY(-2px);
 }
 
-.funcionario-side .toggle-btn {
+body.funcionario-mode .toggle-btn {
     border-color: #260A04;
     color: #260A04;
 }
 
-.funcionario-side .toggle-btn:hover {
+body.funcionario-mode .toggle-btn:hover {
     background: #260A04;
     color: white;
 }
 
+.exit-btn {
+    background: transparent;
+    border: 2px solid #666;
+    color: #666;
+    padding: 0.7rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
+}
+
+.exit-btn:hover {
+    background: #666;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.error-message, .success-message {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.error-message {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.success-message {
+    background: #c6f6d5;
+    color: #38a169;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .login-side {
+    .login-container {
         flex-direction: column;
+        height: auto;
+        min-height: 100vh;
     }
 
     .welcome-section {
+        position: relative;
+        width: 100%;
+        height: auto;
         flex: 0 0 auto;
+        padding: 1.5rem 1rem;
+        left: 0 !important; /* Override for mobile */
+    }
+
+    .form-container {
+        position: relative;
+        width: 100%;
+        height: auto;
         padding: 1rem;
+        left: 0 !important; /* Override for mobile */
     }
 
     .welcome-title {
@@ -413,30 +485,13 @@ body.funcionario-mode .content-slider {
         font-size: 1.2rem;
     }
 
-    .form-section {
-        flex: 1;
-        padding: 1rem;
-    }
-
-    .login-form {
-        padding: 2rem;
-    }
-
     .logo-image {
-        height: 50px;
-    }
-}
-
-@media (max-width: 480px) {
-    .welcome-title {
-        font-size: 1.5rem;
+        height: 60px;
     }
 
-    .welcome-subtitle {
+    .otp-input {
+        width: 35px;
+        height: 35px;
         font-size: 1rem;
-    }
-
-    .login-form {
-        padding: 1.5rem;
     }
 }
