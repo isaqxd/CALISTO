@@ -10,16 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/Callisto Bank Logo fundo transparente (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/Callisto Bank Logo fundo transparente (1).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/iconeyeclosed.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/iconeyeclosed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/iconeyeopen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/iconeyeopen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/image.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/image.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/imagem cliente.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem cliente.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/imagens/imagem funcionario.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem funcionario.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/script/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/cartao.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/cartao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/landpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/landpage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/loginselect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/loginselect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/script/portalfuncionario.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/portalfuncionario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -77,37 +77,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 10.1.41.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
-    "git-widget-placeholder": "odeioLuiszComSucesso",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "D:/calistobank/src/main/java",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.1581092",
-    "project.structure.side.proportion": "0.3647871",
-    "settings.editor.selected.configurable": "proofread",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.41.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;odeioLuiszComSucesso&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\calistobank\src\main\java" />
