@@ -26,16 +26,20 @@ body {
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 2rem;
-    background: #260A04;
+    background: var(--neutral-dark);
     color: #fff;
     padding: 1rem 2rem;
+    box-shadow: var(--card-shadow);
 }
 
-header img {
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-logo {
     height: 48px;
     display: block;
 }
@@ -59,7 +63,7 @@ header nav a {
 }
 
 header nav a:hover, header nav a.active {
-    color: #ffd700;
+    color: var(--primary-orange-light);
 }
 
 main {
@@ -181,36 +185,29 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
+/* Camada de fundo animada com bolinhas */
 .background-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, 
-        rgba(242, 185, 80, 0.05) 0%, 
-        rgba(191, 122, 36, 0.08) 100%);
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
-
-/* Animação de bolinhas */
-.background-layer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23F2B950" opacity="0.2"><animate attributeName="r" values="2;4;2" dur="6s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="%23BF7A24" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="8s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="2.5" fill="%238C480D" opacity="0.2"><animate attributeName="r" values="2.5;4.5;2.5" dur="7s" repeatCount="indefinite"/></circle></svg>');
-    animation: float 25s infinite linear;
-    z-index: -1;
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.18;
+  pointer-events: none;
+  animation-timing-function: ease-in-out;
 }
-
-@keyframes float {
-    0% { transform: translateX(-50px) translateY(-20px); }
-    50% { transform: translateX(50px) translateY(20px); }
-    100% { transform: translateX(-50px) translateY(-20px); }
-}
+@keyframes float1 { 0%{transform:translateY(0);} 100%{transform:translateY(-40px) translateX(20px);} }
+@keyframes float2 { 0%{transform:translateY(0);} 100%{transform:translateY(-60px) translateX(-30px);} }
+@keyframes float3 { 0%{transform:translateY(0);} 100%{transform:translateY(-50px) translateX(25px);} }
+@keyframes float4 { 0%{transform:translateY(0);} 100%{transform:translateY(-30px) translateX(-20px);} }
+@keyframes float5 { 0%{transform:translateY(0);} 100%{transform:translateY(-70px) translateX(40px);} }
+@keyframes float6 { 0%{transform:translateY(0);} 100%{transform:translateY(-35px) translateX(15px);} }
+@keyframes float7 { 0%{transform:translateY(0);} 100%{transform:translateY(-55px) translateX(-25px);} }
+@keyframes float8 { 0%{transform:translateY(0);} 100%{transform:translateY(-45px) translateX(30px);} }
 
 .main-header {
     background-color: rgba(255, 255, 255, 0.9);
@@ -261,13 +258,17 @@ tr:nth-child(even) {
 
 .logout-btn {
     background: var(--primary-orange-medium);
-    color: white;
+    color: #fff;
     padding: 0.6rem 1.2rem;
     border: none;
     border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-left: 2rem;
 }
 
 .logout-btn:hover {

@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Bolinhas animadas de fundo
+    const bubbleConfigs = [
+        { size: 120, left: '10%', top: '20%', color: '#F2B950', anim: 'float1 12s infinite alternate' },
+        { size: 80,  left: '80%', top: '30%', color: '#BF7A24', anim: 'float2 14s infinite alternate' },
+        { size: 100, left: '50%', top: '80%', color: '#8C480D', anim: 'float3 16s infinite alternate' },
+        { size: 60,  left: '70%', top: '60%', color: '#F2B950', anim: 'float4 18s infinite alternate' },
+        { size: 90,  left: '30%', top: '70%', color: '#BF7A24', anim: 'float5 15s infinite alternate' },
+        { size: 70,  left: '20%', top: '50%', color: '#F2B950', anim: 'float6 13s infinite alternate' },
+        { size: 50,  left: '60%', top: '15%', color: '#8C480D', anim: 'float7 17s infinite alternate' },
+        { size: 110, left: '40%', top: '40%', color: '#BF7A24', anim: 'float8 19s infinite alternate' }
+    ];
+
+    const backgroundLayer = document.querySelector('.background-layer');
+    if (backgroundLayer) {
+        bubbleConfigs.forEach(cfg => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.width = `${cfg.size}px`;
+            bubble.style.height = `${cfg.size}px`;
+            bubble.style.left = cfg.left;
+            bubble.style.top = cfg.top;
+            bubble.style.background = cfg.color;
+            bubble.style.opacity = '0.18';
+            bubble.style.position = 'absolute';
+            bubble.style.borderRadius = '50%';
+            bubble.style.pointerEvents = 'none';
+            bubble.style.animation = cfg.anim;
+            backgroundLayer.appendChild(bubble);
+        });
+    }
+
     const mainContent = document.getElementById('main-content');
 
     // Utilitário para menu ativo
@@ -318,3 +349,29 @@ function renderPerfilFuncionario() {
         }
     });
 }
+
+// Funções para navegação rápida
+document.getElementById('btn-sacar').onclick = function(e) {
+    e.preventDefault();
+    renderExtrato();
+    setTimeout(() => {
+        document.getElementById('saq-valor').focus();
+    }, 100);
+};
+
+document.getElementById('btn-depositar').onclick = function(e) {
+    e.preventDefault();
+    renderExtrato();
+    setTimeout(() => {
+        document.getElementById('dep-valor').focus();
+    }, 100);
+};
+
+const navButtons = document.querySelectorAll('.nav-btn');
+
+navButtons.forEach(btn => {
+  btn.addEventListener('click', function() {
+    navButtons.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});

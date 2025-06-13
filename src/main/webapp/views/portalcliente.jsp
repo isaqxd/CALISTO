@@ -36,7 +36,7 @@
                     </button>
                 </div>
                 <div class="balance-value">
-                    <span id="saldoValor">Carregando...</span>
+                    <span id="saldoValor"></span>
                 </div>
                 <div class="account-details">
                     <span>Agência: <span id="agenciaValor"></span></span>
@@ -50,9 +50,21 @@
             <div class="quick-access">
                 <h3>Acesso Rápido</h3>
                 <div class="quick-access-grid">
-                    <a href="#" class="quick-access-item"><i class="material-icons">swap_horiz</i><span>Transferir</span></a>                <a href="#" class="quick-access-item"><i class="material-icons">credit_card</i><span>Cartões</span></a>
-                    <a href="#" class="quick-access-item"><i class="material-icons">qr_code_scanner</i><span>Pagar QR</span></a>
-                    <a href="#" class="quick-access-item"><i class="material-icons">savings</i><span>Investir</span></a>
+                    <a href="#" class="quick-access-item" id="btn-transferir">
+                        <i class="material-icons">swap_horiz</i><span>Transferir</span>
+                    </a>
+                    <a href="#" class="quick-access-item" id="btn-cartoes">
+                        <i class="material-icons">credit_card</i><span>Cartões</span>
+                    </a>
+                    <a href="#" class="quick-access-item" id="btn-sacar">
+                        <i class="material-icons">local_atm</i><span>Saque</span>
+                    </a>
+                    <a href="#" class="quick-access-item" id="btn-depositar">
+                        <i class="material-icons">attach_money</i><span>Depositar</span>
+                    </a>
+                    <a href="#" class="quick-access-item" id="btn-investir">
+                        <i class="material-icons">savings</i><span>Investir</span>
+                    </a>
                 </div>
             </div>
         </section>
