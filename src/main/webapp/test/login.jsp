@@ -63,7 +63,7 @@
 
     <!-- Formulário do Funcionário -->
     <div class="form-container" id="funcionario-form" style="display: none;">
-        <form class="login-form" action="${pageContext.request.contextPath}/loginCliente" method="post">
+        <form class="login-form" action="${pageContext.request.contextPath}/loginFuncionario" method="post">
             <h2 class="form-title">Área do Funcionário</h2>
             <input type="hidden" name="tipo_usuario" value="FUNCIONARIO">
 

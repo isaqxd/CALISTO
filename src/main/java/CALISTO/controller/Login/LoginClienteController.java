@@ -19,7 +19,7 @@ public class LoginClienteController extends HttpServlet {
         LoginClienteService service = new LoginClienteService();
 
         try {
-            if (service.validateCpfSenha(request, response)) {
+            if (service.validateCpfSenhaForCliente(request, response)) {
                 // define pagina de login como otp_true=true
                 HttpSession session = request.getSession();
                 session.setAttribute("usuarioAutenticado", true);

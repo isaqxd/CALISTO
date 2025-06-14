@@ -24,7 +24,7 @@ public class LoginClienteService {
      * Valida as credenciais do cliente (CPF e Senha).
      * @return O objeto Cliente se as credenciais forem válidas, caso contrário, retorna null.
      */
-    public boolean validateCpfSenha(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public boolean validateCpfSenhaForCliente(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
         String cpf = request.getParameter("cpf").replaceAll("[^0-9]", "");
         session.setAttribute("cpfLogin", cpf);
@@ -60,8 +60,8 @@ public class LoginClienteService {
             return false;
         }
 
-        //  OTP ainda válida
-        if (cliente.getOtpAtivo() != null && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
+        // OTP ainda válida (verifica se expiracao não é nula)
+        if (cliente.getOtpAtivo() != null && !cliente.getOtpAtivo().isEmpty() && cliente.getOtpExpiracao() != null && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
             a.setAcao("OTP_PEDENTE");
             a.setDataHora(LocalDateTime.now());
             a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
@@ -70,8 +70,8 @@ public class LoginClienteService {
             return true;
         }
 
-        // Geração de nova OTP
-        if (HORA_ATUAL.isAfter(cliente.getOtpExpiracao()) || cliente.getOtpAtivo() == null || cliente.getOtpAtivo().isEmpty()) {
+        // Geração de nova OTP (verifica se expiracao é nula)
+        if (cliente.getOtpAtivo() == null || cliente.getOtpAtivo().isEmpty() || cliente.getOtpExpiracao() == null || HORA_ATUAL.isAfter(cliente.getOtpExpiracao())) {
             a.setAcao("OTP_GERADA");
             a.setDataHora(LocalDateTime.now());
             a.setDetalhes("OTP gerada para o CLIENTE com CPF: " + cpf);

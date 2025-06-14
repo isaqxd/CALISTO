@@ -1,10 +1,14 @@
 package CALISTO.model.service.Login;
 
 import CALISTO.model.dao.AuditoriaDao;
+import CALISTO.model.dao.LoginClienteDao;
 import CALISTO.model.dao.LoginFuncionarioDao;
 import CALISTO.model.persistence.Auditoria.Auditoria;
+import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.Usuario.Funcionario;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,77 +18,66 @@ import java.time.LocalDateTime;
 
 public class LoginFuncionarioService {
     protected static final String SALT = "X@mpl3S@lt2025!";
+    protected static final LocalDateTime HORA_ATUAL = LocalDateTime.now();
 
-    /**
-     * Valida as credenciais do funcionário (Código e Senha).
-     * @return O objeto Funcionario se as credenciais forem válidas, caso contrário, retorna null.
-     */
-    public Funcionario validateLoginCredentials(HttpServletRequest request) throws SQLException {
-        String codigo = request.getParameter("cpf").replaceAll("[^A-Za-z0-9]", "");
+    public boolean validateCpfSenhaForFuncionario(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        HttpSession session = request.getSession();
+        String cpf = request.getParameter("cpf").replaceAll("[^0-9]", "");
+        session.setAttribute("cpfLogin", cpf);
+
         String senha = request.getParameter("senha");
-        String tipoUsuario = request.getParameter("tipo_usuario");
-
-        LoginFuncionarioDao dao = new LoginFuncionarioDao();
-        Funcionario funcionario = dao.findByCodigo(codigo);
-
-        if (funcionario == null) {
-            System.err.println("Tentativa de login com código não encontrado: " + codigo);
-            return null; // Funcionário não encontrado
-        }
-
         String senhaHash = generateHashMD5(senha);
 
-        // Verifica se a senha e o tipo de usuário estão corretos
-        if (funcionario.getSenhaHash().equals(senhaHash) && tipoUsuario.equals(funcionario.getTipoUsuario().toString())) {
-            // Credenciais corretas, gera e salva um novo OTP
+        String tipoUsuario = request.getParameter("tipo_usuario");
+
+        AuditoriaDao auditoriaDao = new AuditoriaDao();
+        LoginFuncionarioDao dao = new LoginFuncionarioDao();
+        Funcionario funcionario = dao.findByCpf(cpf);
+
+        Auditoria a = new Auditoria();
+        // BLOQUEIA MULTIPLAS TENTATIVAS DE LOGIN
+        if (funcionario != null && auditoriaDao.blockLoginFromAuditoria(funcionario.getIdUsuario())) {
+            a.setAcao("LOGIN_BLOQUEADO");
+            a.setDataHora(HORA_ATUAL);
+            a.setDetalhes("Login bloqueado para o CLIENTE com CPF: " + cpf);
+            a.setUsuario(funcionario);
+            auditoriaDao.save(a);
+
+            return false;
+        }
+
+        // CPF ou senha inválidos
+        if (funcionario == null || !tipoUsuario.equals(funcionario.getTipoUsuario().toString()) || !funcionario.getSenhaHash().equals(senhaHash)) {
+            a.setAcao("LOGIN_FALHA");
+            a.setDetalhes("Tentativa de login com CPF: " + cpf);
+            a.setDataHora(LocalDateTime.now());
+            if (funcionario != null) a.setUsuario(funcionario);
+            auditoriaDao.save(a);
+            return false;
+        }
+
+        // OTP ainda válida (verifica se expiracao não é nula)
+        if (funcionario.getOtpAtivo() != null && !funcionario.getOtpAtivo().isEmpty() && funcionario.getOtpExpiracao() != null && HORA_ATUAL.isBefore(funcionario.getOtpExpiracao())) {
+            a.setAcao("OTP_PEDENTE");
+            a.setDataHora(LocalDateTime.now());
+            a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
+            a.setUsuario(funcionario);
+            auditoriaDao.save(a);
+            return true;
+        }
+
+        // Geração de nova OTP (verifica se expiracao é nula)
+        if (funcionario.getOtpAtivo() == null || funcionario.getOtpAtivo().isEmpty() || funcionario.getOtpExpiracao() == null || HORA_ATUAL.isAfter(funcionario.getOtpExpiracao())) {
+            a.setAcao("OTP_GERADA");
+            a.setDataHora(LocalDateTime.now());
+            a.setDetalhes("OTP gerada para o CLIENTE com CPF: " + cpf);
+            a.setUsuario(funcionario);
+            auditoriaDao.save(a);
+
             generateOTP(funcionario);
             dao.updateOtp(funcionario);
-            // Imprime o OTP no console para facilitar o teste
-            System.out.println("======> [SERVICE] OTP gerado para o funcionário " + codigo + ": " + funcionario.getOtpAtivo());
-            // Registra a auditoria
-            saveAudit(funcionario, "Credenciais válidas. Novo OTP gerado.", "Código: " + codigo);
-            return funcionario; // Retorna o objeto funcionario em caso de sucesso
-        } else {
-            // Senha ou tipo de usuário incorretos
-            saveAudit(funcionario, "Tentativa de login mal-sucedida", "Código: " + codigo + ", Senha incorreta.");
-            return null; // Falha na validação
         }
-    }
-
-    /**
-     * Valida o OTP fornecido pelo usuário.
-     * @return true se o OTP for válido e não estiver expirado, false caso contrário.
-     */
-    public boolean validateOTP(String codigo, String otpSubmetido) throws SQLException {
-        LoginFuncionarioDao dao = new LoginFuncionarioDao();
-        Funcionario funcionario = dao.findByCodigo(codigo.replaceAll("[^A-Za-z0-9]", ""));
-
-        if (funcionario == null || funcionario.getOtpAtivo() == null || funcionario.getOtpExpiracao() == null) {
-            return false; // Não há OTP ativo para este funcionário
-        }
-
-        // Verifica se o OTP não expirou E se o código está correto
-        boolean isOtpValid = LocalDateTime.now().isBefore(funcionario.getOtpExpiracao()) &&
-                funcionario.getOtpAtivo().equals(otpSubmetido);
-
-        if(isOtpValid) {
-            saveAudit(funcionario, "Login concluído com sucesso (OTP Válido)", "Código: " + codigo);
-        } else {
-            saveAudit(funcionario, "Tentativa de login com OTP inválido", "Código: " + codigo);
-        }
-
-        return isOtpValid;
-    }
-
-    // Método auxiliar para simplificar a criação da auditoria
-    private void saveAudit(Funcionario funcionario, String acao, String detalhes) throws SQLException {
-        AuditoriaDao auditoriaDao = new AuditoriaDao();
-        Auditoria auditoria = new Auditoria();
-        auditoria.setUsuario(funcionario);
-        auditoria.setAcao(acao);
-        auditoria.setDetalhes(detalhes);
-        auditoria.setDataHora(LocalDateTime.now());
-        auditoriaDao.save(auditoria);
+        return true;
     }
 
     protected void generateOTP(Funcionario funcionario) {
@@ -108,4 +101,5 @@ public class LoginFuncionarioService {
             throw new RuntimeException("Erro ao gerar hash MD5: " + e.getMessage(), e);
         }
     }
+
 }

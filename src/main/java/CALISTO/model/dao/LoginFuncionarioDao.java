@@ -3,23 +3,15 @@ package CALISTO.model.dao;
 import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.util.Conexao;
 import CALISTO.model.persistence.util.TipoUsuario;
-import CALISTO.model.persistence.util.Cargo;
 
 import java.sql.*;
 
 public class LoginFuncionarioDao {
-    /** Método para buscar um funcionário pelo código
-     *
-     * @param codigo
-     * @return um objeto Funcionario se encontrado, null caso contrário
-     */
-    public Funcionario findByCodigo(String codigo) {
-        String sql = "SELECT u.*, f.codigo_funcionario, f.cargo, f.id_supervisor FROM usuario u " +
-                     "JOIN funcionario f ON u.id_usuario = f.usuario_id " +
-                     "WHERE f.codigo_funcionario = ?";
+    public Funcionario findByCpf(String cpf) {
+        String sql = "SELECT * FROM usuario WHERE cpf = ?";
         try (Connection con = Conexao.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, codigo);
+            stmt.setString(1, cpf);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Funcionario funcionario = new Funcionario();
@@ -28,9 +20,6 @@ public class LoginFuncionarioDao {
                 funcionario.setSenhaHash(rs.getString("senha_hash"));
                 funcionario.setTipoUsuario(TipoUsuario.valueOf(rs.getString("tipo_usuario")));
                 funcionario.setOtpAtivo(rs.getString("otp_ativo"));
-                funcionario.setCodigoFuncionario(rs.getString("codigo_funcionario"));
-                funcionario.setCargo(Cargo.valueOf(rs.getString("cargo")));
-                funcionario.setSupervisor(rs.getInt("id_supervisor"));
 
                 Timestamp ts = rs.getTimestamp("otp_expiracao");
                 if (ts != null) funcionario.setOtpExpiracao(ts.toLocalDateTime());
