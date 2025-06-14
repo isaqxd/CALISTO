@@ -3,9 +3,7 @@ package CALISTO.model.dao;
 import CALISTO.model.mapper.UsuarioMapper;
 import CALISTO.model.persistence.Agencia.Agencia;
 import CALISTO.model.persistence.Endereco.Endereco;
-import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.Conexao;
-import CALISTO.model.persistence.util.TipoUsuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -107,7 +105,7 @@ public class AgenciaDao {
                        e.id_endereco,e.cep,e.local,e.numero_casa,e.bairro,e.cidade,e.estado,e.complemento
                        FROM agencia a
                        JOIN endereco e ON a.endereco_id = e.id_endereco
-                       """;
+                      \s""";
         List<Agencia> agencias = new ArrayList<>();
 
         try (Connection conn = Conexao.getConnection();
@@ -137,7 +135,7 @@ public class AgenciaDao {
                        FROM agencia a
                        JOIN endereco e ON a.endereco_id = e.id_endereco
                        WHERE a.codigo_agencia = ?
-                       """;
+                      \s""";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, code);

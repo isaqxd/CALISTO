@@ -1,0 +1,505 @@
+/* --- INÍCIO DO ARQUIVO CSS --- */
+
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #f5f5f2;
+}
+
+/* Background Layer */
+.background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+.bg-funcionario {
+    background: linear-gradient(135deg, 
+        rgba(89, 83, 72, 0.08) 0%, 
+        rgba(38, 10, 4, 0.12) 50%, 
+        rgba(0, 0, 0, 0.04) 100%),
+        #f5f5f2;
+    opacity: 1;
+}
+.bg-funcionario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="15" cy="25" r="1.5" fill="%23595348" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="5s" repeatCount="indefinite"/></circle><circle cx="85" cy="40" r="2" fill="%23260A04" opacity="0.2"><animate attributeName="r" values="2;3.5;2" dur="7s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="1.8" fill="%23000000" opacity="0.1"><animate attributeName="r" values="1.8;3.2;1.8" dur="6s" repeatCount="indefinite"/></circle></svg>');
+    animation: float 30s infinite linear reverse;
+    z-index: -2;
+}
+@keyframes float {
+    0% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(-50px) translateY(-20px); }
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    background-color: rgba(245, 245, 242, 0.85);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    color: #260A04;
+}
+.user-info span {
+    margin-right: 1rem;
+    font-weight: 500;
+}
+.logout-btn {
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.logout-btn:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(38, 10, 4, 0.2);
+}
+
+/* Layout Principal */
+.app-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+    padding-top: 80px;
+    height: 100vh;
+}
+
+/* Sidebar (Menu) */
+.sidebar {
+    width: 260px;
+    background: rgba(235, 233, 230, 0.7);
+    padding: 1.5rem 0;
+    height: calc(100vh - 80px);
+    position: fixed;
+    top: 80px;
+    left: 0;
+    overflow-y: auto;
+    box-shadow: 3px 0 15px rgba(0,0,0,0.05);
+    z-index: 900;
+}
+.sidebar-header {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(38, 10, 4, 0.1);
+    margin-bottom: 1rem;
+}
+.sidebar-header h3 {
+    color: #260A04;
+    font-size: 1.3rem;
+}
+.sidebar-nav ul {
+    list-style: none;
+}
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    color: #260A04;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+.sidebar-nav li a .menu-icon {
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+.sidebar-nav li a.active,
+.sidebar-nav li a:hover {
+    background-color: rgba(89, 83, 72, 0.1);
+    color: #000;
+    border-left-color: #260A04;
+}
+.sidebar-nav li a:hover {
+    transform: translateX(5px);
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1 1 auto;
+    padding: 2rem;
+    margin-left: 260px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+}
+
+.content-header h1 {
+    font-size: 2.2rem;
+    color: #260A04;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.content-header p {
+    font-size: 1.1rem;
+    color: #595348;
+    line-height: 1.6;
+}
+
+.dashboard-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.widget {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.widget h3 {
+    font-size: 1.2rem;
+    color: #260A04;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(38, 10, 4, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.widget p {
+    font-size: 0.95rem;
+    color: #595348;
+    line-height: 1.6;
+}
+.widget .data-point {
+    font-size: 1.8rem;
+    color: #260A04;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Footer (Opcional, mas útil) */
+.app-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    min-width: 220px;
+    border-top-left-radius: 12px;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 2rem;
+    z-index: 2;
+    margin-top: 0;
+}
+
+/* Estilos para boxes de contas de clientes */
+.conta-boxes {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.conta-box {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(38,10,4,0.10);
+    border-radius: 14px;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-width: 320px;
+    max-width: 400px;
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.2s;
+}
+.conta-box:hover {
+    box-shadow: 0 8px 24px rgba(38,10,4,0.18);
+}
+.conta-box h3,
+.conta-box label {
+    color: #260A04;
+}
+.conta-box input, .conta-box select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #cbbfae;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f5f5f2;
+    color: #260A04;
+    transition: border 0.2s;
+}
+.conta-box input:focus, .conta-box select:focus {
+    border: 1.5px solid #260A04;
+    outline: none;
+    background: #fff;
+}
+.conta-box button {
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(38,10,4,0.10);
+}
+.conta-box button:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(38, 10, 4, 0.2);
+}
+.contas-lista {
+    background: #f5f5f2;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(38,10,4,0.04);
+}
+.contas-lista h3 {
+    margin-top: 0;
+    color: #260A04;
+}
+.contas-lista ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contas-lista li {
+    padding: 0.5rem 0.2rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #595348;
+}
+.contas-lista li:last-child {
+    border-bottom: none;
+}
+.conta-extra {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+/* Campos de endereço agrupados */
+#endereco-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+#endereco-boxes > div {
+    min-width: 120px;
+    flex: 1 1 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Campo endereço ocupa toda a largura */
+#endereco-cliente {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Ajuste para inputs do formulário */
+.conta-box input[type="text"],
+.conta-box input[type="password"],
+.conta-box input[type="date"],
+.conta-box input[type="tel"],
+.conta-box input[type="number"],
+.conta-box select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #cbbfae;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f5f5f2;
+    color: #260A04;
+    transition: border 0.2s;
+}
+.conta-box input:focus, .conta-box select:focus {
+    border: 1.5px solid #260A04;
+    outline: none;
+    background: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 220px;
+    }
+    .main-content, .app-footer {
+        margin-left: 220px;
+    }
+}
+@media (max-width: 768px) {
+    .app-container {
+        padding-top: 70px;
+    }
+    .sidebar {
+        width: 60px;
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+    .sidebar-header h3, .sidebar-nav li a span:not(.menu-icon) {
+        display: none;
+    }
+    .sidebar-nav li a {
+        justify-content: center;
+        padding: 1rem 0.5rem;
+    }
+    .sidebar-nav li a .menu-icon {
+        margin-right: 0;
+    }
+    .main-content, .app-footer {
+        margin-left: 60px;
+        padding: 1.5rem;
+    }
+    .logo-image {
+        height: 40px;
+    }
+    .header {
+        padding: 0.8rem 1rem;
+    }
+    .user-info span { display: none; }
+}
+@media (max-width: 480px) {
+    .dashboard-widgets {
+        grid-template-columns: 1fr;
+    }
+    .main-content, .app-footer {
+        margin-left: 0;
+    }
+}
+
+/* Tabs para transações */
+.transacoes-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.tab-btn {
+    background: #f5f5f2;
+    color: #b71c1c;
+    border: 1.5px solid #b71c1c;
+    border-radius: 6px 6px 0 0;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.tab-btn.active, .tab-btn:hover {
+    background: #b71c1c;
+    color: #fff;
+    border-bottom: 2.5px solid #fff;
+}
+
+/* Sucesso e erro */
+.sucesso {
+    color: #388e3c;
+    font-weight: bold;
+}
+.erro {
+    color: #b71c1c;
+    font-weight: bold;
+}
+
+/* Botões extras */
+.btn-voltar {
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(38,10,4,0.10);
+    margin-top: 2rem;
+    display: none;
+}
+.btn-voltar:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(38, 10, 4, 0.2);
+}
+.btn-criar-conta {
+    margin: 1rem 0 0 2.5rem;
+    padding: 0.6rem 1.5rem;
+    background: #BF7A24;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+}
+.btn-criar-conta:hover {
+    background: #8C480D;
+}
+
+/* --- FIM DO ARQUIVO CSS --- */
