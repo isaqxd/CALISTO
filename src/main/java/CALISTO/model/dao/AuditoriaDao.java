@@ -5,6 +5,7 @@ import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuditoriaDao {
@@ -38,5 +39,28 @@ public class AuditoriaDao {
                 con.close();
             }
         }
+    }
+
+    public boolean blockLoginFromAuditoria(int usuarioId) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM auditoria
+                WHERE usuario_id = ?
+                    AND acao = 'LOGIN_FALHA'
+                    AND data_hora > (NOW() - INTERVAL 10 MINUTE)
+                """;
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, usuarioId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int tentativasFalhas = rs.getInt(1);
+                return tentativasFalhas >= 3;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

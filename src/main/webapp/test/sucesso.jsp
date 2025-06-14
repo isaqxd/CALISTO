@@ -5,7 +5,7 @@
     <title>Cadastro Sucesso</title>
 </head>
 <body>
-<h1>Cliente cadastrado com sucesso!</h1>
+<h1>Sucesso!</h1>
 <a href="../views/cadastroCliente.jsp">Cadastrar outro</a>
 </body>
 </html>

@@ -11,27 +11,24 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/loginCliente")
-public class LoginClienteController extends HttpServlet {
-    @Override
+@WebServlet("/loginOtp")
+public class LoginOtp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LoginClienteService service = new LoginClienteService();
 
         try {
-            if (service.validateCpfSenhaForCliente(request, response)) {
-                // define pagina de login como otp_true=true
+            if (service.validateOtp(response, request)) {
                 HttpSession session = request.getSession();
-                session.setAttribute("usuarioAutenticado", true);
-                response.sendRedirect("test/login.jsp?otp_true=true");
+                session.setAttribute("otpValidated", true);
+                response.sendRedirect("test/sucesso.jsp");
             } else {
-                // Se não vor validar o OTP, redireciona para a página de login com erro
-                String errorMessage = "CPF ou senha inválidos.";
-                String encodedMessage = java.net.URLEncoder.encode(errorMessage, "UTF-8");
-                response.sendRedirect("test/login.jsp?error=" + encodedMessage);
+                // Se não for validar o OTP, redireciona para a página de login com erro
+                response.sendRedirect("test/erro.jsp");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 }

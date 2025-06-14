@@ -1,19 +1,20 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callisto Bank - Painel do Funcionário</title>
-    <link rel="stylesheet" href="/src/main/webapp/css/portalfuncionario.css">
-    <link rel="stylesheet" href="/src/main/webapp/css/cartao.css">
-    <link rel="stylesheet" href="/src/main/webapp/css/gerenciarfuncionario.css">
+    <link rel="stylesheet" href="../css/portalfuncionario.css">
+    <link rel="stylesheet" href="../css/cartao.css">
+    <link rel="stylesheet" href="../css/gerenciarfuncionario.css">
 </head>
 <body class="funcionario-mode">
     <div class="background-layer bg-funcionario"></div>
 
     <header class="header">
         <div class="logo">
-            <img src="/src/main/webapp/imagens/image.svg" alt="Callisto Bank" class="logo-image">
+            <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
         </div>
         <div class="user-info">
             <span>Olá, Luís Eduardo</span>
@@ -79,6 +80,6 @@
     <!-- Coloque as bibliotecas ANTES do seu JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="/src/main/webapp/script/portalfuncionario.js"></script>
+    <script src="../js/portalfuncionario.js"></script>
 </body>
 </html>

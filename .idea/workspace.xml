@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="aprenderJsp:war exploded" />
+      <artifact name="CALLISTO:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,7 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginClienteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginFuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginFuncionarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/sucesso.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/sucesso.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +36,14 @@
         <option value="Class" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="branchDoSucesso_2" />
+        <entry key="$PROJECT_DIR$" value="luizcomzbranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,12 +54,12 @@
     &quot;assignee&quot;: &quot;isaqxd&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/isaqxd/CALISTO.git&quot;,
-    &quot;accountId&quot;: &quot;c554c9ab-2100-4ad4-80cc-08ec9c28394d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/isaqxd/CALISTO.git",
+    "accountId": "f6032a6f-6da8-4d58-98e6-5f3e39e869ff"
   }
-}</component>
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -59,6 +73,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -131,44 +148,26 @@
       </method>
     </configuration>
     <configuration name="Tomcat 10.1.41" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.41" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/aprenderJsp_war_exploded/index.jsp" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/CALLISTO_war_exploded/index.jsp" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="aprenderJsp:war exploded">
+        <artifact name="CALLISTO:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/aprenderJsp_war_exploded" />
+            <option name="CONTEXT_PATH" value="/CALLISTO_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="521a152a-c26e-406b-a3cf-008839395b53" />
+        <option name="BASE_DIRECTORY_NAME" value="5e1bb0fc-bcd2-4158-8cd2-59ff312e33e6" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="AppServerDebuggerRunner">
-        <option name="DEBUG_PORT" value="54928" />
-      </RunnerSettings>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="57461" />
+        <option name="DEBUG_PORT" value="55149" />
       </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="AppServerDebuggerRunner">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -232,9 +231,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="calistobank:war exploded" />
           <artifact name="CALLISTO:war exploded" />
-          <artifact name="aprenderJsp:war exploded" />
         </option>
       </method>
     </configuration>
@@ -256,9 +253,6 @@
       </set>
     </attachedChunks>
   </component>
-  <component name="StructureViewState">
-    <option name="selectedTab" value="JSP" />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="" />
@@ -276,6 +270,7 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
+      <workItem from="1749920337614" duration="4352000" />
     </task>
     <servers />
   </component>
