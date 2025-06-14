@@ -5,10 +5,7 @@ import CALISTO.model.persistence.Agencia.Agencia;
 import CALISTO.model.persistence.Endereco.Endereco;
 import CALISTO.model.persistence.util.Conexao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +34,19 @@ public class AgenciaDao {
             int enderecoId = inserirEnderecoAgencia(con, agencia, sqlEndereco);
             agencia.getEndereco().setIdEndereco(enderecoId);
 
-            try (PreparedStatement stmt = con.prepareStatement(sqlAgencia)) {
+            try (PreparedStatement stmt = con.prepareStatement(sqlAgencia, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, agencia.getNome());
                 stmt.setString(2, agencia.getCodigoAgencia());
                 stmt.setInt(3, enderecoId);
                 stmt.executeUpdate();
+
+                // Recupera o ID gerado pelo banco
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    agencia.setIdAgencia(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Erro ao salvar agência: ID não gerado.");
+                }
 
                 con.commit();
                 return agencia;

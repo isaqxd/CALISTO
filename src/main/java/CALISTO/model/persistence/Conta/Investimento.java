@@ -5,10 +5,10 @@ import CALISTO.model.persistence.util.PerfilRisco;
 
 public class Investimento extends Conta {
     private int idContaInvestimento;
-    private int contaId;
+    private Conta conta;
     private PerfilRisco perfilRisco;
     private BigDecimal valorMinimo;
-    private BigDecimal taxaRendimentoBase;
+    private BigDecimal taxaRendimento;
 
     public int getIdContaInvestimento() {
         return idContaInvestimento;
@@ -18,13 +18,9 @@ public class Investimento extends Conta {
         this.idContaInvestimento = idContaInvestimento;
     }
 
-    public int getContaId() {
-        return contaId;
-    }
+    public Conta getConta() { return conta; }
 
-    public void setContaId(int contaId) {
-        this.contaId = contaId;
-    }
+    public void setConta(Conta conta) { this.conta = conta; }
 
     public PerfilRisco getPerfilRisco() {
         return perfilRisco;
@@ -42,11 +38,11 @@ public class Investimento extends Conta {
         this.valorMinimo = valorMinimo;
     }
 
-    public BigDecimal getTaxaRendimentoBase() {
-        return taxaRendimentoBase;
+    public BigDecimal getTaxaRendimento() {
+        return taxaRendimento;
     }
 
-    public void setTaxaRendimentoBase(BigDecimal taxaRendimentoBase) {
-        this.taxaRendimentoBase = taxaRendimentoBase;
+    public void setTaxaRendimento(BigDecimal taxaRendimento) {
+        this.taxaRendimento = taxaRendimento;
     }
 }

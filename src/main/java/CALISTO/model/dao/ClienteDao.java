@@ -233,10 +233,15 @@ public class ClienteDao {
     }
 
     private int inserirCliente(Connection conn, Cliente cliente, String sql) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, cliente.getIdUsuario());
             stmt.setBigDecimal(2, cliente.getScoreCredito());
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                cliente.setIdCliente(rs.getInt(1));
+            }
         }
         return 0;
     }

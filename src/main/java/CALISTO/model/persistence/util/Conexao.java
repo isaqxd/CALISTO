@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexao {
     private static final String URL = "jdbc:mysql://localhost:3306/calisto?useSSL=false&serverTimezone=America/Sao_Paulo";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "1507";
 
     static {
         try {
