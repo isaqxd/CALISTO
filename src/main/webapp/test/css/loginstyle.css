@@ -265,6 +265,11 @@ body.funcionario-mode .form-title {
     background: rgba(255, 255, 255, 0.9);
 }
 
+.form-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
 .form-input:focus {
     outline: none;
     border-color: #BF7A24;
@@ -296,6 +301,7 @@ body.funcionario-mode .form-input:focus {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .otp-input {

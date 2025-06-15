@@ -1,219 +1,200 @@
-let isFuncionarioMode = false;
+ let isFuncionarioMode = false;
 
-function toggleMode() {
+    function toggleMode() {
     const body = document.body;
+    const clienteForm = document.getElementById('cliente-form');
+    const funcionarioForm = document.getElementById('funcionario-form');
+    const otpForm = document.getElementById('otp-form');
+
+    // Esconder formulário OTP se estiver visível
+    if (otpForm.style.display === 'flex') {
+    otpForm.style.display = 'none';
+}
+
     isFuncionarioMode = !isFuncionarioMode;
 
     if (isFuncionarioMode) {
-        body.classList.add('funcionario-mode');
-        updateContentForFuncionario();
-    } else {
-        body.classList.remove('funcionario-mode');
-        updateContentForCliente();
-    }
-}
-
-function updateContentForFuncionario() {
+    body.classList.add('funcionario-mode');
+    // Atualizar textos da seção de boas-vindas
     document.getElementById('welcome-subtitle').textContent = 'Portal do Funcionário';
     document.getElementById('welcome-description').textContent = 'Acesso restrito para colaboradores';
     document.getElementById('toggle-text').textContent = 'Acesso para clientes?';
     document.getElementById('toggle-btn').textContent = 'Acesso do Cliente';
-    document.getElementById('form-title').textContent = 'Login Funcionário';
-    document.getElementById('identifier-label').textContent = 'Código do Funcionário';
-    document.getElementById('identifier-input').placeholder = 'FUN00000';
-    document.getElementById('login-btn').textContent = 'Entrar como Funcionário';
-    document.getElementById('loginForm').reset();
-}
 
-function updateContentForCliente() {
+    // Transição suave dos formulários
+    clienteForm.style.display = 'none';
+    setTimeout(() => {
+    funcionarioForm.style.display = 'flex';
+}, 400);
+} else {
+    body.classList.remove('funcionario-mode');
+    // Atualizar textos da seção de boas-vindas
     document.getElementById('welcome-subtitle').textContent = 'Acesso do Cliente';
     document.getElementById('welcome-description').textContent = 'Gerencie suas finanças com segurança';
     document.getElementById('toggle-text').textContent = 'Acesso para funcionários?';
     document.getElementById('toggle-btn').textContent = 'Portal do Funcionário';
-    document.getElementById('form-title').textContent = 'Login Cliente';
-    document.getElementById('identifier-label').textContent = 'CPF';
-    document.getElementById('identifier-input').placeholder = '000.000.000-00';
-    document.getElementById('loginForm').reset();
+
+    // Transição suave dos formulários
+    funcionarioForm.style.display = 'none';
+    setTimeout(() => {
+    clienteForm.style.display = 'flex';
+}, 400);
+}
 }
 
-function togglePassword() {
-    const field = document.getElementById('password-input');
-    const icon = field.nextElementSibling;
-
-    if (field.type === 'password') {
-        field.type = 'text';
-        icon.textContent = '🙈';
-    } else {
-        field.type = 'password';
-        icon.textContent = '👁️';
-    }
+    // Formatação de CPF
+    function formatCPF(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = value;
 }
 
-function formatCPF(cpf) {
-    // Limit to 11 digits before formatting
-    cpf = cpf.replace(/\D/g, '').substring(0, 11);
-    if (cpf.length > 3) cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-    if (cpf.length > 6) cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-    if (cpf.length > 9) cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    return cpf;
-}
-
-// Identifier input formatting
-document.getElementById('identifier-input').addEventListener('input', function (e) {
-    if (!isFuncionarioMode) {
-        e.target.value = formatCPF(e.target.value);
-    } else {
-        let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-        if (!value.startsWith('FUN')) {
-            value = 'FUN' + value.replace(/\D/g, '');
-        }
-        e.target.value = value.substring(0, 8);
-    }
-});
-
-// Find OTP section in a more compatible way
-function findOTPSection() {
-    // First try to find by a specific ID if available
-    let otpSection = document.getElementById('otp-section');
-
-    // If not found by ID, try to find by structure
-    if (!otpSection) {
-        const formGroups = document.querySelectorAll('.form-group');
-        for (const group of formGroups) {
-            if (group.querySelector('.otp-container')) {
-                otpSection = group;
-                break;
-            }
-        }
-    }
-
-    return otpSection;
-}
-
-// Hide OTP section initially
-function hideOTPSection() {
-    const otpGroup = findOTPSection();
-    if (otpGroup) {
-        otpGroup.style.display = 'none';
-    }
-}
-
-// Show OTP section after successful login
-function showOTPSection() {
-    const otpGroup = findOTPSection();
-    if (otpGroup) {
-        otpGroup.style.display = 'block';
-    }
-
-    // Focus on first OTP input
-    const firstOtpInput = document.getElementById('otp1');
-    if (firstOtpInput) {
-        firstOtpInput.focus();
-    }
-
-    // Setup OTP input behavior
-    setupOTPInputs();
-}
-
-// Setup OTP input behavior (auto-focus next input)
-function setupOTPInputs() {
+    // Configurar inputs OTP
+    function setupOTPInputs() {
     const otpInputs = document.querySelectorAll('.otp-input');
+    if (otpInputs.length === 0) return;
 
     otpInputs.forEach((input, index) => {
-        // When a digit is entered, move to next input
-        input.addEventListener('input', function() {
-            if (this.value.length === 1) {
-                if (index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
-                }
-            }
-        });
+    input.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
 
-        // Handle backspace
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
-                otpInputs[index - 1].focus();
-            }
-        });
-    });
+    if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+    otpInputs[index + 1].focus();
 }
 
-// Validate OTP
-function validateOTP() {
-    const otpInputs = document.querySelectorAll('.otp-input');
-    let otp = '';
-
-    otpInputs.forEach(input => {
-        otp += input.value;
-    });
-
-    // Check if OTP is complete (6 digits)
-    if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
-        document.getElementById('error-message').textContent = 'Por favor, insira um código OTP válido de 6 dígitos.';
-        return false;
-    }
-
-    // Here you would normally validate the OTP with a server
-    // For now, we'll just simulate a successful validation
-    document.getElementById('success-message').textContent = 'OTP validado com sucesso!';
-    document.getElementById('error-message').textContent = '';
-    return true;
-}
-
-// Form submission - with login verification and OTP
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const identifier = document.getElementById('identifier-input').value;
-    const password = document.getElementById('password-input').value;
-    const otpGroup = findOTPSection();
-
-    // Check if OTP section is visible
-    if (otpGroup && otpGroup.style.display !== 'none') {
-        // OTP validation phase
-        if (validateOTP()) {
-            // Submit the form or redirect
-            console.log('Login and OTP validated successfully');
-            this.submit();
-        }
-    } else {
-        // Initial login phase
-        if (identifier && password) {
-            // Here you would normally validate credentials with a server
-            // For now, we'll just simulate a successful login
-            console.log('Login credentials verified');
-            document.getElementById('success-message').textContent = 'Credenciais verificadas. Por favor, insira o código OTP.';
-            document.getElementById('error-message').textContent = '';
-
-            // Show OTP section for second factor authentication
-            showOTPSection();
-
-            // Change button text
-            document.querySelector('.login-btn').textContent = 'Verificar OTP';
-        } else {
-            document.getElementById('error-message').textContent = 'Por favor, preencha todos os campos.';
-            document.getElementById('success-message').textContent = '';
-        }
-    }
+    updateOTPHiddenField();
 });
 
-// Initialize
-window.addEventListener('load', function () {
-    // Hide OTP section initially
-    hideOTPSection();
+    input.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+    otpInputs[index - 1].focus();
+}
+});
+});
+}
+
+    function updateOTPHiddenField() {
+    const otpInputs = document.querySelectorAll('.otp-input');
+    const hiddenField = document.getElementById('otp');
+    if (hiddenField) {
+    let otp = '';
+    otpInputs.forEach(input => {
+    otp += input.value;
+});
+    hiddenField.value = otp;
+}
+}
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configurar formatação de CPF para ambos os campos
+    const cpfCliente = document.getElementById('cpf-cliente');
+    const cpfFunc = document.getElementById('cpf-func');
+
+    if (cpfCliente) {
+    cpfCliente.addEventListener('input', function () {
+    formatCPF(this);
+});
+}
+
+    if (cpfFunc) {
+    cpfFunc.addEventListener('input', function () {
+    formatCPF(this);
+});
+}
+
+        function togglePassword(fieldId) {
+            console.log('=== DEBUG TOGGLE PASSWORD ===');
+            console.log('fieldId recebido:', fieldId);
+
+            const field = document.getElementById(fieldId);
+            const iconId = 'icon-' + fieldId;
+            const icon = document.getElementById(iconId);
+
+            console.log('Campo encontrado:', field);
+            console.log('ID do ícone procurado:', iconId);
+            console.log('Ícone encontrado:', icon);
+            console.log('Tipo atual do campo:', field ? field.type : 'campo não encontrado');
+
+            // Listar todos os elementos com ID para debug
+            console.log('Todos os elementos com ID na página:');
+            document.querySelectorAll('[id]').forEach(el => {
+                console.log('- ID:', el.id, 'Elemento:', el.tagName);
+            });
+
+            if (field && icon) {
+                console.log('Ambos elementos encontrados, fazendo toggle...');
+
+                if (field.type === 'password') {
+                    console.log('Mudando para texto visível');
+                    field.type = 'text';
+                    icon.src = '../img/iconeeyeclosed.png';
+                    icon.alt = 'Ocultar senha';
+                    console.log('Novo src do ícone:', icon.src);
+                } else {
+                    console.log('Mudando para senha oculta');
+                    field.type = 'password';
+                    icon.src = '../img/iconeyeopen.png';
+                    icon.alt = 'Mostrar senha';
+                    console.log('Novo src do ícone:', icon.src);
+                }
+
+                console.log('Tipo final do campo:', field.type);
+            } else {
+                console.log('ERRO: Elementos não encontrados!');
+                if (!field) console.log('Campo não encontrado!');
+                if (!icon) console.log('Ícone não encontrado!');
+            }
+
+            console.log('=== FIM DEBUG ===');
+        }
+
+    // Configurar OTP
+    setupOTPInputs();
+
+    // Verificar se precisa mostrar OTP
+    const urlParams = new URLSearchParams(window.location.search);
+    const otpParam = urlParams.get('otp_true');
+
+    if (otpParam === 'true') {
+    document.getElementById('cliente-form').style.display = 'none';
+    document.getElementById('funcionario-form').style.display = 'none';
+    document.getElementById('otp-form').style.display = 'flex';
+}
 
     // Fade-in animation
     document.body.style.opacity = '0';
     setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '1';
+}, 100);
 });
 
-// Keyboard shortcut for toggling mode
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Tab' && e.shiftKey && e.ctrlKey) {
-        e.preventDefault();
-        toggleMode();
-    }
+    // Atalho de teclado (Ctrl + M)
+    document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.key.toLowerCase() === 'm') {
+    e.preventDefault();
+    toggleMode();
+}
 });
+
+ function togglePassword(fieldId) {
+     const field = document.getElementById(fieldId);
+     const iconId = 'icon-' + fieldId;
+     const icon = document.getElementById(iconId);
+
+     if (field && icon) {
+         if (field.type === 'password') {
+             field.type = 'text';
+             icon.src = '../img/iconeyeclosed.png';
+             icon.alt = 'Ocultar senha';
+         } else {
+             field.type = 'password';
+             icon.src = '../img/iconeyeopen.png';
+             icon.alt = 'Mostrar senha';
+         }
+     }
+ }

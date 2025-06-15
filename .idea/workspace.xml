@@ -9,21 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
+    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="Adicionado Portalfuncionario nos testes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
+    </list>
+    <list id="07cd365c-9c58-46f7-b860-35598bc73de6" name="Changes by pczaum" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginClienteDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginFuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/LoginFuncionarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/sucesso.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/sucesso.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,8 +267,17 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
-      <workItem from="1749920337614" duration="4352000" />
+      <workItem from="1749920337614" duration="24743000" />
     </task>
+    <task id="LOCAL-00001" summary="Adicionado Portalfuncionario nos testes.">
+      <option name="closed" value="true" />
+      <created>1749925404775</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749925404775</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,6 +293,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adicionado Portalfuncionario nos testes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado Portalfuncionario nos testes." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
