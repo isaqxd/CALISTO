@@ -1,3 +1,6 @@
+/* ==========================================================================
+   Estilos Base e Reset
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +15,9 @@ body {
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Background Transitions */
+/* ==========================================================================
+   Camadas de Fundo e Animações
+   ========================================================================== */
 .background-layer {
     position: absolute;
     top: 0;
@@ -49,7 +54,6 @@ body.funcionario-mode .bg-funcionario {
     opacity: 1;
 }
 
-/* Animated Background Elements */
 .bg-cliente::before {
     content: '';
     position: absolute;
@@ -84,7 +88,9 @@ body.funcionario-mode .bg-funcionario {
     }
 }
 
-/* Main Container */
+/* ==========================================================================
+   Layout Principal e Animação de Slide (LÓGICA DE TROCA)
+   ========================================================================== */
 .login-container {
     display: flex;
     min-height: 100vh;
@@ -93,7 +99,7 @@ body.funcionario-mode .bg-funcionario {
     width: 100vw;
 }
 
-/* Welcome Section */
+/* --- PAINEL DA ESQUERDA (WELCOME) --- */
 .welcome-section {
     position: absolute;
     width: 50%;
@@ -105,15 +111,70 @@ body.funcionario-mode .bg-funcionario {
     padding: 2rem;
     text-align: center;
     z-index: 1;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body:not(.funcionario-mode) .welcome-section {
     left: 0;
 }
-
 body.funcionario-mode .welcome-section {
     left: 50%;
+}
+
+/* --- PAINEL DA DIREITA (FORMULÁRIOS) --- */
+.form-container {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    z-index: 2;
+    /* Transição para a propriedade 'left' (slide) e 'opacity' (fade do conteúdo) */
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease-in-out 0.2s;
+}
+
+/* ESTADO INICIAL (MODO CLIENTE) */
+body:not(.funcionario-mode) #cliente-form {
+    left: 50%;
+    opacity: 1; /* Cliente visível */
+}
+body:not(.funcionario-mode) #funcionario-form {
+    left: 50%;
+    opacity: 0; /* Funcionário invisível, posicionado no mesmo local */
+    pointer-events: none;
+}
+
+/* ESTADO FINAL (MODO FUNCIONÁRIO) */
+body.funcionario-mode #cliente-form {
+    left: 0;
+    opacity: 0; /* Cliente se torna invisível ao deslizar para a esquerda */
+    pointer-events: none;
+}
+body.funcionario-mode #funcionario-form {
+    left: 0;
+    opacity: 1; /* Funcionário se torna visível ao deslizar para a esquerda */
+}
+
+
+/* ==========================================================================
+   Conteúdo e Estilos Internos (sem alterações de lógica)
+   ========================================================================== */
+
+/* Fundo do painel do formulário - Cliente */
+#cliente-form {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(45deg, #f8f6f3 0%, #f2e8d5 100%);
+}
+
+/* Fundo do painel do formulário - Funcionário */
+#funcionario-form {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(45deg, #f5f5f2 0%, #e8e6e1 100%);
 }
 
 .logo {
@@ -149,58 +210,13 @@ body.funcionario-mode .welcome-section {
     transition: color 0.8s ease;
 }
 
-/* Cliente Mode Styling */
-body:not(.funcionario-mode) .welcome-title {
-    color: #BF7A24;
-}
+body:not(.funcionario-mode) .welcome-title { color: #BF7A24; }
+body:not(.funcionario-mode) .welcome-subtitle { color: #8C480D; }
+body:not(.funcionario-mode) .welcome-description { color: #595348; }
 
-body:not(.funcionario-mode) .welcome-subtitle {
-    color: #8C480D;
-}
-
-body:not(.funcionario-mode) .welcome-description {
-    color: #595348;
-}
-
-/* Funcionário Mode Styling */
-body.funcionario-mode .welcome-title {
-    color: #260A04;
-}
-
-body.funcionario-mode .welcome-subtitle {
-    color: #595348;
-}
-
-body.funcionario-mode .welcome-description {
-    color: #595348;
-}
-
-/* Form Container */
-.form-container {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-}
-
-body:not(.funcionario-mode) .form-container {
-    left: 50%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(45deg, #f8f6f3 0%, #f2e8d5 100%);
-}
-
-body.funcionario-mode .form-container {
-    left: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(45deg, #f5f5f2 0%, #e8e6e1 100%);
-}
+body.funcionario-mode .welcome-title { color: #260A04; }
+body.funcionario-mode .welcome-subtitle { color: #595348; }
+body.funcionario-mode .welcome-description { color: #595348; }
 
 .form-container::before {
     content: '';
@@ -235,13 +251,8 @@ body.funcionario-mode .form-container {
     transition: color 0.8s ease;
 }
 
-body:not(.funcionario-mode) .form-title {
-    color: #BF7A24;
-}
-
-body.funcionario-mode .form-title {
-    color: #260A04;
-}
+body:not(.funcionario-mode) .form-title { color: #BF7A24; }
+body.funcionario-mode .form-title { color: #260A04; }
 
 .form-group {
     margin-bottom: 1.2rem;
@@ -327,6 +338,41 @@ body.funcionario-mode .otp-input:focus {
     margin-bottom: 1.5rem;
 }
 
+.forgot-password {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+    color: #BF7A24;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+body.funcionario-mode .forgot-password a {
+    color: #260A04;
+}
+
+.error-message, .success-message {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.error-message {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.success-message {
+    background: #c6f6d5;
+    color: #38a169;
+}
+
 .login-btn {
     width: 100%;
     padding: 1rem;
@@ -361,23 +407,6 @@ body.funcionario-mode .login-btn:hover {
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
 }
 
-.forgot-password {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.forgot-password a {
-    color: #BF7A24;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-body.funcionario-mode .forgot-password a {
-    color: #260A04;
-}
-
-/* Toggle Section */
 .toggle-section {
     text-align: center;
     padding: 1rem;
@@ -437,26 +466,9 @@ body.funcionario-mode .toggle-btn:hover {
     transform: translateY(-2px);
 }
 
-.error-message, .success-message {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    text-align: center;
-    display: none;
-}
-
-.error-message {
-    background: #fed7d7;
-    color: #c53030;
-}
-
-.success-message {
-    background: #c6f6d5;
-    color: #38a169;
-}
-
-/* Responsive Design */
+/* ==========================================================================
+   Design Responsivo
+   ========================================================================== */
 @media (max-width: 768px) {
     .login-container {
         flex-direction: column;
@@ -470,7 +482,7 @@ body.funcionario-mode .toggle-btn:hover {
         height: auto;
         flex: 0 0 auto;
         padding: 1.5rem 1rem;
-        left: 0 !important;
+        left: 0 !important; /* Desativa a animação de slide */
     }
 
     .form-container {
@@ -478,7 +490,18 @@ body.funcionario-mode .toggle-btn:hover {
         width: 100%;
         height: auto;
         padding: 1rem;
-        left: 0 !important;
+        left: 0 !important; /* Desativa a animação de slide */
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Em telas pequenas, usamos 'display' para alternar, pois não há animação */
+    body.funcionario-mode #cliente-form {
+        display: none;
+    }
+    body:not(.funcionario-mode) #funcionario-form {
+        display: flex; /* Garante que o container de formulário não colapse */
+        display: none;
     }
 
     .welcome-title {

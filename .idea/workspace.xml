@@ -9,18 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="Adicionado Portalfuncionario nos testes.">
+    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/css/loginstyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/js/loginscript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
-    </list>
-    <list id="07cd365c-9c58-46f7-b860-35598bc73de6" name="Changes by pczaum" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/portalfuncionario.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +265,7 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
-      <workItem from="1749920337614" duration="24743000" />
+      <workItem from="1749920337614" duration="31663000" />
     </task>
     <task id="LOCAL-00001" summary="Adicionado Portalfuncionario nos testes.">
       <option name="closed" value="true" />
@@ -277,7 +275,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749925404775</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Login Finalizado 1.0&#10;Integração completa login&#10;Está integrado com o Banco de Dados.&#10;Enviando para auditoria a solicitação da OTP, e registrando o login em auditoria.">
+      <option name="closed" value="true" />
+      <created>1749946971636</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749946971636</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changes by pczaum&#10;&#10;LoginClienteController&#10;LoginFuncionarioController&#10;&#10;para funcionamento da OTP com estilização.">
+      <option name="closed" value="true" />
+      <created>1749947085002</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1749947085002</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +310,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adicionado Portalfuncionario nos testes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionado Portalfuncionario nos testes." />
+    <MESSAGE value="Login Finalizado 1.0&#10;Integração completa login&#10;Está integrado com o Banco de Dados.&#10;Enviando para auditoria a solicitação da OTP, e registrando o login em auditoria." />
+    <MESSAGE value="Changes by pczaum&#10;&#10;LoginClienteController&#10;LoginFuncionarioController&#10;&#10;para funcionamento da OTP com estilização." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by pczaum&#10;&#10;LoginClienteController&#10;LoginFuncionarioController&#10;&#10;para funcionamento da OTP com estilização." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

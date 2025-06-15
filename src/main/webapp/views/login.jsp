@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Callisto Bank - Login</title>
 </head>
 
@@ -16,7 +16,7 @@
 <div class="login-container">
     <div class="welcome-section">
         <div class="logo">
-            <img src="${pageContext.request.contextPath}/img/image.svg" alt="Callisto Bank" class="logo-image">
+            <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
         </div>
         <h1 class="welcome-title">Bem-vindo!</h1>
         <h2 class="welcome-subtitle" id="welcome-subtitle">Acesso do Cliente</h2>
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Formulário do Funcionário -->
-    <div class="form-container" id="funcionario-form" style="display: none;">
+    <div class="form-container" id="funcionario-form">
         <form class="login-form" action="${pageContext.request.contextPath}/loginFuncionario" method="post">
             <h2 class="form-title">Login Funcionário</h2>
             <input type="hidden" name="tipo_usuario" value="FUNCIONARIO">
@@ -132,6 +132,6 @@
         </form>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/login.js"></script>
+<script src="../js/login.js"></script>
 </body>
 </html>
