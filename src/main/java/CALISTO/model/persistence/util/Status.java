@@ -1,7 +1,7 @@
 package CALISTO.model.persistence.util;
 
 public enum Status {
-    ATIVO,
+    ATIVA,
     ENCERRADA,
     BLOQUEADA
 }

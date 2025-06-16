@@ -1,4 +1,3 @@
-<%@ page import="CALISTO.model.persistence.Agencia.Agencia" %>
 <%@ page import="java.util.List" %>
 <%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
@@ -554,7 +553,7 @@
 
 <header class="header">
   <div class="logo">
-    <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
+    <img src="${pageContext.request.contextPath}/img/image.svg" alt="Callisto Bank" class="logo-image">
   </div>
   <div class="user-info">
     <span>Olá, ADICIONAR NOME DO FUNCIONARIO></span>
@@ -858,63 +857,7 @@
 
     <!-- Abertura de Conta -->
     <section id="abertura-conta" class="section">
-      <div class="content-header">
-        <h1>Abertura de Conta</h1>
-        <p>Abra uma nova conta para cliente existente</p>
-      </div>
-      <div class="form-container">
-        <div class="form-group">
-          <label>CPF</label>
-          <select name="cpf" required>
-            <option value="">Selecione o Cliente</option>
-            <%
-              List<Cliente> clientes = (List<Cliente>) request.getAttribute("clientes");
-              if (clientes != null) {
-                for (Cliente cliente : clientes) {
-            %>
-            <option value="<%= cliente.getIdCliente() %>">
-              <%= cliente.getCpf()%> | <%= cliente.getNome() %>
-            </option>
-            <%
-                }
-              }
-            %>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Agência</label>
-          <select name="agencia" required>
-            <option value="">Selecione a agência</option>
-            <%
-              List<Agencia> agencias = (List<Agencia>) request.getAttribute("agencias");
-              if (agencias != null) {
-                for (Agencia agencia : agencias) {
-            %>
-            <option value="<%= agencia.getIdAgencia() %>">
-              <%= agencia.getNome() %> - Código: <%= agencia.getCodigoAgencia() %>
-            </option>
-            <%
-                }
-              }
-            %>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tipo de Conta</label>
-          <select>
-            <option value="">Selecione o tipo de conta</option>
-            <option value="POUPANCA">Poupança</option>
-            <option value="CORRENTE">Corrente</option>
-            <option value="INVESTIMENTO">Investimento</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Depósito Inicial</label>
-          <input type="number" name="deposito_inicial" step="0.01" min="0" required>
-        </div>
-      </div>
-      <button type="submit" class="btn-primary">Abrir Conta</button>
-      </form>
+
     </section>
 
     <!-- Geração de Cartão -->
@@ -950,19 +893,28 @@
       </div>
     </section>
 
+    <!-- Script para Achar por cpf noAlterar Cliente -->
+    <%
+      Cliente cliente = (Cliente) request.getAttribute("clienteEncontrado");
+    %>
+
     <!-- Alterar Cliente -->
     <section id="alterar-cliente" class="section">
       <div class="content-header">
         <h1>Alterar Cadastro de Cliente</h1>
         <p>Busque e altere dados de clientes</p>
       </div>
+      <!-- Formulario para buscar por CPF-->
       <div class="form-container">
-        <div class="form-group">
-          <label>Buscar Cliente</label>
-          <input type="text" placeholder="Digite CPF ou nome do cliente">
-          <button type="button" class="btn-secondary" style="margin-top: 0.5rem;">Buscar</button>
-        </div>
+        <form method="get" action="${pageContext.request.contextPath}/BuscarClientePorCpf">
+          <div class="form-group">
+            <label>Buscar Cliente</label>
+            <input type="text" name="cpf" placeholder="Digite o CPF do cliente" required>
+            <button type="submit" class="btn-secondary">Buscar</button>
+          </div>
+        </form>
       </div>
+      <!--Tabela para exibir o Cliente encontrado-->
       <div class="table-container">
         <h3>Clientes Encontrados</h3>
         <table>
@@ -977,17 +929,32 @@
           </tr>
           </thead>
           <tbody>
+          <%
+            if (cliente != null) {
+          %>
           <tr>
-            <td>123.456.789-01</td>
-            <td>João Santos</td>
-            <td>joao@email.com</td>
-            <td>(61) 99999-9999</td>
-            <td>001</td>
+            <td><%= cliente.getCpf() %>
+            </td>
+            <td><%= cliente.getNome() %>
+            </td>
+            <td>emailfoda@email.com</td>
+            <td><%= cliente.getTelefone() %>
+            </td>
+            <td>Agenciatop</td>
             <td>
               <button class="btn-secondary">Editar</button>
               <button class="btn-danger">Inativar</button>
             </td>
           </tr>
+          <%
+          } else if (request.getParameter("cpf") != null) {
+          %>
+          <tr>
+            <td colspan="6">Nenhum cliente encontrado com esse CPF.</td>
+          </tr>
+          <%
+            }
+          %>
           </tbody>
         </table>
       </div>

@@ -162,6 +162,35 @@ public class AgenciaDao {
         return null;
     }
 
+    public Agencia findById(int id) {
+        String sql = """
+                SELECT a.id_agencia,a.nome, a.codigo_agencia,
+                       e.id_endereco,e.cep,e.local,e.numero_casa,e.bairro,e.cidade,e.estado,e.complemento
+                       FROM agencia a
+                       JOIN endereco e ON a.endereco_id = e.id_endereco
+                       WHERE a.id_agencia = ?
+                      \s""";
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Endereco endereco = UsuarioMapper.fillEnderecoFromResultSet(rs);
+                    Agencia agencia = new Agencia();
+                    agencia.setIdAgencia(rs.getInt("id_agencia"));
+                    agencia.setNome(rs.getString("nome"));
+                    agencia.setCodigoAgencia(rs.getString("codigo_agencia"));
+                    agencia.setEndereco(endereco);
+
+                    return agencia;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     //FUNÇÔES AUXILIARES
     public static int inserirEnderecoAgencia(Connection conn, Agencia agencia, String sql) throws SQLException {
         try (PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {

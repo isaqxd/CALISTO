@@ -8,6 +8,12 @@ public class Agencia {
     private String codigoAgencia;
     private Endereco endereco;
 
+    public Agencia(int idAgencia) {
+    }
+
+    public Agencia() {
+    }
+
     public int getIdAgencia() {
         return idAgencia;
     }

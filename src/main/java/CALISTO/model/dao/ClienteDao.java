@@ -1,8 +1,14 @@
 package CALISTO.model.dao;
 
 import CALISTO.model.mapper.UsuarioMapper;
+import CALISTO.model.persistence.Conta.Conta;
+import CALISTO.model.persistence.Conta.Corrente;
+import CALISTO.model.persistence.Conta.Investimento;
+import CALISTO.model.persistence.Conta.Poupanca;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.persistence.util.Conexao;
+import CALISTO.model.persistence.util.Status;
+import CALISTO.model.persistence.util.TipoConta;
 import CALISTO.model.persistence.util.TipoUsuario;
 
 import java.sql.*;
@@ -223,6 +229,80 @@ public class ClienteDao {
         return null;
     }
 
+    public Cliente findByCpfFromExcluirConta(String cpf) {
+        String sql = """
+                    SELECT u.nome, u.cpf, u.id_usuario,
+                           c.id_cliente,
+                           co.id_conta, co.numero_conta, co.saldo, co.tipo_conta AS tipo_conta, co.status
+                    FROM usuario u
+                    INNER JOIN cliente c ON u.id_usuario = c.usuario_id
+                    INNER JOIN conta co ON c.id_cliente = co.cliente_id
+                    WHERE u.cpf = ?
+                """;
+
+        Cliente cliente = null;
+
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                // Instancia o cliente apenas uma vez
+                if (cliente == null) {
+                    cliente = new Cliente();
+                    cliente.setCpf(rs.getString("cpf"));
+                    cliente.setNome(rs.getString("nome"));
+                    cliente.setIdCliente(rs.getInt("id_cliente"));
+                    cliente.setContas(new ArrayList<>());
+                }
+
+                String tipo = rs.getString("tipo_conta");
+                Conta conta;
+
+                switch (tipo) {
+                    case "CORRENTE" -> {
+                        Corrente cc = new Corrente();
+                        cc.setIdConta(rs.getInt("id_conta"));
+                        cc.setNumeroConta(rs.getString("numero_conta"));
+                        cc.setSaldo(rs.getBigDecimal("saldo"));
+                        cc.setTipoConta(TipoConta.CORRENTE);
+                        cc.setStatus(Status.valueOf(rs.getString("status")));
+                        conta = cc;
+                    }
+                    case "POUPANCA" -> {
+                        Poupanca cp = new Poupanca();
+                        cp.setIdConta(rs.getInt("id_conta"));
+                        cp.setNumeroConta(rs.getString("numero_conta"));
+                        cp.setSaldo(rs.getBigDecimal("saldo"));
+                        cp.setTipoConta(TipoConta.POUPANCA);
+                        cp.setStatus(Status.valueOf(rs.getString("status")));
+                        conta = cp;
+                    }
+                    case "INVESTIMENTO" -> {
+                        Investimento ci = new Investimento();
+                        ci.setIdConta(rs.getInt("id_conta"));
+                        ci.setNumeroConta(rs.getString("numero_conta"));
+                        ci.setSaldo(rs.getBigDecimal("saldo"));
+                        ci.setTipoConta(TipoConta.INVESTIMENTO);
+                        ci.setStatus(Status.valueOf(rs.getString("status")));
+                        conta = ci;
+                    }
+                    default -> throw new SQLException("Tipo de conta desconhecido: " + tipo);
+                }
+
+                // Adiciona a conta na lista do cliente
+                cliente.getContas().add(conta);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cliente;
+    }
+
     // FUNÇÕES AUXILIARES
     public Cliente accessCliente(ResultSet rs) throws SQLException {
         Cliente cliente = new Cliente();
@@ -233,11 +313,18 @@ public class ClienteDao {
     }
 
     private int inserirCliente(Connection conn, Cliente cliente, String sql) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, cliente.getIdUsuario());
             stmt.setBigDecimal(2, cliente.getScoreCredito());
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                cliente.setIdCliente(rs.getInt(1));
+            }
         }
         return 0;
     }
+
+
 }

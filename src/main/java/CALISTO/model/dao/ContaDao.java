@@ -1,6 +1,7 @@
 package CALISTO.model.dao;
 
 
+import CALISTO.model.persistence.Conta.Conta;
 import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.*;
@@ -84,5 +85,34 @@ public abstract class ContaDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public Conta buscarPorId(int idConta) {
+        String sql = "SELECT * FROM conta WHERE id_conta = ?";
+
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idConta);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String tipo = rs.getString("tipo_conta");
+
+                switch (tipo) {
+                    case "CORRENTE":
+                        return new ContaCorrenteDao().buscarPorConta(idConta);
+                    case "POUPANCA":
+                        return new ContaPoupancaDao().buscarPorConta(idConta);
+                    case "INVESTIMENTO":
+                        return new ContaInvestimentoDao().buscarPorConta(idConta);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

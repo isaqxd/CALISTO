@@ -1,5 +1,6 @@
-package CALISTO.controller.Usuario;
+package CALISTO.controller.Portal.Simples;
 
+import CALISTO.controller.Usuario.UsuarioControllerUtil;
 import CALISTO.model.dao.FuncionarioDao;
 import CALISTO.model.persistence.Endereco.Endereco;
 import CALISTO.model.persistence.Usuario.Funcionario;

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="aprenderJsp:war exploded" />
+      <artifact name="calistobank:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,20 +10,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/aberturaConta.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarCliente.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalfuncionario.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/testLoginClienteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/landpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/loginselect.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/loginselect.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/imagem cliente.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem_cliente.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/imagem funcionario.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/imagem_funcionario.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/landpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/landpage.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/loginselect.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Usuario/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Usuario/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/FuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Agencia/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Agencia/Agencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
+    </list>
+    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AgenciaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AgenciaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Investimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Investimento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,19 +45,21 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="luizcomzbranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -53,12 +67,50 @@
     &quot;assignee&quot;: &quot;isaqxd&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/isaqxd/CALISTO.git",
-    "accountId": "c554c9ab-2100-4ad4-80cc-08ec9c28394d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/isaqxd/CALISTO.git&quot;,
+    &quot;accountId&quot;: &quot;c554c9ab-2100-4ad4-80cc-08ec9c28394d&quot;
   }
-}]]></component>
+}</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java">
+      <ranges>
+        <range start1="2" end1="5" start2="2" end2="3" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="6" end1="6" start2="4" end2="8" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="8" end1="8" start2="10" end2="13" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="16" end1="16" start2="21" end2="25" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="24" end1="24" start2="33" end2="34" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="25" end1="25" start2="35" end2="37" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="37" end1="37" start2="49" end2="59" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="40" end1="40" start2="62" end2="143" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="0" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="556" end1="557" start2="555" end2="556" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="860" end1="917" start2="859" end2="860" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="952" end1="952" start2="895" end2="900" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="958" end1="958" start2="906" end2="907" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="959" end1="964" start2="908" end2="915" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="965" end1="965" start2="916" end2="917" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="979" end1="979" start2="931" end2="934" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="980" end1="985" start2="935" end2="943" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="990" end1="990" start2="948" end2="957" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="7" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="5" end1="5" start2="9" end2="11" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="225" end1="225" start2="231" end2="305" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="235" end1="236" start2="315" end2="316" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="239" end1="239" start2="319" end2="324" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="242" end1="242" start2="327" end2="329" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+      </ranges>
+    </file>
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -84,6 +136,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Test.executor": "Run",
+    "Application.TestErro.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
@@ -91,7 +144,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.41.executor": "Run",
     "Tomcat Server.Tomcat 9.0.105.executor": "Run",
-    "git-widget-placeholder": "odeioLuiszComSucesso",
+    "git-widget-placeholder": "branchDoSucesso__2",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "D:/calistobank/src/main/java",
@@ -130,12 +183,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.41">
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="calisto.test.Test" />
+    <configuration name="TestErro" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CALISTO.model.persistence.Test.TestErro" />
       <module name="calistobank" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="calisto.test.*" />
+          <option name="PATTERN" value="CALISTO.model.persistence.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,45 +196,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.1.41" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.41" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/aprenderJsp_war_exploded/index.jsp" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="aprenderJsp:war exploded">
+        <artifact name="calistobank:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/aprenderJsp_war_exploded" />
+            <option name="CONTEXT_PATH" value="/calistobank_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="521a152a-c26e-406b-a3cf-008839395b53" />
+        <option name="BASE_DIRECTORY_NAME" value="524ddd62-7f2f-4ae5-b08e-ad8d59b10708" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="AppServerDebuggerRunner">
-        <option name="DEBUG_PORT" value="54928" />
-      </RunnerSettings>
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="57461" />
+        <option name="DEBUG_PORT" value="54140" />
       </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="AppServerDebuggerRunner">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -246,18 +292,16 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="calistobank:war exploded" />
-          <artifact name="CALLISTO:war exploded" />
-          <artifact name="aprenderJsp:war exploded" />
         </option>
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.TestErro" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.41" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.TestErro" />
       </list>
     </recent_temporary>
   </component>
