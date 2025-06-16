@@ -18,7 +18,7 @@ public class ClienteController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Usando a classe utilitária para criar o endereço e preencher dados comuns
-            Endereco endereco = UsuarioControllerUtil.makeEndereco(request);
+            Endereco endereco = UsuarioControllerUtil.requestEndereco(request);
             CALISTO.model.persistence.Usuario.Cliente cliente = new CALISTO.model.persistence.Usuario.Cliente();
             UsuarioControllerUtil.fillDataUsuario(cliente, request, endereco);
 

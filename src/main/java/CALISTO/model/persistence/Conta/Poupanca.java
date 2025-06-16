@@ -40,7 +40,4 @@ public class Poupanca extends Conta {
     public void setUltimoRendimento(LocalDateTime ultimoRendimento) {
         this.ultimoRendimento = ultimoRendimento;
     }
-
-    public int getAgenciaId() {
-    }
 }

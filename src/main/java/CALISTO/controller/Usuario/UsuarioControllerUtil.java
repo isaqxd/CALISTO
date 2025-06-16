@@ -18,7 +18,7 @@ public class UsuarioControllerUtil {
      * @param request A requisição HTTP contendo os parâmetros do endereço
      * @return Um objeto Endereco preenchido com os dados da requisição
      */
-    public static Endereco makeEndereco(HttpServletRequest request) {
+    public static Endereco requestEndereco(HttpServletRequest request) {
         String cep = request.getParameter("cep");
         String local = request.getParameter("local");
         String numeroCasa = request.getParameter("numeroCasa");

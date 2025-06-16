@@ -20,12 +20,17 @@ public class LoginOtp extends HttpServlet {
         try {
             if (service.validateOtp(response, request)) {
                 HttpSession session = request.getSession();
+                String tipoUsuario = (String) session.getAttribute("tipo_usuario");
                 session.setAttribute("otpValidated", true);
-                response.sendRedirect("test/sucesso.jsp");
-            } else {
-                // Se não for validar o OTP, redireciona para a página de login com erro
-                response.sendRedirect("test/erro.jsp");
+                if ("CLIENTE".equalsIgnoreCase(tipoUsuario)) {
+                    response.sendRedirect("portalCliente.jsp");
+                } else if ("FUNCIONARIO".equalsIgnoreCase(tipoUsuario)) {
+                    response.sendRedirect("portalFuncionario.jsp");
+                } else {
+                    response.sendRedirect("test/index.jsp");
+                }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

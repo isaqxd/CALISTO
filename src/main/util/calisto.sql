@@ -36,11 +36,9 @@ CREATE TABLE `calisto`.`funcionario` (
     `codigo_funcionario` VARCHAR(20) NOT NULL,
     `cargo` ENUM('ESTAGIARIO', 'ATENDENTE', 'GERENTE') NOT NULL,
     `id_supervisor` INT,
-    `endereco_id` INT,
     PRIMARY KEY (`id_funcionario`),
     FOREIGN KEY (`usuario_id`) REFERENCES `usuario`(id_usuario),
     FOREIGN KEY (`id_supervisor`) REFERENCES `funcionario`(id_funcionario),
-    FOREIGN KEY (`endereco_id`) REFERENCES `endereco`(id_endereco),
     UNIQUE (`codigo_funcionario`)
 );
 

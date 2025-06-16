@@ -57,6 +57,7 @@ public class FuncionarioService extends UsuarioService {
     private Funcionario processarFuncionario(Funcionario funcionario) {
         // Gerar OTP e hash de senha
         gerarMD5(funcionario);
+        gerarCodigo(funcionario);
 
         // Salvar no banco
         return funcionarioDao.save(funcionario);
@@ -91,4 +92,19 @@ public class FuncionarioService extends UsuarioService {
             erros.add("Cargo não pode ser vazio");
         }
     }
+
+    /**
+     * Cria um codigo de funcionário
+     */
+    private void gerarCodigo(Funcionario funcionario) {
+        String cargo = funcionario.getCargo().name().substring(0, 3).toUpperCase();
+        String codigoUnico = String.valueOf(System.currentTimeMillis());
+        String codigoFuncionario = cargo + "-" + codigoUnico;
+        // Garante que não ultrapasse 20 caracteres
+        if (codigoFuncionario.length() > 20) {
+            codigoFuncionario = codigoFuncionario.substring(0, 20);
+        }
+        funcionario.setCodigoFuncionario(codigoFuncionario);
+    }
+    
 }

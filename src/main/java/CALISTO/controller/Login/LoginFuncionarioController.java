@@ -24,6 +24,7 @@ public class LoginFuncionarioController extends HttpServlet {
                 // define pagina de login como otp_true=true
                 HttpSession session = request.getSession();
                 session.setAttribute("usuarioAutenticado", true);
+                session.setAttribute("tipo_usuario", "FUNCIONARIO");
                 response.sendRedirect("test/login.jsp?otp_true=true");
             } else {
                 // Se não vor validar o OTP, redireciona para a página de login com erro

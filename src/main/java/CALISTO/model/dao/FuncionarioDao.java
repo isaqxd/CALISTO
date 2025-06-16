@@ -5,8 +5,6 @@ import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.util.Cargo;
 import CALISTO.model.persistence.util.Conexao;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +45,7 @@ public class FuncionarioDao {
 
             // Inserir funcionario
             insertFuncionario(con, funcionario, sqlFuncionario);
+
             con.commit();
 
             return funcionario;
@@ -63,7 +62,7 @@ public class FuncionarioDao {
                 SELECT u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.senha_hash,
                        u.tipo_usuario, u.otp_ativo, u.otp_expiracao,
                        e.id_endereco, e.cep, e.local, e.numero_casa, e.bairro, e.cidade, e.estado, e.complemento,
-                       f.codigo_funcionario, f.cargo, f.id_supervisor
+                       f.id_funcionario, f.codigo_funcionario, f.cargo, f.id_supervisor
                 FROM funcionario f
                 JOIN usuario u ON f.usuario_id = u.id_usuario
                 JOIN endereco e ON u.endereco_id = e.id_endereco
@@ -76,6 +75,7 @@ public class FuncionarioDao {
             while (rs.next()) {
                 Funcionario funcionario = new Funcionario();
                 UsuarioMapper.fillUsuarioFromResultSet(rs, funcionario);
+                funcionario.setIdFuncionario(rs.getInt("id_funcionario"));
                 funcionario.setCodigoFuncionario(rs.getString("codigo_funcionario"));
                 funcionario.setCargo(Cargo.valueOf(rs.getString("cargo")));
                 funcionario.setSupervisor(rs.getInt("id_supervisor"));

@@ -19,8 +19,7 @@
         <option value="GERENTE">GERENTE</option>
     </select>
     </label><br>
-    <label>Codigo: <input type="text" name="codigo_funcionario" required></label>
-    <label>Supervisor: <input type="number" name="supervisor" required></label><br>
+    <label>Supervisor: <input type="number" name="id_supervisor" required></label><br>
     <h3>Endereço</h3>
     <label>CEP: <input type="text" name="cep" required></label><br>
     <label>Rua: <input type="text" name="local" required></label><br>

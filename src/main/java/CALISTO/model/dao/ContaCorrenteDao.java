@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-class ContaCorrenteDao extends ContaDao {
+public class ContaCorrenteDao extends ContaDao {
 
-    public boolean cadastrar(Corrente conta) {
+    public boolean save(Corrente conta) {
         String sql = "INSERT INTO conta_corrente (conta_id, limite) VALUES (?, ?)";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

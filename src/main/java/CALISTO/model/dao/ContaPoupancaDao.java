@@ -17,7 +17,7 @@ class ContaPoupancaDao extends ContaDao {
             conn.setAutoCommit(false);
             try (PreparedStatement stmtConta = conn.prepareStatement(sqlConta, Statement.RETURN_GENERATED_KEYS)) {
                 stmtConta.setString(1, conta.getNumeroConta());
-                stmtConta.setInt(2, conta.getAgenciaId());
+                stmtConta.setInt(2, conta.getAgencia().getIdAgencia());
                 stmtConta.setBigDecimal(3, conta.getSaldo());
                 stmtConta.setInt(4, conta.getCliente().getIdCliente());
                 stmtConta.executeUpdate();
