@@ -4,7 +4,7 @@
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     String cpf = (String) session.getAttribute("cpfLogin");
     if (cliente == null) {
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect("../login.jsp?cliente");
         return;
     }
 %>

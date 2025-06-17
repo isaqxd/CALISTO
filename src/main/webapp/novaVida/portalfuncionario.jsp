@@ -1,4 +1,12 @@
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect("novaVida/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>

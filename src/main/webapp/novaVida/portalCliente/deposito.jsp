@@ -1,18 +1,12 @@
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
-<%@ page import="CALISTO.model.dao.ClienteDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  ClienteDao clienteDao = new ClienteDao();
-  Cliente cliente = clienteDao.innerToRequestSession("07761207194");
-  session.setAttribute("cliente", cliente);
-  cliente = (Cliente) session.getAttribute("cliente");
-//  Cliente cliente = (Cliente) session.getAttribute("cliente");
-//
-//  if (cliente == null) {
-//    response.sendRedirect("../../novaVida/login.jsp");
-//    return;
-//  }
+  Cliente cliente = (Cliente) session.getAttribute("cliente");
+  if (cliente == null) {
+    response.sendRedirect("../login.jsp");
+    return;
+  }
 %>
 <!DOCTYPE html>
 <html>

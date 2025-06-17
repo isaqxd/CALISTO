@@ -1,14 +1,17 @@
 package CALISTO.model.dao;
 
 import CALISTO.model.persistence.Auditoria.Auditoria;
+import CALISTO.model.persistence.Usuario.Usuario;
 import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class AuditoriaDao {
+
     public Auditoria save(Auditoria auditoria) throws SQLException {
         String sqlAuditoria = """
                 INSERT INTO auditoria (usuario_id, acao, data_hora, detalhes)
@@ -63,4 +66,6 @@ public class AuditoriaDao {
         }
         return false;
     }
+
+
 }

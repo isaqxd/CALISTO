@@ -11,6 +11,15 @@ public class Auditoria {
     private LocalDateTime dataHora;
     private String detalhes;
 
+    public Auditoria() {};
+
+    public Auditoria(Usuario usuario, String acao, LocalDateTime dataHora, String detalhes) {
+        this.usuario = usuario;
+        this.acao = acao;
+        this.dataHora = dataHora;
+        this.detalhes = detalhes;
+    };
+
     public int getIdAuditoria() {
         return idAuditoria;
     }

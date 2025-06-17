@@ -19,31 +19,59 @@
 
 <h4>Contas associadas:</h4>
 <div>
-    <form action="encerrarContas" method="post">
-        <% if (cliente != null) { %>
-        <% cliente.getIdCliente(); %>
-        <label>Nome: <input readonly value="<%= cliente.getNome()%>"></label><br>
-        <label>CPF: <input readonly value="<%= cliente.getCpf() %>"></label><br>
+    <% if (cliente != null) { %>
+    <label>Nome: <input readonly value="<%= cliente.getNome()%>"></label><br>
+    <label>CPF: <input readonly value="<%= cliente.getCpf() %>"></label><br>
+
+    <!-- Select com tipos de conta -->
+    <label>Tipo de Conta:</label>
+    <select id="tipoContaSelect">
+        <option value="">-- Selecione o tipo --</option>
         <% for (Conta conta : cliente.getContas()) { %>
-        <label>Tipo:<input name="tipo_conta" readonly value=" <%= conta.getTipoConta() %>"></label>
-        <label>Número: <input readonly value="<%= conta.getNumeroConta() %>"></label>
-        <label>Saldo: R$ <input readonly value="<%= conta.getSaldo() %>"></label>
-        <label>Status:
-            <select>
-                <option name="status" value="<%= conta.getStatus() %>"><%= conta.getStatus()%>
-                </option>
-                <option value="ENCERRADA">Encerrada</option>
-            </select>
-        </label>
-        <button type="submit" name="conta">Alterar Status Conta</button>
-        <br>
-    </form>
+        <option name="tipo_conta" value="conta_<%= conta.getIdConta() %>">
+            <%= conta.getTipoConta() %>
+        </option>
+        <% } %>
+    </select>
+    <br><br>
 
+    <% for (Conta conta : cliente.getContas()) { %>
+    <!-- Div com dados da conta, oculta por padrão -->
+    <div class="detalhesConta" id="conta_<%= conta.getIdConta() %>"
+         style="display:none; border:1px solid #ccc; padding:10px; margin:10px 0;">
+        <form action="encerrarContas" method="post">
+            <input type="hidden" name="idConta" value="<%= conta.getIdConta() %>">
+            <label>Número da Conta: <input readonly value="<%= conta.getNumeroConta() %>"></label><br>
+            <label>Saldo: R$ <input readonly value="<%= conta.getSaldo() %>"></label><br>
+            <label>Status:
+                <select name="status">
+                    <option value="<%= conta.getStatus() %>" selected><%= conta.getStatus() %>
+                    </option>
+                    <option value="ENCERRADA">Encerrar</option>
+                </select>
+            </label><br><br>
+            <button type="submit">Finalizar Conta</button>
+        </form>
+    </div>
+    <% } %>
     <% } %>
 
-    <% } else if (request.getParameter("cpf") != null) { %>
-    <p><strong>Nenhum cliente encontrado com esse CPF.</strong></p>
-    <% } %>
+    <script>
+        const tipoContaSelect = document.getElementById("tipoContaSelect");
+        const divs = document.querySelectorAll(".detalhesConta");
+
+        tipoContaSelect.addEventListener("change", function () {
+            const selecionado = this.value;
+
+            divs.forEach(div => {
+                if (div.id === selecionado) {
+                    div.style.display = "block";
+                } else {
+                    div.style.display = "none";
+                }
+            });
+        });
+    </script>
 </div>
 </body>
 </html>
