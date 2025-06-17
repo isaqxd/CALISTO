@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/encerrar.css">
     <title>Encerrar Contas do Cliente</title>
 </head>
 <body>

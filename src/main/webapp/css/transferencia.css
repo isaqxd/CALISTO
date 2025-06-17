@@ -1,0 +1,136 @@
+/* --- Estilo para a Página de Transferência --- */
+
+/* 1. Estilos Globais e Fundo Animado (Padrão do Projeto) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background: linear-gradient(135deg, 
+        rgba(89, 83, 72, 0.08) 0%, 
+        rgba(38, 10, 4, 0.12) 50%, 
+        rgba(0, 0, 0, 0.04) 100%),
+        #f5f5f2;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="15" cy="25" r="1.5" fill="%23595348" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="5s" repeatCount="indefinite"/></circle><circle cx="85" cy="40" r="2" fill="%23260A04" opacity="0.2"><animate attributeName="r" values="2;3.5;2" dur="7s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="1.8" fill="%23000000" opacity="0.1"><animate attributeName="r" values="1.8;3.2;1.8" dur="6s" repeatCount="indefinite"/></circle></svg>');
+    animation: float 30s infinite linear reverse;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(-50px) translateY(-20px); }
+}
+
+/* 2. Container Principal */
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 550px;
+    margin: 2rem auto;
+}
+
+/* 3. Título e Formulário */
+h2 {
+    color: #260A04;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    color: #595348;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #fdfdfd;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #BF7A24;
+    box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
+}
+
+/* 4. Estilos Específicos da Página */
+
+/* Div que exibe as informações da conta selecionada */
+#infoConta {
+    background-color: rgba(191, 122, 36, 0.05);
+    border: 1px dashed rgba(191, 122, 36, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: -0.5rem; /* Puxa para mais perto do select */
+    margin-bottom: 1.5rem;
+}
+#infoConta p {
+    color: #8C480D;
+    font-size: 1.1em;
+}
+
+/* Botão de Transferência */
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: white;
+}
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+}
+
+/* Mensagem de status (sucesso ou erro) */
+.status-message {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color: #c6f6d5; /* Verde para sucesso (pode ser alterado dinamicamente) */
+    color: #38a169;
+}

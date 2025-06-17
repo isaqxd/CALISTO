@@ -10,7 +10,9 @@
 %>
 <!DOCTYPE html>
 <html>
-<head><title>Transferência</title></head>
+<head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/transferencia.css">
+    <title>Transferência</title></head>
 <body>
 <h2>Transferência entre contas</h2>
 

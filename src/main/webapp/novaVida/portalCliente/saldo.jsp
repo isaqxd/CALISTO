@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/saldo.css">
     <title>Saldo da Conta</title>
     <style>
         .conta-card {

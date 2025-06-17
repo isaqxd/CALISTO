@@ -1,0 +1,107 @@
+/* --- Estilo para a Página do Portal do Cliente --- */
+
+/* 1. Estilos Globais e Fundo Animado */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background: linear-gradient(135deg, 
+        rgba(242, 185, 80, 0.1) 0%, 
+        rgba(191, 122, 36, 0.15) 50%, 
+        rgba(140, 72, 13, 0.1) 100%),
+        #f8f6f3;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23F2B950" opacity="0.2"><animate attributeName="r" values="2;4;2" dur="6s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="%23BF7A24" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="8s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="2.5" fill="%238C480D" opacity="0.2"><animate attributeName="r" values="2.5;4.5;2.5" dur="7s" repeatCount="indefinite"/></circle></svg>');
+    animation: float 25s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(-50px) translateY(-20px); }
+}
+
+/* 2. Container Principal */
+.portal-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* 3. Cabeçalho e Informações do Cliente */
+.portal-header h1 {
+    color: #8C480D;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portal-header p {
+    color: #595348;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2rem;
+}
+
+/* 4. Menu de Opções */
+.portal-menu {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto; /* Centraliza o menu */
+}
+
+.portal-menu li {
+    margin-bottom: 0.8rem;
+}
+
+.portal-menu a {
+    display: block;
+    background-color: #f8f6f3;
+    color: #BF7A24;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    border-left: 5px solid #BF7A24;
+    transition: all 0.3s ease;
+}
+
+.portal-menu a:hover {
+    background-color: #BF7A24;
+    color: white;
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(191, 122, 36, 0.2);
+}
+
+/* Estilo para o último item "Encerrar Programa" */
+.portal-menu .logout-link a {
+    border-left-color: #c53030;
+    color: #c53030;
+}
+.portal-menu .logout-link a:hover {
+    background-color: #c53030;
+    color: white;
+}
