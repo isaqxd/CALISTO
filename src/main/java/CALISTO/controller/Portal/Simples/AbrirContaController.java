@@ -6,14 +6,17 @@ import CALISTO.model.persistence.Conta.Corrente;
 import CALISTO.model.persistence.Conta.Investimento;
 import CALISTO.model.persistence.Conta.Poupanca;
 import CALISTO.model.persistence.Usuario.Cliente;
+import CALISTO.model.persistence.Usuario.Funcionario;
 import CALISTO.model.persistence.util.PerfilRisco;
 import CALISTO.model.persistence.util.Status;
+import CALISTO.model.service.ContaService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -29,10 +32,10 @@ public class AbrirContaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. Pegando os parâmetros do formulário
         String stringSaldo = request.getParameter("saldo");
-        String numeroConta = request.getParameter("numeroConta");
         String tipoConta = request.getParameter("tipoConta");
         String idCliente = String.valueOf(Integer.parseInt(request.getParameter("idCliente")));
         String idAgencia = String.valueOf(Integer.parseInt(request.getParameter("idAgencia")));
+
 
         // 2. Convertendo o saldo para BigDecimal
         BigDecimal decimalSaldo = null;
@@ -58,7 +61,22 @@ public class AbrirContaController extends HttpServlet {
             return;
         }
 
-        // 4. Criando o objeto Corrente (assumindo que você só quer abrir CORRENTE por enquanto)
+
+        // 4. Inserindo algoritmo de Luhn
+        ContaService service = new ContaService();
+        String numeroConta = service.gerarNumeroConta();
+
+        // 5. Inserindo cliente cadastro na auditoria;
+
+        HttpSession session = request.getSession();
+        Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+        try {
+            service.gerarAuditoriaConta(funcionario);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        // 6. Criando o objetos
         if ("CORRENTE".equalsIgnoreCase(tipoConta)) {
             Corrente corrente = new Corrente();
             corrente.setCliente(cliente);
@@ -73,16 +91,13 @@ public class AbrirContaController extends HttpServlet {
             corrente.setTaxaManutencao(new BigDecimal("10.00")); // Exemplo fixo
             corrente.setDataVencimento(LocalDate.now().plusMonths(1)); // Exemplo
 
-            // 5. Enviando para o DAO salvar no banco
             try {
                 new ContaCorrenteDao().save(corrente);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
-            // 6. Redirecionando ou mostrando mensagem de sucesso
-            request.setAttribute("mensagem", "Conta corrente criada com sucesso!");
-            request.getRequestDispatcher("/sucesso.jsp").forward(request, response);
+
         } else if ("POUPANCA".equalsIgnoreCase(tipoConta)) {
             Poupanca poupanca = new Poupanca();
             poupanca.setCliente(cliente);
@@ -127,7 +142,10 @@ public class AbrirContaController extends HttpServlet {
         } else {
             request.setAttribute("erro", "Tipo de conta não suportado.");
             request.getRequestDispatcher("/erro.jsp").forward(request, response);
+            return;
         }
+        request.setAttribute("mensagem", "Conta criada com sucesso!");
+        request.getRequestDispatcher("novaVida/portalfuncionario.jsp").forward(request, response);
     }
 
     @Override

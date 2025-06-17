@@ -1,7 +1,10 @@
 package CALISTO.controller.Login;
 
 import CALISTO.model.dao.ClienteDao;
+import CALISTO.model.dao.FuncionarioDao;
 import CALISTO.model.persistence.Usuario.Cliente;
+import CALISTO.model.persistence.Usuario.Funcionario;
+import CALISTO.model.persistence.util.TipoUsuario;
 import CALISTO.model.service.Login.LoginClienteService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +22,7 @@ public class LoginOtp extends HttpServlet {
             throws ServletException, IOException {
         LoginClienteService service = new LoginClienteService();
         ClienteDao clienteDao = new ClienteDao();
+        FuncionarioDao funcionarioDao = new FuncionarioDao();
 
         try {
             if (service.validateOtp(response, request)) {
@@ -27,12 +31,17 @@ public class LoginOtp extends HttpServlet {
 
                 // Busca o cliente COM SUAS CONTAS
                 Cliente cliente = clienteDao.innerToRequestSession(cpf);
+                Funcionario funcionario = funcionarioDao.findByCpf(cpf);
 
-                if (cliente != null) {
+                String tipoUsuario = (String) session.getAttribute("tipo_usuario");
+                if (tipoUsuario != null && tipoUsuario.equals(TipoUsuario.CLIENTE.toString())) {
                     session.setAttribute("cliente", cliente);
                     response.sendRedirect("novaVida/portalCliente/portalCliente.jsp");
+                } else if (tipoUsuario != null && tipoUsuario.equals(TipoUsuario.FUNCIONARIO.toString())) {
+                    session.setAttribute("funcionario", funcionario);
+                    response.sendRedirect("novaVida/portalfuncionario.jsp");
                 } else {
-                    response.sendRedirect("login.jsp?error=Cliente não encontrado");
+                    response.sendRedirect("login.jsp?otp_true=true?opt_incorreta=true");
                 }
             }
         } catch (SQLException e) {

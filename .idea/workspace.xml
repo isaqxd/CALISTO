@@ -9,26 +9,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/SaqueController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" afterDir="false" />
+    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="novo commit de funções:">
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/ContaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginFuncionarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/DepositoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/DepositoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AuditoriaDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/FuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/FuncionarioDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" afterDir="false" />
-    </list>
-    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginFuncionarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalfuncionario.jsp" afterDir="false" />
+    </list>
+    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Auditoria/Auditoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Auditoria/Auditoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/aberturaConta.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/aberturaConta.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,26 +68,39 @@
     &quot;assignee&quot;: &quot;isaqxd&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/isaqxd/CALISTO.git&quot;,
-    &quot;accountId&quot;: &quot;c554c9ab-2100-4ad4-80cc-08ec9c28394d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/isaqxd/CALISTO.git",
+    "accountId": "db4dcad7-4e2c-4388-a61e-df0cc6bffecf"
   }
-}</component>
+}]]></component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp">
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="4" end1="9" start2="5" end2="15" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="15" end1="16" start2="21" end2="22" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="20" end1="20" start2="26" end2="27" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="23" end1="24" start2="30" end2="31" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="6" end1="6" start2="6" end2="7" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="8" end1="8" start2="9" end2="11" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="66" end1="67" start2="69" end2="70" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="76" end1="77" start2="79" end2="80" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="85" end1="85" start2="88" end2="148" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="100" end1="101" start2="163" end2="164" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="112" end1="113" start2="175" end2="176" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="120" end1="121" start2="183" end2="184" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="128" end1="129" start2="191" end2="192" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="131" end1="133" start2="194" end2="196" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp">
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java">
       <ranges>
-        <range start1="6" end1="7" start2="6" end2="7" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="28" end1="30" start2="28" end2="30" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="8" end1="8" start2="8" end2="9" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="10" end1="10" start2="11" end2="12" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="16" end1="16" start2="18" end2="19" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="31" end1="32" start2="34" end2="34" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="35" end1="35" start2="37" end2="38" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="60" end1="61" start2="63" end2="79" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="75" end1="76" start2="93" end2="93" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="82" end1="85" start2="99" end2="100" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="129" end1="129" start2="144" end2="145" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="130" end1="130" start2="146" end2="148" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
       </ranges>
     </file>
   </component>
@@ -164,18 +185,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,6 +276,18 @@
         </option>
       </method>
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.TestErro" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.41" />
@@ -302,7 +323,17 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
+      <workItem from="1750184456319" duration="11232000" />
     </task>
+    <task id="LOCAL-00001" summary="novo commit de funções:">
+      <option name="closed" value="true" />
+      <created>1750184054111</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750184054111</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +349,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="novo commit de funções:" />
+    <option name="LAST_COMMIT_MESSAGE" value="novo commit de funções:" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

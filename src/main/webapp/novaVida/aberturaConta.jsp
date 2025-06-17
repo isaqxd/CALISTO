@@ -13,7 +13,7 @@
 <h1>Abertura de Conta</h1>
 <form action="${pageContext.request.contextPath}/abrirConta" method="post">
     <label>Saldo: <input name="saldo" type="text" required></label><br>
-    <label>Numero da conta: <input name="numeroConta" type="text" required></label><br>
+<%--    <label>Numero da conta: <input name="numeroConta" type="text" required></label><br>--%>
     <label>Tipo da conta:</label>
 <%--    VERIFICAR TIPO DE CONTA--%>
     <select name="tipoConta" id="tipoConta" onchange="verificarTipoConta()">

@@ -25,12 +25,12 @@ public class LoginFuncionarioController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("usuarioAutenticado", true);
                 session.setAttribute("tipo_usuario", "FUNCIONARIO");
-                response.sendRedirect("test/login.jsp?otp_true=true");
+                response.sendRedirect("novaVida/login.jsp?otp_true=true");
             } else {
                 // Se não vor validar o OTP, redireciona para a página de login com erro
                 String errorMessage = "CPF ou senha inválidos.";
                 String encodedMessage = URLEncoder.encode(errorMessage, "UTF-8");
-                response.sendRedirect("test/login.jsp?error=" + encodedMessage);
+                response.sendRedirect("/login.jsp?error=" + encodedMessage);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
