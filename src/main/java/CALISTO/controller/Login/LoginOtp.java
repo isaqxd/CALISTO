@@ -1,7 +1,6 @@
 package CALISTO.controller.Login;
 
 import CALISTO.model.dao.ClienteDao;
-import CALISTO.model.dao.LoginClienteDao;
 import CALISTO.model.persistence.Usuario.Cliente;
 import CALISTO.model.service.Login.LoginClienteService;
 import jakarta.servlet.ServletException;
@@ -27,7 +26,7 @@ public class LoginOtp extends HttpServlet {
                 String cpf = (String) session.getAttribute("cpfLogin");
 
                 // Busca o cliente COM SUAS CONTAS
-                Cliente cliente = clienteDao.findByCpfFromExcluirConta(cpf);
+                Cliente cliente = clienteDao.innerToRequestSession(cpf);
 
                 if (cliente != null) {
                     session.setAttribute("cliente", cliente);

@@ -229,7 +229,7 @@ public class ClienteDao {
         return null;
     }
 
-    public Cliente findByCpfFromExcluirConta(String cpf) {
+    public Cliente innerToRequestSession(String cpf) {
         String sql = """
             SELECT u.nome, u.cpf, u.id_usuario,
                    c.id_cliente,

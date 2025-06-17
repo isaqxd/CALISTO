@@ -5,7 +5,6 @@ import CALISTO.model.dao.ContaDao;
 import CALISTO.model.dao.ContaInvestimentoDao;
 import CALISTO.model.dao.ContaPoupancaDao;
 import CALISTO.model.persistence.Conta.Conta;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet("/deposito")
 public class DepositoController extends HttpServlet {
@@ -23,7 +23,8 @@ public class DepositoController extends HttpServlet {
 
         try {
             int idConta = Integer.parseInt(request.getParameter("numeroConta"));
-            double valorDeposito = Double.parseDouble(request.getParameter("valor"));
+            String depositoStr = request.getParameter("valor").replace(",", ".");
+            BigDecimal valorDeposito = new BigDecimal(depositoStr);
 
             // Buscar a conta para identificar o tipo
             ContaDao contaDaoAbstrato = new ContaPoupancaDao(); // Pode ser qualquer um, pois o método está na superclasse

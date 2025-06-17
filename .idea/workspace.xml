@@ -10,32 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/AbrirContaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/aberturaConta.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarCliente.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalfuncionario.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/SaqueController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Usuario/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Usuario/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/FuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Login/LoginOtp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/DepositoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/DepositoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/Simples/EncerrarContasController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaCorrenteDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaInvestimentoDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ContaPoupancaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Agencia/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Agencia/Agencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Usuario/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Conexao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/service/Login/LoginClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" afterDir="false" />
     </list>
     <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AgenciaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/AgenciaDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Investimento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/Conta/Investimento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/persistence/util/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,40 +67,19 @@
   }
 }</component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/CALISTO/controller/Portal/FuncionariosController.java">
+    <file path="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp">
       <ranges>
-        <range start1="2" end1="5" start2="2" end2="3" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="6" end1="6" start2="4" end2="8" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="8" end1="8" start2="10" end2="13" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="16" end1="16" start2="21" end2="25" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="24" end1="24" start2="33" end2="34" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="25" end1="25" start2="35" end2="37" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="37" end1="37" start2="49" end2="59" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="40" end1="40" start2="62" end2="143" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="2" end1="2" start2="2" end2="3" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="4" end1="9" start2="5" end2="15" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="15" end1="16" start2="21" end2="22" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="20" end1="20" start2="26" end2="27" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="23" end1="24" start2="30" end2="31" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/main/webapp/test/portalfuncionario.jsp">
+    <file path="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp">
       <ranges>
-        <range start1="0" end1="1" start2="0" end2="0" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="556" end1="557" start2="555" end2="556" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="860" end1="917" start2="859" end2="860" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="952" end1="952" start2="895" end2="900" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="958" end1="958" start2="906" end2="907" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="959" end1="964" start2="908" end2="915" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="965" end1="965" start2="916" end2="917" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="979" end1="979" start2="931" end2="934" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="980" end1="985" start2="935" end2="943" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="990" end1="990" start2="948" end2="957" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ClienteDao.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="7" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="5" end1="5" start2="9" end2="11" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="225" end1="225" start2="231" end2="305" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="235" end1="236" start2="315" end2="316" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="239" end1="239" start2="319" end2="324" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="242" end1="242" start2="327" end2="329" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="6" end1="7" start2="6" end2="7" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="28" end1="30" start2="28" end2="30" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
       </ranges>
     </file>
   </component>
@@ -133,39 +105,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Run",
-    "Application.TestErro.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 10.1.41.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
-    "git-widget-placeholder": "branchDoSucesso__2",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "D:/calistobank/src/main/java",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.1581092",
-    "project.structure.side.proportion": "0.3647871",
-    "settings.editor.selected.configurable": "proofread",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestErro.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.41.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;branchDoSucesso__2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\calistobank\src\main\java" />

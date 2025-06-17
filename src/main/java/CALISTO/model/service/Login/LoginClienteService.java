@@ -38,9 +38,6 @@ public class LoginClienteService {
         LoginClienteDao dao = new LoginClienteDao();
         Cliente cliente = dao.findByCpf(cpf);
 
-        String nome = cliente.getNome();
-        session.setAttribute("nomeLogin", nome);
-
         Auditoria a = new Auditoria();
         // BLOQUEIA MULTIPLAS TENTATIVAS DE LOGIN
         if (cliente != null && auditoriaDao.blockLoginFromAuditoria(cliente.getIdUsuario())) {
