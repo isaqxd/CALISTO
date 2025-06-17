@@ -1,115 +1,133 @@
+let isFuncionarioMode = false;
 
-    let isFuncionarioMode = false;
-
-    // Função para detectar qual modo usar baseado na URL
-    function detectModeFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const mode = urlParams.get('mode');
-    const hash = window.location.hash;
-
-    // Verifica parâmetro ?mode=funcionario ou ?mode=employee
-    if (mode === 'funcionario' || mode === 'employee') {
-    return true;
-}
-
-    // Verifica hash #funcionario ou #employee
-    if (hash === '#funcionario' || hash === '#employee') {
-    return true;
-}
-
-    // Verifica se a URL contém palavras-chave
-    const url = window.location.href.toLowerCase();
-    if (url.includes('funcionario') || url.includes('employee') || url.includes('staff')) {
-    return true;
-}
-
-    return false; // Por padrão, cliente
-}
-
-    // Função para definir o modo inicial
-    function setInitialMode() {
-    const shouldBeFuncionarioMode = detectModeFromURL();
-
-    if (shouldBeFuncionarioMode) {
-    isFuncionarioMode = true;
-    document.body.classList.remove('cliente-mode');
-    document.body.classList.add('funcionario-mode');
-} else {
-    isFuncionarioMode = false;
-    document.body.classList.remove('funcionario-mode');
-    document.body.classList.add('cliente-mode');
-}
-}
-
-    function toggleMode() {
+function toggleMode() {
     const body = document.body;
     isFuncionarioMode = !isFuncionarioMode;
 
     if (isFuncionarioMode) {
-    body.classList.remove('cliente-mode');
-    body.classList.add('funcionario-mode');
-    // Opcionalmente, atualiza a URL
-    history.replaceState(null, null, '?mode=funcionario');
-} else {
-    body.classList.remove('funcionario-mode');
-    body.classList.add('cliente-mode');
-    // Opcionalmente, atualiza a URL
-    history.replaceState(null, null, '?mode=cliente');
-}
+        body.classList.add('funcionario-mode');
+        // Atualizar textos da seção de boas-vindas
+        document.getElementById('welcome-subtitle').textContent = 'Portal do Funcionário';
+        document.getElementById('welcome-description').textContent = 'Acesso restrito para colaboradores';
+        document.getElementById('toggle-text').textContent = 'Acesso para clientes?';
+        document.getElementById('toggle-btn').textContent = 'Acesso do Cliente';
+    } else {
+        body.classList.remove('funcionario-mode');
+        // Atualizar textos da seção de boas-vindas
+        document.getElementById('welcome-subtitle').textContent = 'Acesso do Cliente';
+        document.getElementById('welcome-description').textContent = 'Gerencie suas finanças com segurança';
+        document.getElementById('toggle-text').textContent = 'Acesso para funcionários?';
+        document.getElementById('toggle-btn').textContent = 'Portal do Funcionário';
+    }
 }
 
-    function togglePassword(fieldId) {
+// Formatação de CPF
+function formatCPF(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = value;
+}
+
+// Configurar inputs OTP
+function setupOTPInputs() {
+    const otpInputs = document.querySelectorAll('.otp-input');
+    if (otpInputs.length === 0) return;
+
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
+            if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+
+            updateOTPHiddenField();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+}
+
+function updateOTPHiddenField() {
+    const otpInputs = document.querySelectorAll('.otp-input');
+    const hiddenField = document.getElementById('otp');
+    if (hiddenField) {
+        let otp = '';
+        otpInputs.forEach(input => {
+            otp += input.value;
+        });
+        hiddenField.value = otp;
+    }
+}
+
+function togglePassword(fieldId) {
     const field = document.getElementById(fieldId);
-    const icon = document.getElementById('icon-' + fieldId);
+    const iconId = 'icon-' + fieldId;
+    const icon = document.getElementById(iconId);
 
-    if (field.type === 'password') {
-    field.type = 'text';
-    icon.src = 'img/iconeyeclosed.png'; // Ícone para "ocultar senha"
-    icon.alt = 'Ocultar senha';
-} else {
-    field.type = 'password';
-    icon.src = 'img/iconeyeopen.png'; // Ícone para "mostrar senha"
-    icon.alt = 'Mostrar senha';
+    if (field && icon) {
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.src = '../img/iconeyeclosed.png';
+            icon.alt = 'Ocultar senha';
+        } else {
+            field.type = 'password';
+            icon.src = '../img/iconeyeopen.png';
+            icon.alt = 'Mostrar senha';
+        }
+    }
 }
-}
-    // Form submissions
-    document.getElementById('clienteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Login de cliente processado!');
-});
 
-    document.getElementById('funcionarioForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Login de funcionário processado!');
-});
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurar formatação de CPF para ambos os campos
+    const cpfCliente = document.getElementById('cpf-cliente');
+    const cpfFunc = document.getElementById('cpf-func');
 
-    // Smooth transitions on page load
-    window.addEventListener('load', function() {
-    // Define o modo inicial baseado na URL
-    setInitialMode();
+    if (cpfCliente) {
+        cpfCliente.addEventListener('input', function () {
+            formatCPF(this);
+        });
+    }
 
+    if (cpfFunc) {
+        cpfFunc.addEventListener('input', function () {
+            formatCPF(this);
+        });
+    }
+
+    // Configurar OTP
+    setupOTPInputs();
+
+    // Verificar se precisa mostrar OTP
+    const urlParams = new URLSearchParams(window.location.search);
+    const otpParam = urlParams.get('otp_true');
+
+    if (otpParam === 'true') {
+        document.getElementById('cliente-form').style.display = 'none';
+        document.getElementById('funcionario-form').style.display = 'none';
+        document.getElementById('otp-form').style.display = 'flex';
+    }
+
+    // Fade-in animation
     document.body.style.opacity = '0';
     setTimeout(() => {
-    document.body.style.transition = 'opacity 0.5s ease';
-    document.body.style.opacity = '1';
-}, 100);
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
 });
 
-    // Add keyboard navigation
-    document.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab' && e.shiftKey && e.ctrlKey) {
-    e.preventDefault();
-    toggleMode();
-}
-});
-
-    // Add subtle hover effects to form inputs
-    document.querySelectorAll('.form-input').forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.style.transform = 'translateY(-2px)';
-    });
-
-    input.addEventListener('blur', function() {
-    this.parentElement.style.transform = 'translateY(0)';
-});
+// Atalho de teclado (Ctrl + M)
+document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.key.toLowerCase() === 'm') {
+        e.preventDefault();
+        toggleMode();
+    }
 });
