@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Portal do Funcionário</title>
-    
+
     <%-- Aponta para o arquivo CSS que agora contém todos os estilos --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/funcionarionv.css">
-    
+
     <%-- Importa a biblioteca de ícones do Google --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
-    <div style="text-align: center; padding: 20px 0;">
+<div style="text-align: center; padding: 20px 0;">
     <img src="${pageContext.request.contextPath}/img/image.svg" style="height: 60px;">
 </div>
 
