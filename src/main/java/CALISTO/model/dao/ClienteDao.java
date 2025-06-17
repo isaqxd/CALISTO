@@ -231,14 +231,14 @@ public class ClienteDao {
 
     public Cliente findByCpfFromExcluirConta(String cpf) {
         String sql = """
-                    SELECT u.nome, u.cpf, u.id_usuario,
-                           c.id_cliente,
-                           co.id_conta, co.numero_conta, co.saldo, co.tipo_conta AS tipo_conta, co.status
-                    FROM usuario u
-                    INNER JOIN cliente c ON u.id_usuario = c.usuario_id
-                    INNER JOIN conta co ON c.id_cliente = co.cliente_id
-                    WHERE u.cpf = ?
-                """;
+            SELECT u.nome, u.cpf, u.id_usuario,
+                   c.id_cliente,
+                   co.id_conta, co.numero_conta, co.saldo, co.tipo_conta, co.status
+            FROM usuario u
+            INNER JOIN cliente c ON u.id_usuario = c.usuario_id
+            LEFT JOIN conta co ON c.id_cliente = co.cliente_id AND co.status = 'ATIVA'
+            WHERE u.cpf = ?
+            """; // LEFT JOIN para trazer cliente mesmo sem contas
 
         Cliente cliente = null;
 
@@ -249,7 +249,6 @@ public class ClienteDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                // Instancia o cliente apenas uma vez
                 if (cliente == null) {
                     cliente = new Cliente();
                     cliente.setCpf(rs.getString("cpf"));
@@ -258,49 +257,52 @@ public class ClienteDao {
                     cliente.setContas(new ArrayList<>());
                 }
 
-                String tipo = rs.getString("tipo_conta");
-                Conta conta;
-
-                switch (tipo) {
-                    case "CORRENTE" -> {
-                        Corrente cc = new Corrente();
-                        cc.setIdConta(rs.getInt("id_conta"));
-                        cc.setNumeroConta(rs.getString("numero_conta"));
-                        cc.setSaldo(rs.getBigDecimal("saldo"));
-                        cc.setTipoConta(TipoConta.CORRENTE);
-                        cc.setStatus(Status.valueOf(rs.getString("status")));
-                        conta = cc;
-                    }
-                    case "POUPANCA" -> {
-                        Poupanca cp = new Poupanca();
-                        cp.setIdConta(rs.getInt("id_conta"));
-                        cp.setNumeroConta(rs.getString("numero_conta"));
-                        cp.setSaldo(rs.getBigDecimal("saldo"));
-                        cp.setTipoConta(TipoConta.POUPANCA);
-                        cp.setStatus(Status.valueOf(rs.getString("status")));
-                        conta = cp;
-                    }
-                    case "INVESTIMENTO" -> {
-                        Investimento ci = new Investimento();
-                        ci.setIdConta(rs.getInt("id_conta"));
-                        ci.setNumeroConta(rs.getString("numero_conta"));
-                        ci.setSaldo(rs.getBigDecimal("saldo"));
-                        ci.setTipoConta(TipoConta.INVESTIMENTO);
-                        ci.setStatus(Status.valueOf(rs.getString("status")));
-                        conta = ci;
-                    }
-                    default -> throw new SQLException("Tipo de conta desconhecido: " + tipo);
+                // Verifica se há dados de conta (pode ser null por causa do LEFT JOIN)
+                if (rs.getObject("id_conta") != null) {
+                    Conta conta = criarConta(rs);
+                    cliente.getContas().add(conta);
                 }
-
-                // Adiciona a conta na lista do cliente
-                cliente.getContas().add(conta);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar cliente por CPF", e);
         }
 
         return cliente;
+    }
+
+    private Conta criarConta(ResultSet rs) throws SQLException {
+        return switch (rs.getString("tipo_conta")) {
+            case "CORRENTE" -> {
+                Corrente cc = new Corrente();
+                cc.setIdConta(rs.getInt("id_conta"));
+                cc.setNumeroConta(rs.getString("numero_conta"));
+                cc.setSaldo(rs.getBigDecimal("saldo"));
+                cc.setTipoConta(TipoConta.CORRENTE);
+                cc.setStatus(Status.valueOf(rs.getString("status")));
+                yield cc;
+            }
+            case "POUPANCA" -> {
+                Poupanca cp = new Poupanca();
+                cp.setIdConta(rs.getInt("id_conta"));
+                cp.setNumeroConta(rs.getString("numero_conta"));
+                cp.setSaldo(rs.getBigDecimal("saldo"));
+                cp.setTipoConta(TipoConta.POUPANCA);
+                cp.setStatus(Status.valueOf(rs.getString("status")));
+                yield cp;
+            }
+            case "INVESTIMENTO" -> {
+                Investimento ci = new Investimento();
+                ci.setIdConta(rs.getInt("id_conta"));
+                ci.setNumeroConta(rs.getString("numero_conta"));
+                ci.setSaldo(rs.getBigDecimal("saldo"));
+                ci.setTipoConta(TipoConta.INVESTIMENTO);
+                ci.setStatus(Status.valueOf(rs.getString("status")));
+                yield ci;
+            }
+            default -> throw new SQLException("Tipo de conta desconhecido");
+        };
     }
 
     // FUNÇÕES AUXILIARES

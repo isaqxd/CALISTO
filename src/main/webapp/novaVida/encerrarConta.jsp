@@ -17,28 +17,33 @@
     <button type="submit">Buscar Contas</button>
 </form>
 
-<hr>
-
-<% if (cliente != null) { %>
-<h3>Cliente encontrado:</h3>
-<p><strong>Nome:</strong> <%= cliente.getNome() %>
-</p>
-<p><strong>CPF:</strong> <%= cliente.getCpf() %>
-</p>
-
 <h4>Contas associadas:</h4>
-<ul>
-    <% for (Conta conta : cliente.getContas()) { %>
-    <li>
-        Tipo: <%= conta.getTipoConta() %> |
-        Número: <%= conta.getNumeroConta() %> |
-        Saldo: R$ <%= conta.getSaldo() %> |
-        Status: <%= conta.getStatus() %>
-    </li>
+<div>
+    <form action="encerrarContas" method="post">
+        <% if (cliente != null) { %>
+        <% cliente.getIdCliente(); %>
+        <label>Nome: <input readonly value="<%= cliente.getNome()%>"></label><br>
+        <label>CPF: <input readonly value="<%= cliente.getCpf() %>"></label><br>
+        <% for (Conta conta : cliente.getContas()) { %>
+        <label>Tipo:<input name="tipo_conta" readonly value=" <%= conta.getTipoConta() %>"></label>
+        <label>Número: <input readonly value="<%= conta.getNumeroConta() %>"></label>
+        <label>Saldo: R$ <input readonly value="<%= conta.getSaldo() %>"></label>
+        <label>Status:
+            <select>
+                <option name="status" value="<%= conta.getStatus() %>"><%= conta.getStatus()%>
+                </option>
+                <option value="ENCERRADA">Encerrada</option>
+            </select>
+        </label>
+        <button type="submit" name="conta">Alterar Status Conta</button>
+        <br>
+    </form>
+
     <% } %>
-</ul>
-<% } else if (request.getParameter("cpf") != null) { %>
-<p><strong>Nenhum cliente encontrado com esse CPF.</strong></p>
-<% } %>
+
+    <% } else if (request.getParameter("cpf") != null) { %>
+    <p><strong>Nenhum cliente encontrado com esse CPF.</strong></p>
+    <% } %>
+</div>
 </body>
 </html>

@@ -24,4 +24,12 @@ public class EncerrarContasController extends HttpServlet {
         request.getRequestDispatcher("novaVida/encerrarConta.jsp").forward(request, response);
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String status = request.getParameter("status");
+        String tipoConta = request.getParameter("tipo_conta");
+
+    }
 }

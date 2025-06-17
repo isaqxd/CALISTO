@@ -21,6 +21,7 @@ public class LoginClienteDao {
             if (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setIdUsuario(rs.getInt("id_usuario"));
+                cliente.setNome(rs.getString("nome"));
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setSenhaHash(rs.getString("senha_hash"));
                 cliente.setTipoUsuario(TipoUsuario.valueOf(rs.getString("tipo_usuario")));

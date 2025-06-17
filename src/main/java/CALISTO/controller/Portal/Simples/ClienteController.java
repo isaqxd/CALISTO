@@ -32,7 +32,7 @@ public class ClienteController extends HttpServlet {
             CALISTO.model.persistence.Usuario.Cliente clienteSalvo = clienteService.verifyUsuario(cliente);
 
             if (clienteSalvo != null) {
-                response.sendRedirect("test/sucesso.jsp");
+                response.sendRedirect("novaVida/portalfuncionario.jsp");
             } else {
                 response.sendRedirect("test/erro.jsp");
             }

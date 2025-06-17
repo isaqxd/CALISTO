@@ -26,8 +26,8 @@
             <h3>Menu</h3>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/novaVida/cadastrarCliente.jsp"><i class="material-icons">person_add</i>Cadastrar Cliente</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/aberturaConta.jsp"><i class="material-icons">account_balance_wallet</i>Abertura de Conta</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/encerrarConta.jsp"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
+                <li><a href="../abrirConta"><i class="material-icons">account_balance_wallet</i>Abertura de Conta</a></li>
+                <li><a href="../encerrarContas"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/consultaDados.jsp"><i class="material-icons">search</i>Consulta de Dados</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/alteracaoDados.jsp"><i class="material-icons">edit</i>Alteração de Dados</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/cadastroFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
