@@ -30,7 +30,7 @@
                 <li><a href="../encerrarContas"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/consultaDados.jsp"><i class="material-icons">search</i>Consulta de Dados</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/alteracaoDados.jsp"><i class="material-icons">edit</i>Alteração de Dados</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/cadastroFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/cadastrarFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
                 <li><a href="${pageContext.request.contextPath}/novaVida/gerarRelatorios.jsp"><i class="material-icons">assessment</i>Geração de Relatórios</a></li>
             </ul>
         </td>

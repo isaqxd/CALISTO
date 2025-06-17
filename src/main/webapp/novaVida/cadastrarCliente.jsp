@@ -17,14 +17,15 @@
 
     <label for="cpf">CPF:</label>
     <input type="text" id="cpf" name="cpf" required>
+    <input type="hidden" id="cpf-limpo" name="cpf">
 
     <label for="data_nascimento">Data de Nascimento:</label>
     <input type="date" id="data_nascimento" name="data_nascimento" required>
 
-    <label for="senha">Senha:</label>
+    <label for="senha-cliente">Senha:</label>
     <div class="input-container">
         <input type="password" id="senha-cliente" name="senha" required>
-        <button type="button" class="toggle-password" onclick="togglePassword('senha-cliente')">
+        <button type="button" class="password-toggle" onclick="togglePassword('senha-cliente')">
             <img id="icon-senha-cliente" src="../img/iconeyeopen.png" alt="Mostrar senha" width="20">
         </button>
     </div>

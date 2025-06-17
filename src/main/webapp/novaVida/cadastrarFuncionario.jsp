@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- Botão de voltar -->
-<a href="javascript:history.back()" class="btn-voltar">← Voltar</a>
+<a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Cadastro de Funcionário</h1>
 <form action="${pageContext.request.contextPath}/registrarFuncionario" method="post">
