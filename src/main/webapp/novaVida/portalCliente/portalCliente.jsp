@@ -25,7 +25,7 @@
 <!-- Seu menu de opções aqui -->
 <ul>
     <li><a href="saldo.jsp">Consultar Saldo</a></li>
-    <li><a href="#">- Depósito</a></li>
+    <li><a href="deposito.jsp">- Depósito</a></li>
     <li><a href="#">- Saque</a></li>
     <li><a href="#">- Transferência</a></li>
     <li><a href="#">- Extrato</a></li>
