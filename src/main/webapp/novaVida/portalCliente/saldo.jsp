@@ -5,7 +5,7 @@
 <%
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     if (cliente == null) {
-        response.sendRedirect("../../novaVida/login.jsp");
+        response.sendRedirect("../login.jsp");
         return;
     }
 %>

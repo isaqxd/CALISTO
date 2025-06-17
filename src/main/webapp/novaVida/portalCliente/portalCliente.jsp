@@ -4,7 +4,7 @@
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     String cpf = (String) session.getAttribute("cpfLogin");
     if (cliente == null) {
-        response.sendRedirect("../../novaVida/login.jsp");
+        response.sendRedirect("../login.jsp");
         return;
     }
 %>
@@ -26,8 +26,8 @@
 <ul>
     <li><a href="saldo.jsp">Consultar Saldo</a></li>
     <li><a href="deposito.jsp">- Depósito</a></li>
-    <li><a href="#">- Saque</a></li>
-    <li><a href="#">- Transferência</a></li>
+    <li><a href="saque.jsp">- Saque</a></li>
+    <li><a href="transferencia.jsp">- Transferência</a></li>
     <li><a href="#">- Extrato</a></li>
     <li><a href="#">- Consultar Limite</a></li>
 </ul>

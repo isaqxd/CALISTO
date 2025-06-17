@@ -65,7 +65,7 @@
             </div>
 
             <div class="toggle-section">
-                <button type="button" class="exit-btn" onclick="window.location.href='../views/loginselect.jsp'">Sair</button>
+                <button type="button" class="exit-btn" onclick="window.location.href='../index.jsp'">Sair</button>
             </div>
         </form>
     </div>
@@ -100,7 +100,7 @@
             </div>
 
             <div class="toggle-section">
-                <button type="button" class="exit-btn" onclick="window.location.href='../views/loginselect.jsp'">Sair</button>
+                <button type="button" class="exit-btn" onclick="window.location.href='../index.jsp'">Sair</button>
             </div>
         </form>
     </div>
