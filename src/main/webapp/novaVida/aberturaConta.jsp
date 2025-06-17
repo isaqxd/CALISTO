@@ -2,8 +2,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="CALISTO.model.persistence.Agencia.Agencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}aberturaconta.css">
     <title>Abertura de Conta</title>
 </head>
 <body>

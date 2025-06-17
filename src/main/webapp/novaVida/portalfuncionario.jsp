@@ -4,8 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Portal do Funcionário</title>
+    
+    <%-- Aponta para o arquivo CSS que agora contém todos os estilos --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/funcionarionv.css">
+    
+    <%-- Importa a biblioteca de ícones do Google --%>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+
+    <div style="text-align: center; padding: 20px 0;">
+    <img src="${pageContext.request.contextPath}/img/image.svg" style="height: 60px;">
+</div>
+
+
 <h1>Portal do Funcionário</h1>
 
 <table>
@@ -13,13 +25,13 @@
         <td style="vertical-align: top;">
             <h3>Menu</h3>
             <ul>
-                <li><a href="cadastrarCliente.jsp">Cadastrar Cliente</a></li>
-                <li><a href="../abrirConta">Abertura de Conta</a></li>
-                <li><a href="encerramentoConta.jsp">Encerramento de Conta</a></li>
-                <li><a href="consultaDados.jsp">Consulta de Dados</a></li>
-                <li><a href="alteracaoDados.jsp">Alteração de Dados</a></li>
-                <li><a href="cadastroFuncionario.jsp">Cadastro de Funcionário</a></li>
-                <li><a href="gerarRelatorios.jsp">Geração de Relatórios</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/cadastrarCliente.jsp"><i class="material-icons">person_add</i>Cadastrar Cliente</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/aberturaConta.jsp"><i class="material-icons">account_balance_wallet</i>Abertura de Conta</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/encerrarConta.jsp"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/consultaDados.jsp"><i class="material-icons">search</i>Consulta de Dados</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/alteracaoDados.jsp"><i class="material-icons">edit</i>Alteração de Dados</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/cadastroFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/gerarRelatorios.jsp"><i class="material-icons">assessment</i>Geração de Relatórios</a></li>
             </ul>
         </td>
         <td style="padding-left: 30px;">
