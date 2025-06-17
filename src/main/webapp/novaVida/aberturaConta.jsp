@@ -5,17 +5,17 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}aberturaconta.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aberturaconta.css">
     <title>Abertura de Conta</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
+    <a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
 <h1>Abertura de Conta</h1>
 <form action="${pageContext.request.contextPath}/abrirConta" method="post">
     <label>Saldo: <input name="saldo" type="text" required></label><br>
     <label>Numero da conta: <input name="numeroConta" type="text" required></label><br>
     <label>Tipo da conta:</label>
-    <!-- VERIFICAR TIPO DE CONTA -->
+<%--    VERIFICAR TIPO DE CONTA--%>
     <select name="tipoConta" id="tipoConta" onchange="verificarTipoConta()">
         <option value="">-- Selecione --</option>
         <option value="CORRENTE">Corrente</option>

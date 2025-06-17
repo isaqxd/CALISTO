@@ -1,4 +1,4 @@
-/* --- Estilo para a Página de Abertura de Conta --- */
+/* --- Estilo para a Página de Cadastrar Funcionário --- */
 
 /* Reset e estilos de corpo básicos */
 * {
@@ -12,10 +12,10 @@ body {
     color: #333;
     /* Fundo gradiente e animado, consistente com o resto do projeto */
     background: linear-gradient(135deg,
-        rgba(89, 83, 72, 0.08) 0%,
-        rgba(38, 10, 4, 0.12) 50%,
-        rgba(0, 0, 0, 0.04) 100%),
-        #f5f5f2;
+    rgba(89, 83, 72, 0.08) 0%,
+    rgba(38, 10, 4, 0.12) 50%,
+    rgba(0, 0, 0, 0.04) 100%),
+    #f5f5f2;
     min-height: 100vh;
     padding: 2rem;
 
@@ -43,6 +43,28 @@ body::before {
     100% { transform: translateX(-50px) translateY(-20px); }
 }
 
+/* Botão de voltar */
+.btn-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-voltar:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+}
+
 /* Estiliza o formulário principal como se fosse o container */
 form {
     display: block;
@@ -63,6 +85,15 @@ h1 {
     margin-bottom: 2rem;
 }
 
+h3 {
+    color: #595348;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #BF7A24;
+    padding-bottom: 0.5rem;
+}
+
 /* Estilo para os rótulos (labels) */
 label {
     display: block;
@@ -72,8 +103,18 @@ label {
     margin-top: 1rem;
 }
 
+/* Container para campos com botão (como senha) */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 /* Estilo para os campos de input e select */
 input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="number"],
 select {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -84,20 +125,44 @@ select {
     transition: all 0.3s ease;
 }
 
+/* Campo de senha com espaço para o botão */
+.input-container input[type="password"],
+.input-container input[type="text"] {
+    padding-right: 3rem;
+}
+
 input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
 select:focus {
     outline: none;
     border-color: #BF7A24;
     box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
 }
 
-/* Estilo específico para o container do perfil de risco */
-#perfilRiscoDiv {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgba(191, 122, 36, 0.05);
-    border: 1px dashed rgba(191, 122, 36, 0.2);
-    border-radius: 8px;
+/* Botão toggle da senha */
+.password-toggle {
+    position: absolute;
+    right: 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover {
+    opacity: 0.7;
+}
+
+.password-toggle img {
+    display: block;
+}
+
+/* Estilo específico para o select */
+select {
+    cursor: pointer;
 }
 
 /* Botão de submissão do formulário */
@@ -121,24 +186,25 @@ button[type="submit"]:hover {
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
 }
 
-/* Botão de voltar */
-.btn-voltar {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 0.8rem 1.5rem;
-    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
 
-.btn-voltar:hover {
-    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+    form {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-voltar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
 }
