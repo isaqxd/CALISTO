@@ -1,6 +1,5 @@
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     // Este código assume que o objeto 'cliente' foi passado para a página
@@ -11,7 +10,7 @@
 <head>
     <title>Depósito</title>
     <%-- Garante que o caminho para o CSS esteja correto --%>
-    <link rel="stylesheet" href="${pageContext.request.}/css/deposito.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/deposito.css">
 </head>
 <body>
 
