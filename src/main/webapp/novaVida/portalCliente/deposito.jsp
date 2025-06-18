@@ -10,7 +10,9 @@
 %>
 <!DOCTYPE html>
 <html>
-<head><title>Depósito</title></head>
+<head><title>Depósito</title>
+    <link rel="stylesheet" href="../../css/portal-cliente.css">
+</head>
 <body>
 <h2>Depósito</h2>
 <form method="post" action="${pageContext.request.contextPath}/deposito">

@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Estilos Base e Reset
-   ========================================================================== */
+      Estilos Base e Reset
+      ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -114,9 +114,11 @@ body.funcionario-mode .bg-funcionario {
     transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* No modo cliente, welcome-section fica à esquerda */
 body:not(.funcionario-mode) .welcome-section {
     left: 0;
 }
+/* No modo funcionário, welcome-section se move para a direita (ocupando o espaço que antes era do form de cliente) */
 body.funcionario-mode .welcome-section {
     left: 50%;
 }
@@ -133,7 +135,6 @@ body.funcionario-mode .welcome-section {
     align-items: center;
     padding: 2rem;
     z-index: 2;
-    /* Transição para a propriedade 'left' (slide) e 'opacity' (fade do conteúdo) */
     transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.4s ease-in-out 0.2s;
 }
@@ -141,48 +142,98 @@ body.funcionario-mode .welcome-section {
 /* ESTADO INICIAL (MODO CLIENTE) */
 body:not(.funcionario-mode) #cliente-form {
     left: 50%;
-    opacity: 1; /* Cliente visível */
+    opacity: 1;
 }
 body:not(.funcionario-mode) #funcionario-form {
-    left: 50%;
-    opacity: 0; /* Funcionário invisível, posicionado no mesmo local */
-    pointer-events: none;
+    left: 50%; /* Mantém no lado direito, mas oculto */
+    opacity: 0;
+    pointer-events: none; /* Impede interação */
 }
 
 /* ESTADO FINAL (MODO FUNCIONÁRIO) */
 body.funcionario-mode #cliente-form {
-    left: 0;
-    opacity: 0; /* Cliente se torna invisível ao deslizar para a esquerda */
+    left: 0; /* Move para o lado esquerdo, oculto */
+    opacity: 0;
     pointer-events: none;
 }
 body.funcionario-mode #funcionario-form {
-    left: 0;
-    opacity: 1; /* Funcionário se torna visível ao deslizar para a esquerda */
+    left: 0; /* Move para o lado esquerdo, visível (ocupando o espaço que era do welcome) */
+    opacity: 1;
 }
 
 /* ==========================================================================
-   LÓGICA ESPECIAL PARA O FORMULÁRIO OTP
+   ESTILOS DO OTP - NOVA IMPLEMENTAÇÃO
    ========================================================================== */
 
-/* OTP sempre fica do lado oposto ao formulário ativo */
-#otp-form {
-    /* Posicionamento baseado no estado atual */
-    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.4s ease-in-out 0.2s;
+/* OTP Overlay - posicionado sobre o welcome-section */
+.otp-overlay {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    display: none; /* Escondido por padrão */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    z-index: 10; /* Acima de tudo */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Se não está em modo funcionário (cliente ativo na direita), OTP vai para a esquerda */
-body:not(.funcionario-mode) #otp-form {
+/* Posicionamento do OTP baseado no modo atual */
+/* No modo cliente, o OTP fica sobre o welcome-section (esquerda) */
+body:not(.funcionario-mode) .otp-overlay {
     left: 0;
 }
-
-/* Se está em modo funcionário (funcionário ativo na esquerda), OTP vai para a direita */
-body.funcionario-mode #otp-form {
+/* No modo funcionário, o OTP fica sobre o welcome-section (que se moveu para a direita) */
+body.funcionario-mode .otp-overlay {
     left: 50%;
 }
 
+/* Mensagem de aguardo no formulário - aparece no lugar do formulário de login quando OTP está ativo */
+.otp-waiting-message {
+    display: none; /* Escondido por padrão */
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.otp-waiting-message h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #BF7A24;
+}
+
+body.funcionario-mode .otp-waiting-message h3 {
+    color: #260A04;
+}
+
+.otp-waiting-message p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.otp-waiting-message .security-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #BF7A24;
+}
+
+body.funcionario-mode .otp-waiting-message .security-icon {
+    color: #260A04;
+}
+
 /* ==========================================================================
-   Conteúdo e Estilos Internos (sem alterações de lógica)
+   Conteúdo e Estilos Internos
    ========================================================================== */
 
 /* Fundo do painel do formulário - Cliente */
@@ -195,12 +246,6 @@ body.funcionario-mode #otp-form {
 #funcionario-form {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
     linear-gradient(45deg, #f5f5f2 0%, #e8e6e1 100%);
-}
-
-/* Fundo do painel do formulário - OTP */
-#otp-form {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(45deg, #e8f4f8 0%, #d1e7f0 100%);
 }
 
 .logo {
@@ -244,19 +289,12 @@ body.funcionario-mode .welcome-title { color: #260A04; }
 body.funcionario-mode .welcome-subtitle { color: #595348; }
 body.funcionario-mode .welcome-description { color: #595348; }
 
+/* Remove o fundo de "blur" do form-container pois o otp-overlay e login-form já o tem */
 .form-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.85);
-    filter: blur(15px);
-    z-index: -1;
+    content: none;
 }
 
-.login-form {
+.login-form, .otp-form { /* Estilo unificado para os cards de formulário */
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 20px;
@@ -279,11 +317,6 @@ body.funcionario-mode .welcome-description { color: #595348; }
 
 body:not(.funcionario-mode) .form-title { color: #BF7A24; }
 body.funcionario-mode .form-title { color: #260A04; }
-
-/* Título específico para o OTP com cor diferente */
-#otp-form .form-title {
-    color: #2563eb !important;
-}
 
 .form-group {
     margin-bottom: 1.2rem;
@@ -338,7 +371,7 @@ body.funcionario-mode .form-input:focus {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 .otp-input {
@@ -355,8 +388,13 @@ body.funcionario-mode .form-input:focus {
 
 .otp-input:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    border-color: #BF7A24;
+    box-shadow: 0 0 0 2px rgba(191, 122, 36, 0.2);
+}
+
+body.funcionario-mode .otp-input:focus {
+    border-color: #260A04;
+    box-shadow: 0 0 0 2px rgba(38, 10, 4, 0.2);
 }
 
 .form-note {
@@ -435,18 +473,6 @@ body.funcionario-mode .login-btn:hover {
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
 }
 
-/* Botão específico para OTP */
-#otp-form .login-btn {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
-}
-
-#otp-form .login-btn:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-}
-
 .toggle-section {
     text-align: center;
     padding: 1rem;
@@ -522,7 +548,7 @@ body.funcionario-mode .toggle-btn:hover {
         height: auto;
         flex: 0 0 auto;
         padding: 1.5rem 1rem;
-        left: 0 !important; /* Desativa a animação de slide */
+        left: 0 !important; /* Força a posição no mobile */
     }
 
     .form-container {
@@ -530,17 +556,25 @@ body.funcionario-mode .toggle-btn:hover {
         width: 100%;
         height: auto;
         padding: 1rem;
-        left: 0 !important; /* Desativa a animação de slide */
+        left: 0 !important; /* Força a posição no mobile */
         opacity: 1 !important;
         transform: none !important;
     }
 
-    /* Em telas pequenas, usamos 'display' para alternar, pois não há animação */
+    .otp-overlay {
+        position: relative; /* Ajusta para fluxo normal no mobile */
+        width: 100%;
+        height: auto;
+        left: 0 !important; /* Força a posição no mobile */
+        background: transparent; /* Remove o fundo translúcido para melhor visibilidade */
+        backdrop-filter: none; /* Remove o blur */
+    }
+
+    /* No mobile, os formulários são display: none quando não estão ativos */
     body.funcionario-mode #cliente-form {
         display: none;
     }
     body:not(.funcionario-mode) #funcionario-form {
-        display: flex; /* Garante que o container de formulário não colapse */
         display: none;
     }
 

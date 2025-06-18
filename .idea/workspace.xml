@@ -10,17 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="novo commit">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/portal-cliente.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dto/FuncionarioContasDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dto/FuncionarioContasDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/util/views.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/util/views.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/util/clientes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/util/funcionarios.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saque.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/transferencia.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/transferencia.jsp" afterDir="false" />
     </list>
-    <list id="b1c54e47-1f3a-4a22-bad9-3b192f0e34a1" name="Changes by dudu-" comment="" />
-    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="Changes by pczaum">
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/consultaFuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/consultaFuncionario.jsp" afterDir="false" />
-    </list>
+    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,14 +28,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="branchDoSucesso_2" />
@@ -57,18 +57,6 @@
     "accountId": "db4dcad7-4e2c-4388-a61e-df0cc6bffecf"
   }
 }]]></component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java">
-      <ranges>
-        <range start1="12" end1="13" start2="12" end2="13" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="15" end1="16" start2="15" end2="16" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="17" end1="18" start2="17" end2="20" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="19" end1="20" start2="21" end2="21" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="22" end1="23" start2="23" end2="23" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
-        <range start1="29" end1="30" start2="29" end2="30" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-      </ranges>
-    </file>
-  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -91,39 +79,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestErro.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.41.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.105.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;evitarProblemas&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/calistobank/src/main/java&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.1581092&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3647871&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;proofread&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Run",
+    "Application.TestErro.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.41.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.105.executor": "Run",
+    "git-widget-placeholder": "evitarProblemas",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/calistobank/src/main/java",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.1581092",
+    "project.structure.side.proportion": "0.3647871",
+    "settings.editor.selected.configurable": "proofread",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\calistobank\src\main\java" />
@@ -243,24 +231,13 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.TestErro" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.41" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestErro" />
         <item itemvalue="Application.TestErro" />
         <item itemvalue="Application.TestErro" />
       </list>
@@ -291,25 +268,17 @@
       <workItem from="1748985583459" duration="284000" />
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
-      <workItem from="1750214662672" duration="1491000" />
+      <workItem from="1750218760841" duration="2432000" />
     </task>
     <task id="LOCAL-00001" summary="novo commit">
       <option name="closed" value="true" />
-      <created>1750213012873</created>
+      <created>1750221198027</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1750213012873</updated>
+      <updated>1750221198028</updated>
     </task>
-    <task id="LOCAL-00002" summary="Changes by pczaum">
-      <option name="closed" value="true" />
-      <created>1750214623471</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1750214623471</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,8 +297,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="novo commit" />
-    <MESSAGE value="Changes by pczaum" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by pczaum" />
+    <option name="LAST_COMMIT_MESSAGE" value="novo commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
