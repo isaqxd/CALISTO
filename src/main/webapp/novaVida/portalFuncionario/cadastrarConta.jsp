@@ -16,7 +16,9 @@
     <title>Abertura de Conta</title>
 </head>
 <body>
-    <a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
+<!-- Botão de voltar -->
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/portalfuncionario.jsp" class="btn-voltar">←
+    Voltar</a>
 <h1>Abertura de Conta</h1>
 <form action="${pageContext.request.contextPath}/abrirConta" method="post">
     <label>Saldo: <input name="saldo" type="text" required></label><br>

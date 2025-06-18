@@ -3,7 +3,7 @@
 <%
     Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
     if (funcionario == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
         return;
     }
 %>
@@ -33,13 +33,13 @@
         <td style="vertical-align: top;">
             <h3>Menu</h3>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/novaVida/cadastrarCliente.jsp"><i class="material-icons">person_add</i>Cadastrar Cliente</a></li>
-                <li><a href="../abrirConta"><i class="material-icons">account_balance_wallet</i>Abertura de Conta</a></li>
-                <li><a href="../encerrarContas"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/consultaDados.jsp"><i class="material-icons">search</i>Consulta de Dados</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/alteracaoDados.jsp"><i class="material-icons">edit</i>Alteração de Dados</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/cadastrarFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
-                <li><a href="${pageContext.request.contextPath}/novaVida/gerarRelatorios.jsp"><i class="material-icons">assessment</i>Geração de Relatórios</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/cadastrarCliente.jsp"><i class="material-icons">person_add</i>Cadastrar Cliente</a></li>
+                <li><a href="${pageContext.request.contextPath}/abrirConta"><i class="material-icons">account_balance_wallet</i>Abertura de Conta</a></li>
+                <li><a href="${pageContext.request.contextPath}/encerrarContas"><i class="material-icons">lock</i>Encerramento de Conta</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/consultaDados.jsp"><i class="material-icons">search</i>Consulta de Dados</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/alteracaoDados.jsp"><i class="material-icons">edit</i>Alteração de Dados</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/cadastrarFuncionario.jsp"><i class="material-icons">badge</i>Cadastro de Funcionário</a></li>
+                <li><a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/gerarRelatorios.jsp"><i class="material-icons">assessment</i>Geração de Relatórios</a></li>
             </ul>
         </td>
         <td style="padding-left: 30px;">

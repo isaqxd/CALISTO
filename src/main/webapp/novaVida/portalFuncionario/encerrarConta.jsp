@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        return;
+    }
     Cliente cliente = (Cliente) request.getAttribute("cliente");
 %>
 <!DOCTYPE html>
@@ -39,7 +45,7 @@
         </select>
 
         <% for (Conta conta : cliente.getContas()) { %>
-        <div class="detalhesConta" id="conta_<%= conta.getIdConta() %>">
+        <div class="detalhesConta" id="conta_<%= conta.getIdConta() %>" style="display:none">
             <form action="encerrarContas" method="post" class="form-encerrar">
                 <input type="hidden" name="idConta" value="<%= conta.getIdConta() %>">
                 <label>Número da Conta: <input readonly value="<%= conta.getNumeroConta() %>"></label>
@@ -52,8 +58,8 @@
                     </select>
                 </label>
 
-                <label>Motivo:</label>
-                <textarea name="detalhes" placeholder="Informe o motivo do encerramento."></textarea>
+                <label for="motivo">Motivo:</label>
+                <input type="text" name="detalhes" placeholder="Informe o motivo do encerramento." required>
 
                 <button type="submit">Finalizar Conta</button>
             </form>

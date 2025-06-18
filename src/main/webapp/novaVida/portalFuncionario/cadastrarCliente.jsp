@@ -16,7 +16,7 @@
 </head>
 <body>
 <!-- Botão de voltar -->
-<a href="${pageContext.request.contextPath}/css/portal-cliente.css" class="btn-voltar">← Voltar</a>
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Cadastro de Cliente</h1>
 <form action="${pageContext.request.contextPath}/cadastrarCliente" method="post">
