@@ -55,4 +55,4 @@ SELECT
      FROM funcionario f
      JOIN usuario u ON f.usuario_id = u.id_usuario
      LEFT JOIN endereco e ON u.endereco_id = e.id_endereco;
-select * from vw_dados_funcionario_contas WHERE cpf ='11278591028';
+select * from vw_dados_funcionario_contas;
