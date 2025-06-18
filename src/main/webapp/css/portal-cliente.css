@@ -1,0 +1,375 @@
+/* === CSS UNIFICADO PORTAL DO CLIENTE === */
+
+/* 1. Estilos Globais e Fundo Animado */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background: linear-gradient(135deg,
+    rgba(242, 185, 80, 0.1) 0%,
+    rgba(191, 122, 36, 0.15) 50%,
+    rgba(140, 72, 13, 0.1) 100%),
+    #f8f6f3;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23F2B950" opacity="0.2"><animate attributeName="r" values="2;4;2" dur="6s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="%23BF7A24" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="8s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="2.5" fill="%238C480D" opacity="0.2"><animate attributeName="r" values="2.5;4.5;2.5" dur="7s" repeatCount="indefinite"/></circle></svg>');
+    animation: float 25s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(-50px) translateY(-20px); }
+}
+
+/* 2. Container Principal */
+.portal-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* 3. Cabeçalhos */
+h1, h2, h3 {
+    color: #8C480D;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #F2B950;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 4. Parágrafos e Texto */
+p {
+    color: #595348;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* 5. Menu de Opções (Portal Principal) */
+.portal-menu {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.portal-menu li {
+    margin-bottom: 0.8rem;
+}
+
+.portal-menu a {
+    display: block;
+    background-color: #f8f6f3;
+    color: #BF7A24;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    border-left: 5px solid #BF7A24;
+    transition: all 0.3s ease;
+}
+
+.portal-menu a:hover {
+    background-color: #BF7A24;
+    color: white;
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(191, 122, 36, 0.2);
+}
+
+.portal-menu .logout-link a {
+    border-left-color: #c53030;
+    color: #c53030;
+}
+
+.portal-menu .logout-link a:hover {
+    background-color: #c53030;
+    color: white;
+}
+
+/* 6. Formulários */
+form {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+label {
+    display: block;
+    color: #8C480D;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #BF7A24;
+    box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
+    transform: translateY(-2px);
+}
+
+input:hover, select:hover {
+    border-color: #F2B950;
+}
+
+/* 7. Botões */
+button {
+    background: linear-gradient(135deg, #F2B950 0%, #BF7A24 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(191, 122, 36, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(191, 122, 36, 0.4);
+    background: linear-gradient(135deg, #BF7A24 0%, #8C480D 100%);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* 8. Cards de Conta (Saldo) */
+.conta-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #F2B950;
+    border-left: 5px solid #BF7A24;
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    max-width: 500px;
+}
+
+.conta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(191, 122, 36, 0.15);
+}
+
+.conta-card h3 {
+    color: #BF7A24;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+
+.conta-card p {
+    margin-bottom: 0.5rem;
+    color: #595348;
+}
+
+.saldo {
+    font-size: 1.4em !important;
+    font-weight: bold !important;
+    color: #8C480D !important;
+    background: linear-gradient(135deg, #F2B950, #BF7A24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 9. Informações da Conta (Saque/Transferência) */
+#infoConta {
+    background: rgba(242, 185, 80, 0.1);
+    border: 1px solid #F2B950;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#infoConta p {
+    margin: 0.5rem 0;
+    color: #8C480D;
+}
+
+#saldoConta {
+    font-weight: bold;
+    color: #BF7A24;
+    font-size: 1.2em;
+}
+
+/* 10. Mensagens de Feedback */
+p strong {
+    color: #BF7A24;
+    background: rgba(242, 185, 80, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+/* 11. Espaçamentos e Quebras */
+br {
+    line-height: 2;
+}
+
+/* 12. Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .portal-container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    .portal-menu {
+        max-width: 100%;
+    }
+
+    .conta-card {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .portal-container {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* 13. Melhorias de Acessibilidade */
+:focus {
+    outline: 2px solid #BF7A24;
+    outline-offset: 2px;
+}
+
+/* 14. Animações suaves para transições */
+* {
+    transition: all 0.3s ease;
+}
+
+/* 15. Estilo para selects customizados */
+select {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23BF7A24"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* 16. Estilo para campos obrigatórios */
+input[required], select[required] {
+    border-left: 3px solid #F2B950;
+}
+
+/* 17. Estados de erro (caso precise adicionar) */
+.error {
+    border-color: #c53030 !important;
+    box-shadow: 0 0 0 3px rgba(197, 48, 48, 0.1) !important;
+}
+
+.error-message {
+    color: #c53030;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: block;
+}
