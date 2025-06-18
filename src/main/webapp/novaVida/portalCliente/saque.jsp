@@ -3,7 +3,7 @@
 <%
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     if (cliente == null) {
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
         return;
     }
 %>
@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Saque</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portal-cliente.css">
 </head>
 <body>
 <h2>Seus saldos:</h2>

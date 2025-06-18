@@ -1,8 +1,15 @@
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="java.util.List" %>
 <%@ page import="CALISTO.model.persistence.Agencia.Agencia" %>
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        return;
+    }
+%>
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aberturaconta.css">

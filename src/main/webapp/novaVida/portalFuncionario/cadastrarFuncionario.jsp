@@ -1,4 +1,12 @@
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,7 +33,7 @@
     <div class="input-container">
         <input type="password" id="senha-funcionario" name="senha" required>
         <button type="button" class="password-toggle" onclick="togglePassword('senha-funcionario')">
-            <img id="icon-senha-funcionario" src="../img/iconeyeopen.png" alt="Mostrar senha" width="20">
+            <img id="icon-senha-funcionario" src="../../img/iconeyeopen.png" alt="Mostrar senha" width="20">
         </button>
     </div>
 

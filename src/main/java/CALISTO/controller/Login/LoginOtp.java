@@ -39,7 +39,7 @@ public class LoginOtp extends HttpServlet {
                     response.sendRedirect("novaVida/portalCliente/portalCliente.jsp");
                 } else if (tipoUsuario != null && tipoUsuario.equals(TipoUsuario.FUNCIONARIO.toString())) {
                     session.setAttribute("funcionario", funcionario);
-                    response.sendRedirect("novaVida/portalfuncionario.jsp");
+                    response.sendRedirect("novaVida/portalFuncionario/portalfuncionario.jsp");
                 }
             } else {
                 // OTP is false, send to error message directly

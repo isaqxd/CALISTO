@@ -173,7 +173,7 @@ public class AbrirContaController extends HttpServlet {
             }
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("novaVida/cadastrarConta.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("novaVida/portalFuncionario/cadastrarConta.jsp");
         dispatcher.forward(request, response);
     }
 

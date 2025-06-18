@@ -21,6 +21,6 @@ public class ConsultaClienteController extends HttpServlet {
         List<RelatorioContaDto> resultados = dao.buscarPorCpf(cpf);
 
         request.setAttribute("resultados", resultados);
-        request.getRequestDispatcher("/novaVida/consultaCliente.jsp").forward(request, response);
+        request.getRequestDispatcher("/novaVida/portalFuncionario/consultaCliente.jsp").forward(request, response);
     }
 }

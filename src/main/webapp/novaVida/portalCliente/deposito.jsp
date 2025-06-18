@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>Depósito</title>
-    <link rel="stylesheet" href="../../css/portal-cliente.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portal-cliente.css">
 </head>
 <body>
 <h2>Depósito</h2>

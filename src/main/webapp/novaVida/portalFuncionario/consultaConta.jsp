@@ -1,7 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="CALISTO.model.dto.RelatorioTransacaoDto" %>
-
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
+<%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>

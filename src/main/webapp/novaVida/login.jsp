@@ -68,25 +68,30 @@
     </div>
 
     <div class="form-container" id="cliente-form">
-        <form class="login-form" action="${pageContext.request.contextPath}/loginCliente" method="post" style="display: <%= mostrarFormularioOtp ? "none" : "block" %>;">
+
+        <div class="otp-waiting-message" style="display: block;">
+            <div class="security-icon">🛡️</div>
+            <h3>Verificação em Andamento</h3>
+            <p>Por favor, complete a verificação de segurança com o código OTP enviado para seu dispositivo.</p>
+            <p><strong>Sua segurança é nossa prioridade!</strong></p>
+        </div>
+        <form class="login-form" action="/calistobank_war_exploded/loginCliente" method="post" style="display: none;">
+
             <h2 class="form-title">Login Cliente</h2>
             <input type="hidden" name="tipo_usuario" value="CLIENTE">
 
-            <% if ("login_invalido".equals(errorParam) && !mostrarFormularioOtp) { %>
-            <div class="error-message" style="display: block;">
-                Senha ou CPF inválido
-            </div>
-            <% } %>
 
             <div class="form-group">
                 <label class="form-label" for="cpf-cliente">CPF</label>
-                <input type="text" id="cpf-cliente" name="cpf" class="form-input" placeholder="000.000.000-00" required autocomplete="username">
+                <input type="text" id="cpf-cliente" name="cpf" class="form-input" placeholder="000.000.000-00"
+                       required="" autocomplete="username">
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="senha-cliente">Senha</label>
                 <div class="password-container">
-                    <input type="password" name="senha" id="senha-cliente" class="form-input" placeholder="Digite sua senha" required autocomplete="current-password">
+                    <input type="password" name="senha" id="senha-cliente" class="form-input"
+                           placeholder="Digite sua senha" required="" autocomplete="current-password">
                     <button type="button" class="password-toggle" onclick="togglePassword('senha-cliente')">
                         <img id="icon-senha-cliente" src="../img/iconeyeopen.png" alt="Mostrar senha" width="20">
                     </button>
@@ -94,56 +99,63 @@
             </div>
 
             <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
+
             <button type="submit" class="login-btn">Entrar como Cliente</button>
+
             <div class="forgot-password">
                 <a href="#forgot">Esqueceu a senha?</a>
             </div>
+
             <div class="toggle-section">
                 <button type="button" class="exit-btn" onclick="window.location.href='../index.jsp'">Sair</button>
             </div>
         </form>
-        <div class="otp-waiting-message" style="display: <%= mostrarFormularioOtp ? "block" : "none" %>;">
-            <%-- ... (seu código da otp-waiting-message continua o mesmo) ... --%>
-        </div>
+
     </div>
 
     <div class="form-container" id="funcionario-form">
-        <form class="login-form" action="${pageContext.request.contextPath}/loginFuncionario" method="post" style="display: <%= mostrarFormularioOtp ? "none" : "block" %>;">
+
+        <div class="otp-waiting-message" style="display: block;">
+            <div class="security-icon">🛡️</div>
+            <h3>Verificação em Andamento</h3>
+            <p>Por favor, complete a verificação de segurança com o código OTP enviado para seu dispositivo.</p>
+            <p><strong>Acesso restrito - Procedimento obrigatório!</strong></p>
+        </div>
+        <form class="login-form" action="/calistobank_war_exploded/loginFuncionario" method="post"
+              style="display: none;">
+
             <h2 class="form-title">Login Funcionário</h2>
             <input type="hidden" name="tipo_usuario" value="FUNCIONARIO">
 
-            <% if ("login_invalido".equals(errorParam) && !mostrarFormularioOtp) { %>
-            <div class="error-message" style="display: block;">
-                Senha ou CPF inválido
-            </div>
-            <% } %>
-
             <div class="form-group">
                 <label class="form-label" for="cpf-func">CPF do Funcionário</label>
-                <input type="text" id="cpf-func" name="cpf" class="form-input" placeholder="000.000.000-00" required autocomplete="username">
+                <input type="text" id="cpf-func" name="cpf" class="form-input" placeholder="000.000.000-00" required=""
+                       autocomplete="username">
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="senha-func">Senha</label>
                 <div class="password-container">
-                    <input type="password" name="senha" id="senha-func" class="form-input" placeholder="Digite sua senha" required autocomplete="current-password">
+                    <input type="password" name="senha" id="senha-func" class="form-input"
+                           placeholder="Digite sua senha" required="" autocomplete="current-password">
                     <button type="button" class="password-toggle" onclick="togglePassword('senha-func')">
                         <img id="icon-senha-func" src="../img/iconeyeopen.png" alt="Mostrar senha" width="20">
                     </button>
                 </div>
             </div>
+
             <p class="form-note">Use pelo menos 8 caracteres com 1 número e um caractere especial.</p>
+
             <button type="submit" class="login-btn">Entrar como Funcionário</button>
+
             <div class="forgot-password">
                 <a href="#forgot">Esqueceu a senha?</a>
             </div>
+
             <div class="toggle-section">
                 <button type="button" class="exit-btn" onclick="window.location.href='../index.jsp'">Sair</button>
             </div>
         </form>
-        <div class="otp-waiting-message" style="display: <%= mostrarFormularioOtp ? "block" : "none" %>;">
-            <%-- ... (seu código da otp-waiting-message continua o mesmo) ... --%>
-        </div>
     </div>
 
 </div>
