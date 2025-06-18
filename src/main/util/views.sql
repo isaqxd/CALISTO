@@ -22,7 +22,7 @@ FROM conta c
     AND t.data_hora >= NOW() - INTERVAL 90 DAY;
 
 SELECT * FROM view_consulta_conta_com_transacoes;
-# ***************************************************************************************************
+
 CREATE OR REPLACE VIEW vw_dados_cliente_contas AS
 SELECT
     u.nome,
@@ -40,7 +40,7 @@ FROM cliente c
          LEFT JOIN conta ct ON ct.cliente_id = c.id_cliente;
 
 select * from vw_dados_cliente_contas;
-# ***************************************************************************************************
+
 CREATE OR REPLACE VIEW vw_dados_funcionario_contas AS
 SELECT
     f.codigo_funcionario AS codigo,
@@ -55,6 +55,4 @@ SELECT
      FROM funcionario f
      JOIN usuario u ON f.usuario_id = u.id_usuario
      LEFT JOIN endereco e ON u.endereco_id = e.id_endereco;
-
-select * from vw_dados_funcionario_contas;
-# ***************************************************************************************************
+select * from vw_dados_funcionario_contas WHERE cpf ='11278591028';

@@ -9,26 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/deposito.css" afterDir="false" />
+    <list default="true" id="e804d422-8bb0-487d-be1a-68b313b3188f" name="Changes" comment="novo commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/CadastrarClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/FuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/CadastrarFuncionarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/FuncionariosController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarCliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarFuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/cadastrarFuncionario.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/encerrarConta.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/saldo.jsp" afterDir="false" />
-    </list>
-    <list id="b1c54e47-1f3a-4a22-bad9-3b192f0e34a1" name="Changes by dudu-" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp" afterDir="false" />
-    </list>
-    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/util/views.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/util/views.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/deposito.jsp" afterDir="false" />
+    </list>
+    <list id="b1c54e47-1f3a-4a22-bad9-3b192f0e34a1" name="Changes by dudu-" comment="" />
+    <list id="e2186583-cf46-4a34-a22c-903b72b3edf7" name="Changes by pczaum" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CALISTO/model/dao/ConsultaFuncionarioDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/novaVida/consultaFuncionario.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/novaVida/consultaFuncionario.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +58,13 @@
   }
 }</component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/webapp/novaVida/portalCliente/portalCliente.jsp">
+    <file path="$PROJECT_DIR$/src/main/java/CALISTO/controller/Simples/ConsultaFuncionarioController.java">
       <ranges>
-        <range start1="9" end1="10" start2="9" end2="10" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
-        <range start1="20" end1="21" start2="20" end2="21" changelist="b1c54e47-1f3a-4a22-bad9-3b192f0e34a1" />
+        <range start1="9" end1="10" start2="9" end2="9" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
+        <range start1="16" end1="16" start2="15" end2="16" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="26" end1="27" start2="26" end2="27" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="29" end1="30" start2="29" end2="30" changelist="e804d422-8bb0-487d-be1a-68b313b3188f" />
+        <range start1="31" end1="33" start2="31" end2="33" changelist="e2186583-cf46-4a34-a22c-903b72b3edf7" />
       </ranges>
     </file>
   </component>
@@ -297,6 +291,15 @@
       <workItem from="1748985883780" duration="327000" />
       <workItem from="1749732744373" duration="10497000" />
     </task>
+    <task id="LOCAL-00001" summary="novo commit">
+      <option name="closed" value="true" />
+      <created>1750213012873</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750213012873</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +315,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="novo commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="novo commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
