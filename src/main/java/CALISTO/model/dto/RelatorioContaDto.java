@@ -3,7 +3,7 @@ package CALISTO.model.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ClienteContaDTO {
+public class RelatorioContaDto {
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;

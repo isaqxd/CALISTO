@@ -1,4 +1,4 @@
-<%@ page import="CALISTO.model.dto.ClienteContaDTO" %>
+<%@ page import="CALISTO.model.dto.RelatorioContaDto" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
 </form>
 
 <%
-    List<ClienteContaDTO> resultados = (List<ClienteContaDTO>) request.getAttribute("resultados");
+    List<RelatorioContaDto> resultados = (List<RelatorioContaDto>) request.getAttribute("resultados");
     String cpf = request.getParameter("cpf");
 
     if (resultados != null && !resultados.isEmpty()) {
@@ -28,7 +28,7 @@
         <th>Nome</th><th>CPF</th><th>Nascimento</th><th>Telefone</th><th>Endereço</th><th>Score</th>
         <th>Conta</th><th>Tipo</th><th>Status</th>
     </tr>
-    <% for (ClienteContaDTO r : resultados) { %>
+    <% for (RelatorioContaDto r : resultados) { %>
     <tr>
         <td><%= r.getNome() %></td>
         <td><%= r.getCpf() %></td>

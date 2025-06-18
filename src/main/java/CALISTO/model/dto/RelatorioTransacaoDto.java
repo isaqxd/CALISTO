@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class ContaTransacaoDto {
+public class RelatorioTransacaoDto {
     private String numeroConta;
     private String tipoConta;
     private String nome;

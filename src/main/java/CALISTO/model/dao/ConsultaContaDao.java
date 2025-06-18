@@ -1,6 +1,6 @@
 package CALISTO.model.dao;
 
-import CALISTO.model.dto.ContaTransacaoDto;
+import CALISTO.model.dto.RelatorioTransacaoDto;
 import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.*;
@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ConsultaContaDao {
 
-    public List<ContaTransacaoDto> buscarContaComTransacoes(String cpf) {
-        List<ContaTransacaoDto> resultado = new ArrayList<>();
+    public List<RelatorioTransacaoDto> buscarContaComTransacoes(String cpf) {
+        List<RelatorioTransacaoDto> resultado = new ArrayList<>();
         String sql = "SELECT * FROM view_consulta_conta_com_transacoes WHERE cpf = ?";
 
         try (Connection conn = Conexao.getConnection();
@@ -20,7 +20,7 @@ public class ConsultaContaDao {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                ContaTransacaoDto dto = new ContaTransacaoDto();
+                RelatorioTransacaoDto dto = new RelatorioTransacaoDto();
                 dto.setNumeroConta(rs.getString("numero_conta"));
                 dto.setTipoConta(rs.getString("tipo_conta"));
                 dto.setNome(rs.getString("titular"));

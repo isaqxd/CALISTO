@@ -1,6 +1,6 @@
 package CALISTO.model.dao;
 
-import CALISTO.model.dto.ClienteContaDTO;
+import CALISTO.model.dto.RelatorioContaDto;
 import CALISTO.model.persistence.util.Conexao;
 
 import java.sql.Connection;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteContaDao {
-    public List<ClienteContaDTO> buscarPorCpf(String cpf) {
-        List<ClienteContaDTO> lista = new ArrayList<>();
+    public List<RelatorioContaDto> buscarPorCpf(String cpf) {
+        List<RelatorioContaDto> lista = new ArrayList<>();
         String sql = "SELECT * FROM vw_dados_cliente_contas WHERE cpf = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cpf);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                ClienteContaDTO dto = new ClienteContaDTO();
+                RelatorioContaDto dto = new RelatorioContaDto();
                 dto.setNome(rs.getString("nome"));
                 dto.setCpf(rs.getString("cpf"));
                 dto.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
