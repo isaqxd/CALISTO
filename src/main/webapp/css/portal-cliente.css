@@ -373,3 +373,7 @@ input[required], select[required] {
     margin-top: 0.5rem;
     display: block;
 }
+
+.detalhesConta {
+    display: none;
+}
