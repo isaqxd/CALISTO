@@ -82,6 +82,6 @@ public class EncerrarContasController extends HttpServlet {
             request.setAttribute("cliente", cliente);
         }
 
-        request.getRequestDispatcher("novaVida/encerrarConta.jsp").forward(request, response);
+        request.getRequestDispatcher("novaVida/portalFuncionario//encerrarConta.jsp").forward(request, response);
     }
 }
