@@ -23,7 +23,7 @@ public class ConsultaContaController extends HttpServlet {
         List<RelatorioTransacaoDto> resultados = dao.buscarContaComTransacoes(cpf);
 
         request.setAttribute("resultados", resultados);
-        request.getRequestDispatcher("novaVida/consultaConta.jsp").forward(request, response);
+        request.getRequestDispatcher("novaVida/portalFuncionario/consultaConta.jsp").forward(request, response);
     }
 }
 

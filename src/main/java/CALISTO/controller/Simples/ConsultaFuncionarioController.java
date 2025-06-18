@@ -31,6 +31,6 @@ public class ConsultaFuncionarioController extends HttpServlet {
         }
 
         request.setAttribute("resultados", resultados);
-        request.getRequestDispatcher("novaVida/consultaFuncionario.jsp").forward(request, response);
+        request.getRequestDispatcher("novaVida/portalFuncionario/consultaFuncionario.jsp").forward(request, response);
     }
 }

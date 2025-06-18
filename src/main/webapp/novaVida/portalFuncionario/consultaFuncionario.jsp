@@ -14,8 +14,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Funcionario</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/consulta.css">
 </head>
 <body>
+<!-- Botão de voltar -->
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/consultaDados.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Consulta de Funcionario</h1>
 
@@ -32,6 +35,7 @@
     if (resultados != null && !resultados.isEmpty()) {
 %>
 <h2>Resultado</h2>
+<div class="table-container">
 <table>
     <tr>
         <th>Código</th>
@@ -60,6 +64,7 @@
         }
     %>
 </table>
+</div>
 <%
 } else if (cpf != null) {
 %>

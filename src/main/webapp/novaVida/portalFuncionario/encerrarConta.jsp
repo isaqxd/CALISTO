@@ -18,6 +18,8 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<!-- Botão de voltar -->
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
 <div class="container">
     <h2>Buscar Cliente por CPF</h2>
     <form method="get" action="encerrarContas" class="form-busca">

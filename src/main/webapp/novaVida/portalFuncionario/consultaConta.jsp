@@ -14,8 +14,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Conta</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/consulta.css">
 </head>
 <body>
+<!-- Botão de voltar -->
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/consultaDados.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Consulta de Conta</h1>
 
@@ -32,40 +35,42 @@
     if (resultados != null && !resultados.isEmpty()) {
 %>
 <h2>Resultado</h2>
-<table>
-    <tr>
-        <th>Conta</th>
-        <th>Tipo</th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Saldo</th>
-        <th>Limite</th>
-        <th>Vencimento</th>
-        <th>Tipo Transação</th>
-        <th>Valor</th>
-        <th>Data</th>
-        <th>Descrição</th>
-    </tr>
-    <%
-        for (RelatorioTransacaoDto r : resultados) {
-    %>
-    <tr>
-        <td><%= r.getNumeroConta() %></td>
-        <td><%= r.getTipoConta() %></td>
-        <td><%= r.getNome() %></td>
-        <td><%= r.getCpf() %></td>
-        <td><%= r.getSaldo() %></td>
-        <td><%= r.getLimite() %></td>
-        <td><%= r.getDataVencimento() %></td>
-        <td><%= r.getTipoTransacao() %></td>
-        <td><%= r.getValorTransacao() %></td>
-        <td><%= r.getDataTransacao() %></td>
-        <td><%= r.getDescricao() %></td>
-    </tr>
-    <%
-        }
-    %>
-</table>
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Conta</th>
+            <th>Tipo</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Saldo</th>
+            <th>Limite</th>
+            <th>Vencimento</th>
+            <th>Tipo Transação</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Descrição</th>
+        </tr>
+        <%
+            for (RelatorioTransacaoDto r : resultados) {
+        %>
+        <tr>
+            <td><%= r.getNumeroConta() %></td>
+            <td><%= r.getTipoConta() %></td>
+            <td><%= r.getNome() %></td>
+            <td><%= r.getCpf() %></td>
+            <td><%= r.getSaldo() %></td>
+            <td><%= r.getLimite() %></td>
+            <td><%= r.getDataVencimento() %></td>
+            <td><%= r.getTipoTransacao() %></td>
+            <td><%= r.getValorTransacao() %></td>
+            <td><%= r.getDataTransacao() %></td>
+            <td><%= r.getDescricao() %></td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
+</div>
 <%
 } else if (cpf != null) {
 %>

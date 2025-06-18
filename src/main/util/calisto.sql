@@ -141,11 +141,3 @@ CREATE TABLE `calisto`.`relatorio`(
     PRIMARY KEY (`id_relatorio`),
     foreign key (`funcionario_id`) references `funcionario`(id_funcionario)
 );
-
-SELECT
-    c.id_cliente, c.score_credito,
-    u.id_usuario, u.nome, u.cpf, u.data_nascimento, u.telefone, u.tipo_usuario,
-    e.id_endereco, e.cep, e.local, e.bairro, e.cidade, e.estado, e.complemento
-FROM cliente c
-INNER JOIN usuario u ON c.usuario_id = u.id_usuario
-INNER JOIN endereco e ON u.endereco_id = e.id_endereco;

@@ -1,0 +1,89 @@
+/* === ESTILOS PARA A PÁGINA DE CONSULTA === */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f8f6f3;
+    padding: 20px;
+    margin: 0;
+}
+
+h1, h2 {
+    color: #8C480D;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8C480D;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: #BF7A24;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #BF7A24;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Container para scroll horizontal */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+/* Mensagem de nenhum resultado */
+p {
+    color: #595348;
+    padding: 15px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

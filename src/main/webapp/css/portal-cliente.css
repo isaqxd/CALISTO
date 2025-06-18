@@ -377,3 +377,87 @@ input[required], select[required] {
 .detalhesConta {
     display: none;
 }
+
+/* Estilos para tabelas */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.result-table th {
+    background-color: #f2b950;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.result-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.result-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+/* Container principal expandido */
+.portal-container.consulta-container {
+    max-width: 95%;
+    width: 95%;
+    padding: 2rem;
+    margin: 2rem auto;
+}
+
+/* Ajustes para a tabela extensa */
+.table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 100%;
+}
+
+.result-table {
+    min-width: 1200px; /* Largura mínima para comportar todos os dados */
+    width: 100%;
+}
+
+/* Células com quebra de linha e ajuste vertical */
+.result-table td {
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 200px;
+    vertical-align: top;
+    padding: 12px 15px;
+}
+
+/* Cabeçalhos fixos para scroll */
+.result-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 1200px) {
+    .portal-container.consulta-container {
+        max-width: 100%;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .result-table {
+        min-width: 100%;
+    }
+
+    .result-table td {
+        max-width: 150px;
+    }
+}

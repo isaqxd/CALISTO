@@ -1,0 +1,382 @@
+[
+  {
+    "nome": "Anthony Mateus Pedro Henrique Viana",
+    "cpf": "40490741177",
+    "dataNascimento": "13/04/2000",
+    "telefone": "69989399767",
+    "senhaHash": "UFqQr1gsqZ",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "76803749",
+      "local": "Rua Abunã",
+      "numeroCasa": 213,
+      "bairro": "São João Bosco",
+      "cidade": "Porto Velho",
+      "estado": "RO",
+      "complemento": "Apto"
+    },
+    "cargo": "GERENTE",
+    "supervisor": 0
+  },
+  {
+    "nome": "Giovanna Elisa Esther da Paz",
+    "cpf": "68230566143",
+    "dataNascimento": "03/02/1997",
+    "telefone": "79999214190",
+    "senhaHash": "Zrirwt1GuZ",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "49060613",
+      "local": "Rua Manoel Preto",
+      "numeroCasa": 123,
+      "bairro": "Santo Antônio",
+      "cidade": "Aracaju",
+      "estado": "SE",
+      "complemento": "Casa"
+    },
+    "cargo": "GERENTE",
+    "supervisor": 0
+  },
+  {
+    "nome": "Isabella Nair Nunes",
+    "cpf": "95921804070",
+    "dataNascimento": "26/05/1965",
+    "telefone": "62992360426",
+    "senhaHash": "Q1LUoifqtr",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "75532653",
+      "local": "Avenida Abadia Paes de Souza",
+      "numeroCasa": 926,
+      "bairro": "Conjunto Habitacional Dionária Rocha",
+      "cidade": "Itumbiara",
+      "estado": "GO",
+      "complemento": "Casa"
+    },
+    "cargo": "GERENTE",
+    "supervisor": 0
+  },
+  {
+    "nome": "Erick Cauã Joaquim Freitas",
+    "cpf": "53417317606",
+    "dataNascimento": "02/02/2001",
+    "telefone": "21987697821",
+    "senhaHash": "o1awTaWPzJ",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "23040360",
+      "local": "Travessa R",
+      "numeroCasa": 348,
+      "bairro": "Campo Grande",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "complemento": "Lote"
+    },
+    "cargo": "GERENTE",
+    "supervisor": 1
+  },
+  {
+    "nome": "Bernardo Kevin Porto",
+    "cpf": "90902584855",
+    "dataNascimento": "17/04/2000",
+    "telefone": "67983770672",
+    "senhaHash": "bz6m2iEGfg",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "79037022",
+      "local": "Rua Mossoró",
+      "numeroCasa": 526,
+      "bairro": "Jardim Veraneio",
+      "cidade": "Campo Grande",
+      "estado": "MS",
+      "complemento": "Apto"
+    },
+    "cargo": "GERENTE",
+    "supervisor": 2
+  },
+  {
+    "nome": "Josefa Rayssa Esther Gomes",
+    "cpf": "37823727277",
+    "dataNascimento": "25/02/2005",
+    "telefone": "28994213748",
+    "senhaHash": "M7XTymC2tJ",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "29477970",
+      "local": "Estrada São José do Calçado-Airituba Km 13",
+      "numeroCasa": 704,
+      "bairro": "Airituba",
+      "cidade": "São José do Calçado",
+      "estado": "ES",
+      "complemento": "Apto"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 1
+  },
+  {
+    "nome": "João Alexandre Martin da Conceição",
+    "cpf": "31700609882",
+    "dataNascimento": "06/03/2004",
+    "telefone": "98987888351",
+    "senhaHash": "ETlK64XOtl",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "65058239",
+      "local": "Avenida Este",
+      "numeroCasa": 220,
+      "bairro": "Cidade Operária",
+      "cidade": "São Luís",
+      "estado": "MA",
+      "complemento": "Apto"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 1
+  },
+  {
+    "nome": "Raimunda Mariana Mariane Ramos",
+    "cpf": "68239770606",
+    "dataNascimento": "06/02/2001",
+    "telefone": "63996701644",
+    "senhaHash": "lHz7p3zL7O",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "77824220",
+      "local": "Rua União",
+      "numeroCasa": 267,
+      "bairro": "Loteamento Panorama",
+      "cidade": "Araguaína",
+      "estado": "TO",
+      "complemento": "Lote"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 1
+  },
+  {
+    "nome": "Mariah Antônia Jesus",
+    "cpf": "24530488560",
+    "dataNascimento": "09/01/1962",
+    "telefone": "41984137225",
+    "senhaHash": "WNUb99MyUA",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "83206346",
+      "local": "Rua Valentina Andreoli Rainert",
+      "numeroCasa": 797,
+      "bairro": "Vila Itiberê",
+      "cidade": "Paranaguá",
+      "estado": "PR",
+      "complemento": "Apto"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 1
+  },
+  {
+    "nome": "Vicente Lucca Mateus Farias",
+    "cpf": "85045195204",
+    "dataNascimento": "07/01/1966",
+    "telefone": "79993086688",
+    "senhaHash": "x0zMDFuzlY",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "49010640",
+      "local": "Rua Santa Rosa",
+      "numeroCasa": 866,
+      "bairro": "Centro",
+      "cidade": "Aracaju",
+      "estado": "SE",
+      "complemento": "Casa"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 1
+  },
+  {
+    "nome": "Laís Mariane Ribeiro",
+    "cpf": "04082617906",
+    "dataNascimento": "09/06/1947",
+    "telefone": "69984720219",
+    "senhaHash": "8dqeEyYiDf",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "76963851",
+      "local": "Avenida Sete de Setembro",
+      "numeroCasa": 988,
+      "bairro": "Centro",
+      "cidade": "Cacoal",
+      "estado": "RO",
+      "complemento": "Lote"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 2
+  },
+  {
+    "nome": "Beatriz Aparecida Patrícia Santos",
+    "cpf": "80764705520",
+    "dataNascimento": "14/04/1969",
+    "telefone": "79988056410",
+    "senhaHash": "IRngNzhlR0",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "49063112",
+      "local": "Rua B2",
+      "numeroCasa": 414,
+      "bairro": "Japãozinho",
+      "cidade": "Aracaju",
+      "estado": "SE",
+      "complemento": "Apto"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 2
+  },
+  {
+    "nome": "Gabriela Rafaela Pereira",
+    "cpf": "79961562801",
+    "dataNascimento": "22/04/1960",
+    "telefone": "95992557200",
+    "senhaHash": "RjGB4ihPxz",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "69312629",
+      "local": "Rua Solange Brito",
+      "numeroCasa": 663,
+      "bairro": "Centenário",
+      "cidade": "Boa Vista",
+      "estado": "RR",
+      "complemento": "Lote"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 2
+  },
+  {
+    "nome": "Rafael Raul Heitor Galvão",
+    "cpf": "90218289286",
+    "dataNascimento": "14/03/1947",
+    "telefone": "92987144296",
+    "senhaHash": "ZEW360aD2H",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "69070281",
+      "local": "Beco São João Batista",
+      "numeroCasa": 688,
+      "bairro": "Educandos",
+      "cidade": "Manaus",
+      "estado": "AM",
+      "complemento": "Lote"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 2
+  },
+  {
+    "nome": "Rafael Miguel Danilo da Cruz",
+    "cpf": "12567661514",
+    "dataNascimento": "03/06/1998",
+    "telefone": "77986577408",
+    "senhaHash": "F6FmoHJBuq",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "47802234",
+      "local": "Rua Doutor José Costa Borges",
+      "numeroCasa": 964,
+      "bairro": "Jardim Ouro Branco",
+      "cidade": "Barreiras",
+      "estado": "BA",
+      "complemento": "Casa"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 2
+  },
+  {
+    "nome": "Fabiana Carolina Jéssica das Neves",
+    "cpf": "83096679495",
+    "dataNascimento": "08/03/1998",
+    "telefone": "82996294818",
+    "senhaHash": "n7jCrNmW1z",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "57305450",
+      "local": "Rua Maria Estelina dos Santos",
+      "numeroCasa": 651,
+      "bairro": "Baixão",
+      "cidade": "Arapiraca",
+      "estado": "AL",
+      "complemento": "Apto"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 3
+  },
+  {
+    "nome": "Isis Carla Fernanda Rezende",
+    "cpf": "91736141147",
+    "dataNascimento": "09/06/1969",
+    "telefone": "21994870587",
+    "senhaHash": "mIR5Z9eU5G",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "26435350",
+      "local": "Avenida Doutor Arruda Negreiros",
+      "numeroCasa": 372,
+      "bairro": "São Jorge",
+      "cidade": "Japeri",
+      "estado": "RJ",
+      "complemento": "Casa"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 3
+  },
+  {
+    "nome": "Luzia Amanda Nascimento",
+    "cpf": "82095360362",
+    "dataNascimento": "12/01/1954",
+    "telefone": "81981573601",
+    "senhaHash": "u6JYjWfRuw",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "55610025",
+      "local": "Rua Severina Capitulino de Lima",
+      "numeroCasa": 177,
+      "bairro": "Cajá",
+      "cidade": "Vitória de Santo Antão",
+      "estado": "PE",
+      "complemento": "Casa"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 3
+  },
+  {
+    "nome": "Kaique Oliver Breno Fogaça",
+    "cpf": "23503546529",
+    "dataNascimento": "14/04/2003",
+    "telefone": "65988316066",
+    "senhaHash": "6SGKDdjhQ9",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "78140002",
+      "local": "Avenida Ulisses Pompeu de Campos",
+      "numeroCasa": 963,
+      "bairro": "Glória",
+      "cidade": "Várzea Grande",
+      "estado": "MT",
+      "complemento": "Lote"
+    },
+    "cargo": "ATENDENTE",
+    "supervisor": 3
+  },
+  {
+    "nome": "Mateus Pedro Henrique Caldeira",
+    "cpf": "96316427557",
+    "dataNascimento": "24/02/1970",
+    "telefone": "71983074337",
+    "senhaHash": "ISysc4Eehk",
+    "tipo_usuario": "FUNCIONARIO",
+    "endereco": {
+      "cep": "41207805",
+      "local": "2ª Travessa Agenor Matos",
+      "numeroCasa": 378,
+      "bairro": "Tancredo Neves",
+      "cidade": "Salvador",
+      "estado": "BA",
+      "complemento": "Lote"
+    },
+    "cargo": "ESTAGIARIO",
+    "supervisor": 3
+  }
+]

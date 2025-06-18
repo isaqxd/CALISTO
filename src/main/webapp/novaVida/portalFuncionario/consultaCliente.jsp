@@ -13,8 +13,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Cliente</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/consulta.css">
 </head>
 <body>
+<!-- Botão de voltar -->
+<a href="${pageContext.request.contextPath}/novaVida/portalFuncionario/consultaDados.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Consulta de Cliente</h1>
 
@@ -30,6 +33,8 @@
 
     if (resultados != null && !resultados.isEmpty()) {
 %>
+<h2>Resultado</h2>
+<div class="table-container">
 <table>
     <tr>
         <th>Nome</th><th>CPF</th><th>Nascimento</th><th>Telefone</th><th>Endereço</th><th>Score</th>
@@ -49,10 +54,11 @@
     </tr>
     <% } %>
 </table>
+</div>
 <%
-} else {
+} else if (cpf != null) {
 %>
-<p>Nenhum dado encontrado para este CPF.</p>
+<p>Nenhum resultado encontrado para o CPF informado.</p>
 <%
     }
 %>
