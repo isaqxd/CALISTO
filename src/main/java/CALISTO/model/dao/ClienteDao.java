@@ -229,7 +229,7 @@ public class ClienteDao {
         return null;
     }
 
-    public Cliente findByCpfFromExcluirConta(String cpf) {
+    public Cliente innerToRequestSession(String cpf) {
         String sql = """
             SELECT u.nome, u.cpf, u.id_usuario,
                    c.id_cliente,
@@ -238,7 +238,49 @@ public class ClienteDao {
             INNER JOIN cliente c ON u.id_usuario = c.usuario_id
             LEFT JOIN conta co ON c.id_cliente = co.cliente_id AND co.status = 'ATIVA'
             WHERE u.cpf = ?
-            """; // LEFT JOIN para trazer cliente mesmo sem contas
+            """;
+
+        Cliente cliente = null;
+
+        try (Connection con = Conexao.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                if (cliente == null) {
+                    cliente = new Cliente();
+                    cliente.setCpf(rs.getString("cpf"));
+                    cliente.setNome(rs.getString("nome"));
+                    cliente.setIdCliente(rs.getInt("id_cliente"));
+                    cliente.setContas(new ArrayList<>());
+                }
+
+                // Verifica se há dados de conta (pode ser null por causa do LEFT JOIN)
+                if (rs.getObject("id_conta") != null) {
+                    Conta conta = criarConta(rs);
+                    cliente.getContas().add(conta);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar cliente por CPF", e);
+        }
+
+        return cliente;
+    }
+    public Cliente innerToRequestFuncionario(String cpf) {
+        String sql = """
+            SELECT u.nome, u.cpf, u.id_usuario,
+                   c.id_cliente,
+                   co.id_conta, co.numero_conta, co.saldo, co.tipo_conta, co.status
+            FROM usuario u
+            INNER JOIN cliente c ON u.id_usuario = c.usuario_id
+            LEFT JOIN conta co ON c.id_cliente = co.cliente_id AND co.status = 'ATIVA'
+            WHERE u.cpf = ?
+            """;
 
         Cliente cliente = null;
 

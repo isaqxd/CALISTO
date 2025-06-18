@@ -4,8 +4,11 @@ package CALISTO.model.service.Login;
 
 import CALISTO.model.dao.AuditoriaDao;
 import CALISTO.model.dao.LoginClienteDao;
+import CALISTO.model.dao.LoginFuncionarioDao;
 import CALISTO.model.persistence.Auditoria.Auditoria;
 import CALISTO.model.persistence.Usuario.Cliente;
+import CALISTO.model.persistence.Usuario.Funcionario;
+import CALISTO.model.persistence.Usuario.Usuario;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -38,9 +41,6 @@ public class LoginClienteService {
         LoginClienteDao dao = new LoginClienteDao();
         Cliente cliente = dao.findByCpf(cpf);
 
-        String nome = cliente.getNome();
-        session.setAttribute("nomeLogin", nome);
-
         Auditoria a = new Auditoria();
         // BLOQUEIA MULTIPLAS TENTATIVAS DE LOGIN
         if (cliente != null && auditoriaDao.blockLoginFromAuditoria(cliente.getIdUsuario())) {
@@ -67,7 +67,7 @@ public class LoginClienteService {
         if (cliente.getOtpAtivo() != null && !cliente.getOtpAtivo().isEmpty() && cliente.getOtpExpiracao() != null && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
             a.setAcao("OTP_PEDENTE");
             a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("OTP ainda válida para o " + cliente.getTipoUsuario().toString() + " com CPF: " + cpf);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
             return true;
@@ -77,7 +77,7 @@ public class LoginClienteService {
         if (cliente.getOtpAtivo() == null || cliente.getOtpAtivo().isEmpty() || cliente.getOtpExpiracao() == null || HORA_ATUAL.isAfter(cliente.getOtpExpiracao())) {
             a.setAcao("OTP_GERADA");
             a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP gerada para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("OTP gerada para o " + cliente.getTipoUsuario().toString() + " com CPF: " + cpf);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
 
@@ -101,7 +101,7 @@ public class LoginClienteService {
         if (cliente.getOtpAtivo() != null && cliente.getOtpAtivo().equals(otp) && HORA_ATUAL.isBefore(cliente.getOtpExpiracao())) {
             // Registra auditoria de sucesso no login
             a.setAcao("LOGIN_SUCESSO");
-            a.setDetalhes("Login bem-sucedido para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("Login bem-sucedido para o " + cliente.getTipoUsuario().toString() + " com CPF: " + cpf);
             a.setDataHora(HORA_ATUAL);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
@@ -113,7 +113,7 @@ public class LoginClienteService {
         if (cliente.getOtpAtivo() != null && HORA_ATUAL.isAfter(cliente.getOtpExpiracao())) {
             // Registra auditoria de falha de login por OTP expirado
             a.setAcao("OTP_EXPIRADO");
-            a.setDetalhes("Tentativa de login com OTP expirado para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("Tentativa de login com OTP expirado para o " + cliente.getTipoUsuario().toString() + " com CPF: " + cpf);
             a.setDataHora(HORA_ATUAL);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
@@ -121,7 +121,7 @@ public class LoginClienteService {
         } else {
             // Registra auditoria de falha de login por OTP inválido
             a.setAcao("OTP_INVALIDO");
-            a.setDetalhes("Tentativa de login com OTP inválido para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("Tentativa de login com OTP inválido para o " + cliente.getTipoUsuario().toString() + " com CPF: " + cpf);
             a.setDataHora(HORA_ATUAL);
             a.setUsuario(cliente);
             auditoriaDao.save(a);
@@ -129,11 +129,11 @@ public class LoginClienteService {
         }
     }
 
-    protected void generateOTP(Cliente cliente) {
+    protected void generateOTP(Usuario usuario) {
         SecureRandom random = new SecureRandom();
         int otp = 100000 + random.nextInt(900000);
-        cliente.setOtpAtivo(String.valueOf(otp));
-        cliente.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
+        usuario.setOtpAtivo(String.valueOf(otp));
+        usuario.setOtpExpiracao(LocalDateTime.now().plusMinutes(5));
     }
 
     private String generateHashMD5(String input) {

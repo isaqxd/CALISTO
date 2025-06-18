@@ -1,19 +1,30 @@
 package CALISTO.model.persistence.Transacao;
 
 
+import CALISTO.model.persistence.util.TipoDeTransacao;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import CALISTO.model.persistence.Conta.Conta;
-import CALISTO.model.persistence.util.TipoDeTransacao;
-
 public class Transacao {
     private int idTransacao;
-    private Conta Conta;
+    private int contaOrigemId;
+    private int contaDestinoId;
     private TipoDeTransacao tipoDeTransacao;
     private BigDecimal valor;
     private LocalDateTime dataHora;
     private String descricao;
+
+
+    public Transacao() {}
+
+    public Transacao(int contaOrigemId, int contaDestinoId, TipoDeTransacao tipoDeTransacao, BigDecimal valor, String descricao) {
+        this.contaOrigemId = contaOrigemId;
+        this.contaDestinoId = contaDestinoId;
+        this.tipoDeTransacao = tipoDeTransacao;
+        this.valor = valor;
+        this.descricao = descricao;
+    }
 
     public int getIdTransacao() {
         return idTransacao;
@@ -21,14 +32,6 @@ public class Transacao {
 
     public void setIdTransacao(int idTransacao) {
         this.idTransacao = idTransacao;
-    }
-
-    public Conta getConta() {
-        return Conta;
-    }
-
-    public void setConta(Conta conta) {
-        Conta = conta;
     }
 
     public TipoDeTransacao getTipoDeTransacao() {
@@ -61,5 +64,21 @@ public class Transacao {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public int getContaOrigemId() {
+        return contaOrigemId;
+    }
+
+    public void setContaOrigemId(int contaOrigemId) {
+        this.contaOrigemId = contaOrigemId;
+    }
+
+    public int getContaDestinoId() {
+        return contaDestinoId;
+    }
+
+    public void setContaDestinoId(int contaDestinoId) {
+        this.contaDestinoId = contaDestinoId;
     }
 }

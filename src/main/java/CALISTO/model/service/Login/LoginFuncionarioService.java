@@ -39,7 +39,7 @@ public class LoginFuncionarioService {
         if (funcionario != null && auditoriaDao.blockLoginFromAuditoria(funcionario.getIdUsuario())) {
             a.setAcao("LOGIN_BLOQUEADO");
             a.setDataHora(HORA_ATUAL);
-            a.setDetalhes("Login bloqueado para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("Login bloqueado para o FUNCIONARIO com CPF: " + cpf);
             a.setUsuario(funcionario);
             auditoriaDao.save(a);
 
@@ -60,7 +60,7 @@ public class LoginFuncionarioService {
         if (funcionario.getOtpAtivo() != null && !funcionario.getOtpAtivo().isEmpty() && funcionario.getOtpExpiracao() != null && HORA_ATUAL.isBefore(funcionario.getOtpExpiracao())) {
             a.setAcao("OTP_PEDENTE");
             a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP ainda válida para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("OTP ainda válida para o FUNCIONARIO com CPF: " + cpf);
             a.setUsuario(funcionario);
             auditoriaDao.save(a);
             return true;
@@ -70,7 +70,7 @@ public class LoginFuncionarioService {
         if (funcionario.getOtpAtivo() == null || funcionario.getOtpAtivo().isEmpty() || funcionario.getOtpExpiracao() == null || HORA_ATUAL.isAfter(funcionario.getOtpExpiracao())) {
             a.setAcao("OTP_GERADA");
             a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP gerada para o CLIENTE com CPF: " + cpf);
+            a.setDetalhes("OTP gerada para o FUNCIONARIO com CPF: " + cpf);
             a.setUsuario(funcionario);
             auditoriaDao.save(a);
 

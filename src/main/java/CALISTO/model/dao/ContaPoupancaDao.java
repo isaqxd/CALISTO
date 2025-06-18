@@ -148,19 +148,6 @@ public class ContaPoupancaDao extends ContaDao {
         return contas;
     }
 
-    public boolean alterarStatus(int contaId, String novoStatus) {
-        String sql = "UPDATE conta SET status = ? WHERE id_conta = ?";
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, novoStatus); // "ATIVA", "ENCERRADA", ou "BLOQUEADA"
-            stmt.setInt(2, contaId);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public Poupanca buscarPorConta(int contaId) {
         String sql = """
         SELECT 

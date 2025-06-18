@@ -5,7 +5,7 @@
 <%
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     if (cliente == null) {
-        response.sendRedirect("../../novaVida/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
         return;
     }
 %>
@@ -13,20 +13,8 @@
 <html>
 <head>
     <title>Saldo da Conta</title>
-    <style>
-        .conta-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portal-cliente.css">
 
-        .saldo {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #2a6496;
-        }
-    </style>
 </head>
 <body>
 <h1>Olá, <%= cliente.getNome() %>!</h1>

@@ -1,0 +1,210 @@
+/* --- Estilo para a Página de Cadastrar Funcionário --- */
+
+/* Reset e estilos de corpo básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    /* Fundo gradiente e animado, consistente com o resto do projeto */
+    background: linear-gradient(135deg,
+    rgba(89, 83, 72, 0.08) 0%,
+    rgba(38, 10, 4, 0.12) 50%,
+    rgba(0, 0, 0, 0.04) 100%),
+    #f5f5f2;
+    min-height: 100vh;
+    padding: 2rem;
+
+    /* Necessário para o posicionamento da animação de fundo */
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animação de bolinhas no fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="15" cy="25" r="1.5" fill="%23595348" opacity="0.3"><animate attributeName="r" values="1.5;3;1.5" dur="5s" repeatCount="indefinite"/></circle><circle cx="85" cy="40" r="2" fill="%23260A04" opacity="0.2"><animate attributeName="r" values="2;3.5;2" dur="7s" repeatCount="indefinite"/></circle><circle cx="50" cy="80" r="1.8" fill="%23000000" opacity="0.1"><animate attributeName="r" values="1.8;3.2;1.8" dur="6s" repeatCount="indefinite"/></circle></svg>');
+    animation: float 30s infinite linear reverse;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(50px) translateY(20px); }
+    100% { transform: translateX(-50px) translateY(-20px); }
+}
+
+/* Botão de voltar */
+.btn-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-voltar:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+}
+
+/* Estiliza o formulário principal como se fosse o container */
+form {
+    display: block;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto; /* Centraliza o formulário na página */
+}
+
+/* Título do formulário */
+h1 {
+    color: #260A04;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    color: #595348;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #BF7A24;
+    padding-bottom: 0.5rem;
+}
+
+/* Estilo para os rótulos (labels) */
+label {
+    display: block;
+    color: #595348;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Container para campos com botão (como senha) */
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para os campos de input e select */
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #fdfdfd;
+    transition: all 0.3s ease;
+}
+
+/* Campo de senha com espaço para o botão */
+.input-container input[type="password"],
+.input-container input[type="text"] {
+    padding-right: 3rem;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #BF7A24;
+    box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
+}
+
+/* Botão toggle da senha */
+.password-toggle {
+    position: absolute;
+    right: 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover {
+    opacity: 0.7;
+}
+
+.password-toggle img {
+    display: block;
+}
+
+/* Estilo específico para o select */
+select {
+    cursor: pointer;
+}
+
+/* Botão de submissão do formulário */
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #595348 0%, #260A04 100%);
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #260A04 0%, #000000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-voltar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

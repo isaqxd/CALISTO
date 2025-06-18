@@ -4,17 +4,19 @@ package CALISTO.model.dao;
 import CALISTO.model.persistence.Conta.Conta;
 import CALISTO.model.persistence.util.Conexao;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public abstract class ContaDao {
 
-    public boolean depositar(int idConta, double valor) {
+    public boolean depositar(int idConta, BigDecimal valor) {
         String sql = "UPDATE conta SET saldo = saldo + ? WHERE id_conta = ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setDouble(1, valor);
+            stmt.setBigDecimal(1, valor);
             stmt.setInt(2, idConta);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -23,13 +25,13 @@ public abstract class ContaDao {
         return false;
     }
 
-    public boolean sacar(int idConta, double valor) {
+    public boolean sacar(int idConta, BigDecimal valor) {
         String sql = "UPDATE conta SET saldo = saldo - ? WHERE id_conta = ? AND saldo >= ?";
         try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setDouble(1, valor);
+            stmt.setBigDecimal(1, valor);
             stmt.setInt(2, idConta);
-            stmt.setDouble(3, valor);
+            stmt.setBigDecimal(3, valor);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,7 +39,7 @@ public abstract class ContaDao {
         return false;
     }
 
-    public boolean transferir(int origemId, int destinoId, double valor) {
+    public boolean transferir(int origemId, int destinoId, BigDecimal valor) {
         Connection conn = null;
         try {
             conn = Conexao.getConnection();
@@ -71,6 +73,21 @@ public abstract class ContaDao {
         }
         return false;
     }
+
+    public boolean alterarStatus(int contaId, String novoStatus) {
+        String sql = "UPDATE conta SET status = ? WHERE id_conta = ?";
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, novoStatus);
+            stmt.setInt(2, contaId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public double extrato(int idConta) {
         String sql = "SELECT saldo FROM conta WHERE id_conta = ?";
