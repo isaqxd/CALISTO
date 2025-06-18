@@ -13,21 +13,20 @@ public class ConsultaFuncionarioDao {
         String sql = "SELECT * FROM vw_dados_funcionario_contas WHERE cpf = ?";
 
         try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, cpf);
+            stmt.setString(1, cpf.trim());
+
             ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
                 FuncionarioContasDto dto = new FuncionarioContasDto();
-                // Preenchendo o DTO corretamente com os dados do ResultSet
                 dto.setCodigoFuncionario(rs.getString("codigo"));
                 dto.setCargo(rs.getString("cargo"));
                 dto.setNome(rs.getString("nome"));
                 dto.setCpf(rs.getString("cpf"));
                 dto.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
                 dto.setTelefone(rs.getString("telefone"));
-                dto.setEnderecoCompleto(rs.getString("endereco_completo"));
+                dto.setEnderecoCompleto(rs.getString("endereco"));
                 dto.setContasAbertas(rs.getInt("contas_abertas"));
                 funcionarios.add(dto);
             }

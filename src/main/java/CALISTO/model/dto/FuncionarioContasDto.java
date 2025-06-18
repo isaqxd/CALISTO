@@ -13,24 +13,6 @@ public class FuncionarioContasDto {
     private String enderecoCompleto;
     private int contasAbertas;
 
-    // Construtor vazio
-    public FuncionarioContasDto() {
-    }
-
-    // Construtor com todos os campos
-    public FuncionarioContasDto(String codigoFuncionario, String cargo, String nome,
-                                String cpf, LocalDate dataNascimento, String telefone,
-                                String enderecoCompleto, int contasAbertas) {
-        this.codigoFuncionario = codigoFuncionario;
-        this.cargo = cargo;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-        this.enderecoCompleto = enderecoCompleto;
-        this.contasAbertas = contasAbertas;
-    }
-
     // Getters e Setters
 
     public String getCodigoFuncionario() {
