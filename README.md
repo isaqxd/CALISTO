@@ -99,7 +99,7 @@ Organizamos as funcionalidades em 4 ondas de entrega:
 #### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/isaqxd/CALISTO.git
 ````
 #### 2. Configure o Banco de Dados
 - Crie o banco com o nome calisto
