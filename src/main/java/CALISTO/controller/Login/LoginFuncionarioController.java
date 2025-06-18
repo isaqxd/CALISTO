@@ -28,9 +28,7 @@ public class LoginFuncionarioController extends HttpServlet {
                 response.sendRedirect("novaVida/login.jsp?otp_true=true");
             } else {
                 // Se não vor validar o OTP, redireciona para a página de login com erro
-                String errorMessage = "CPF ou senha inválidos.";
-                String encodedMessage = URLEncoder.encode(errorMessage, "UTF-8");
-                response.sendRedirect("/login.jsp?error=" + encodedMessage);
+                response.sendRedirect("login.jsp?error=login_invalido");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

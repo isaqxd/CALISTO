@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <title>Portal do Cliente - <%= cliente.getNome() %></title>
     <%-- 3. Link para o arquivo CSS que fará a "mágica" visual --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portalcliente.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portal-cliente.css">
 </head>
 <body>
 
