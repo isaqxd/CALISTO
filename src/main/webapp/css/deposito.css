@@ -1,6 +1,6 @@
-/* --- Estilo para a Página de Depósito --- */
+/* --- Estilo para a Página de Depósito (Sem Alterar o JSP) --- */
 
-/* 1. Estilos Globais e Fundo Animado (Padrão do Projeto) */
+/* 1. Estilos Globais e Fundo Animado */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
         #f5f5f2;
     min-height: 100vh;
     padding: 2rem;
-    display: flex;
+    display: flex; /* Usado para ajudar na centralização */
     align-items: center;
     justify-content: center;
     position: relative;
@@ -39,8 +39,9 @@ body::before {
     100% { transform: translateX(-50px) translateY(-20px); }
 }
 
-/* 2. Container Principal */
-.form-container {
+/* 2. Estilizando o Formulário Diretamente */
+/* Como não podemos adicionar uma <div> container, aplicamos o estilo de "cartão" diretamente na tag <form> */
+form {
     background: rgba(255, 255, 255, 0.95);
     padding: 2.5rem;
     border-radius: 20px;
@@ -49,7 +50,7 @@ body::before {
     max-width: 500px;
 }
 
-/* 3. Título e Formulário */
+/* 3. Estilizando os Elementos Dentro do Formulário */
 h2 {
     color: #260A04;
     text-align: center;
@@ -57,19 +58,16 @@ h2 {
     font-size: 2.2rem;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
+label {
+    display: block; /* Faz cada label ocupar uma linha, tornando os <br> menos necessários */
     color: #595348;
     font-weight: 500;
     margin-bottom: 0.5rem;
+    margin-top: 1rem; /* Cria um espaçamento vertical entre os campos */
 }
 
-.form-group input[type="text"],
-.form-group select {
+input[type="text"],
+select {
     width: 100%;
     padding: 0.8rem 1rem;
     border: 2px solid #e0e0e0;
@@ -77,20 +75,20 @@ h2 {
     font-size: 1rem;
     background: #fdfdfd;
     transition: all 0.3s ease;
+    margin-top: 0.2rem; /* Pequeno espaço entre o label e o campo */
 }
 
-.form-group input[type="text"]:focus,
-.form-group select:focus {
+input[type="text"]:focus,
+select:focus {
     outline: none;
     border-color: #BF7A24;
     box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
 }
 
-/* 4. Botão Principal */
 button[type="submit"] {
     width: 100%;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem; /* Espaço maior antes do botão */
     border: none;
     border-radius: 25px;
     font-size: 1.1rem;
@@ -105,15 +103,4 @@ button[type="submit"]:hover {
     background: linear-gradient(135deg, #260A04 0%, #000000 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
-}
-
-/* Estilo para a mensagem de feedback/erro */
-.feedback-message {
-    text-align:center; 
-    color: #8C480D; 
-    font-weight: 500;
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgba(140, 72, 13, 0.05);
-    border-radius: 8px;
 }
