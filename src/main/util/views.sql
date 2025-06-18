@@ -22,3 +22,21 @@ FROM conta c
     AND t.data_hora >= NOW() - INTERVAL 90 DAY;
 
 SELECT * FROM view_consulta_conta_com_transacoes;
+
+CREATE OR REPLACE VIEW vw_dados_cliente_contas AS
+SELECT
+    u.nome,
+    u.cpf,
+    u.data_nascimento,
+    u.telefone,
+    CONCAT(e.local, ', ', e.numero_casa, ' - ', e.bairro, ', ', e.cidade, '/', e.estado) AS endereco,
+    c.score_credito,
+    ct.numero_conta,
+    ct.tipo_conta,
+    ct.status
+FROM cliente c
+         JOIN usuario u ON c.usuario_id = u.id_usuario
+         JOIN endereco e ON u.endereco_id = e.id_endereco
+         LEFT JOIN conta ct ON ct.cliente_id = c.id_cliente;
+
+select * from vw_dados_cliente_contas;

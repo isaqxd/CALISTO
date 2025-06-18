@@ -1,4 +1,4 @@
-package CALISTO.controller.Portal.Simples;
+package CALISTO.controller.Simples;
 
 import CALISTO.controller.Usuario.UsuarioControllerUtil;
 import CALISTO.model.dao.FuncionarioDao;

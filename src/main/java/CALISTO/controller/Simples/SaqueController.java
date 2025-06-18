@@ -1,11 +1,10 @@
-package CALISTO.controller.Portal.Simples;
+package CALISTO.controller.Simples;
 
-import CALISTO.model.dao.ContaCorrenteDao;
-import CALISTO.model.dao.ContaDao;
-import CALISTO.model.dao.ContaInvestimentoDao;
-import CALISTO.model.dao.ContaPoupancaDao;
+import CALISTO.model.dao.*;
 import CALISTO.model.persistence.Conta.Conta;
+import CALISTO.model.persistence.Transacao.Transacao;
 import CALISTO.model.persistence.util.TipoConta;
+import CALISTO.model.persistence.util.TipoDeTransacao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,8 +15,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-@WebServlet("/transferencia")
-public class TransferenciaController extends HttpServlet {
+@WebServlet("/saque")
+public class SaqueController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,11 +26,10 @@ public class TransferenciaController extends HttpServlet {
         try {
             // Pega o ID da conta do formulário
             int idConta = Integer.parseInt(request.getParameter("idConta"));
-            // Pega o ID da conta de destino
-            int numeroContaDestino = Integer.parseInt(request.getParameter("numeroContaDestino"));
+
             // Converte valor do formulário para BigDecimal
-            String transferenciaStr = request.getParameter("valor").replace(",", ".");
-            BigDecimal valorSaque = new BigDecimal(transferenciaStr);
+            String saqueStr = request.getParameter("valor").replace(",", ".");
+            BigDecimal valorSaque = new BigDecimal(saqueStr);
 
             // Busca a conta usando DAO
             ContaDao contaDaoAbstrato = new ContaPoupancaDao();
@@ -39,26 +37,33 @@ public class TransferenciaController extends HttpServlet {
 
             if (conta == null) {
                 request.setAttribute("mensagem", "Conta não encontrada.");
-                request.getRequestDispatcher("/novaVida/portalCliente/transferencia.jsp").forward(request, response);
+                request.getRequestDispatcher("/novaVida/portalCliente/saque.jsp").forward(request, response);
                 return;
             }
 
             // Define o DAO correto de acordo com o tipo
             ContaDao contaDao = getDaoPorTipo(conta.getTipoConta());
 
-            boolean sucesso = contaDao.transferir(idConta, numeroContaDestino, valorSaque);
+            boolean sucesso = contaDao.sacar(idConta, valorSaque);
+
+            if (sucesso) {
+                //CRIA UM REGISTRO NA TABELA TRANSACAO
+                Transacao transacao = new Transacao(idConta, idConta, TipoDeTransacao.SAQUE, valorSaque, "Saque realizado com sucesso.");
+                TransacaoDao transacaoDao = new TransacaoDao();
+                transacaoDao.registrar(transacao);
+            }
 
             String mensagem = sucesso
-                    ? "Transferencia realizada com sucesso."
+                    ? "Saque realizado com sucesso."
                     : "Não foi possível realizar o saque.";
 
             request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("/novaVida/portalCliente/transferencia.jsp").forward(request, response);
+            request.getRequestDispatcher("/novaVida/portalCliente/saque.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("mensagem", "Erro ao processar transferencia: " + e.getMessage());
-            request.getRequestDispatcher("/novaVida/portalCliente/transferencia.jsp").forward(request, response);
+            request.setAttribute("mensagem", "Erro ao processar saque: " + e.getMessage());
+            request.getRequestDispatcher("/novaVida/portalCliente/saque.jsp").forward(request, response);
         }
     }
 
