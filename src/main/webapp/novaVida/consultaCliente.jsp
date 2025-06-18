@@ -19,6 +19,8 @@
 
 <%
     List<ClienteContaDTO> resultados = (List<ClienteContaDTO>) request.getAttribute("resultados");
+    String cpf = request.getParameter("cpf");
+
     if (resultados != null && !resultados.isEmpty()) {
 %>
 <table>
@@ -47,3 +49,6 @@
 <%
     }
 %>
+
+</body>
+</html>

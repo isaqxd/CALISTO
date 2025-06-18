@@ -49,7 +49,11 @@
                     </option>
                     <option value="ENCERRADA">Encerrar</option>
                 </select>
-            </label><br><br>
+            </label><br>
+            <label>Ação:
+                <input readonly name="acao" value="ENCERRAR_CONTA">Encerrar Conta />
+            </label><br>
+            <label name="detalhes">Detalhes: <textarea placeholder="Insira uma descrição do motivo de encerramento da conta."></textarea></label><br><br>
             <button type="submit">Finalizar Conta</button>
         </form>
     </div>
