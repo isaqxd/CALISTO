@@ -11,7 +11,7 @@
 <a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
 
 <h1>Cadastro de Funcionário</h1>
-<form action="${pageContext.request.contextPath}/registrarFuncionario" method="post">
+<form action="${pageContext.request.contextPath}/cadastrarFuncionario" method="post">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" required>
 

@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-@WebServlet("/registrarCliente")
-public class ClienteController extends HttpServlet {
+@WebServlet("/cadastrarCliente")
+public class CadastrarClienteController extends HttpServlet {
     private static final LocalDateTime AGORA = LocalDateTime.now();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

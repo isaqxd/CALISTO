@@ -3,6 +3,10 @@
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
 <%
     Cliente cliente = (Cliente) request.getAttribute("cliente");
+    if (cliente == null) {
+        response.sendRedirect("novaVida/login.jsp");
+        return;
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -53,7 +57,10 @@
             <label>Ação:
                 <input readonly name="acao" value="ENCERRAR_CONTA">Encerrar Conta />
             </label><br>
-            <label name="detalhes">Detalhes: <textarea placeholder="Insira uma descrição do motivo de encerramento da conta."></textarea></label><br><br>
+            <label>Detalhes: <textarea name="detalhes"
+                                       placeholder="Insira uma descrição do motivo de encerramento da conta.">
+                            </textarea>
+            </label><br><br>
             <button type="submit">Finalizar Conta</button>
         </form>
     </div>
