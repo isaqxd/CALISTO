@@ -2,7 +2,7 @@ package CALISTO.controller.Simples;
 
 
 import CALISTO.model.dao.ConsultaContaDao;
-import CALISTO.model.dto.ContaTransacaoDto;
+import CALISTO.model.dto.RelatorioTransacaoDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class ConsultaContaController extends HttpServlet {
         String cpf = request.getParameter("cpf");
 
         ConsultaContaDao dao = new ConsultaContaDao();
-        List<ContaTransacaoDto> resultados = dao.buscarContaComTransacoes(cpf);
+        List<RelatorioTransacaoDto> resultados = dao.buscarContaComTransacoes(cpf);
 
         request.setAttribute("resultados", resultados);
         request.getRequestDispatcher("novaVida/consultaConta.jsp").forward(request, response);
