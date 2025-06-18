@@ -37,6 +37,7 @@ function setupOTPInputs() {
     if (otpInputs.length === 0) return;
 
     otpInputs.forEach((input, index) => {
+        // Event listener para digitação
         input.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^0-9]/g, '');
 
@@ -47,9 +48,39 @@ function setupOTPInputs() {
             updateOTPHiddenField();
         });
 
+        // Event listener para backspace
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
                 otpInputs[index - 1].focus();
+            }
+        });
+
+        // Event listener para colar código
+        input.addEventListener('paste', (e) => {
+            e.preventDefault();
+
+            // Obter o texto colado
+            const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+
+            // Limpar caracteres não numéricos
+            const cleanedData = pastedData.replace(/[^0-9]/g, '');
+
+            // Verificar se tem pelo menos alguns dígitos
+            if (cleanedData.length > 0) {
+                // Limpar todos os inputs primeiro
+                otpInputs.forEach(input => input.value = '');
+
+                // Preencher os inputs com os dígitos disponíveis
+                for (let i = 0; i < Math.min(cleanedData.length, otpInputs.length); i++) {
+                    otpInputs[i].value = cleanedData[i];
+                }
+
+                // Focar no próximo input vazio ou no último preenchido
+                const nextEmptyIndex = Math.min(cleanedData.length, otpInputs.length - 1);
+                otpInputs[nextEmptyIndex].focus();
+
+                // Atualizar o campo hidden
+                updateOTPHiddenField();
             }
         });
     });

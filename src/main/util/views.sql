@@ -49,11 +49,12 @@ SELECT
     u.cpf,
     u.data_nascimento,
     u.telefone,
-    CONCAT(e.local, ', ', e.numero_casa, ' - ', e.bairro, ', ', e.cidade, '/', e.estado) AS endereco_completo,
-    (SELECT COUNT(*)
-     FROM auditoria a
-     WHERE a.usuario_id = u.id_usuario
-       AND a.acao LIKE '%CRIAÇÃO DE CONTA%') AS contas_abertas
-FROM funcionario f
-         JOIN usuario u ON f.usuario_id = u.id_usuario
-         LEFT JOIN endereco e ON u.endereco_id = e.id_endereco;
+    CONCAT(e.local, ', ', e.numero_casa, ' - ', e.bairro, ', ', e.cidade, '/', e.estado) AS endereco,
+    (SELECT COUNT(*) FROM auditoria a
+     WHERE a.usuario_id = u.id_usuario AND a.acao LIKE '%CADASTRAR_CONTA%') AS contas_abertas
+     FROM funcionario f
+     JOIN usuario u ON f.usuario_id = u.id_usuario
+     LEFT JOIN endereco e ON u.endereco_id = e.id_endereco;
+
+select * from vw_dados_funcionario_contas;
+# ***************************************************************************************************
