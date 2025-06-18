@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%
-    Cliente cliente = (Cliente) request.getAttribute("cliente");
-    if (cliente == null) {
-        response.sendRedirect("novaVida/login.jsp");
-        return;
-    }
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+//    if (funcionario == null) {
+//        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+//        return;
+//    }
+    Cliente cliente = (Cliente) session.getAttribute("cliente");
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +25,7 @@
 
 <h4>Contas associadas:</h4>
 <div>
-    <% if (cliente != null) { %>
+    <% if (cliente != null && cliente.getContas() != null) { %>
     <label>Nome: <input readonly value="<%= cliente.getNome()%>"></label><br>
     <label>CPF: <input readonly value="<%= cliente.getCpf() %>"></label><br>
 
@@ -40,13 +42,13 @@
     <br><br>
 
     <% for (Conta conta : cliente.getContas()) { %>
-    <!-- Div com dados da conta, oculta por padrão -->
     <div class="detalhesConta" id="conta_<%= conta.getIdConta() %>"
          style="display:none; border:1px solid #ccc; padding:10px; margin:10px 0;">
         <form action="encerrarContas" method="post">
             <input type="hidden" name="idConta" value="<%= conta.getIdConta() %>">
             <label>Número da Conta: <input readonly value="<%= conta.getNumeroConta() %>"></label><br>
             <label>Saldo: R$ <input readonly value="<%= conta.getSaldo() %>"></label><br>
+
             <label>Status:
                 <select name="status">
                     <option value="<%= conta.getStatus() %>" selected><%= conta.getStatus() %>
@@ -54,17 +56,19 @@
                     <option value="ENCERRADA">Encerrar</option>
                 </select>
             </label><br>
-            <label>Ação:
-                <input readonly name="acao" value="ENCERRAR_CONTA">Encerrar Conta />
-            </label><br>
-            <label>Detalhes: <textarea name="detalhes"
-                                       placeholder="Insira uma descrição do motivo de encerramento da conta.">
-                            </textarea>
-            </label><br><br>
+
+            <input type="hidden" name="acao" value="ENCERRAR_CONTA">
+
+            <label>Motivo do Encerramento:</label><br>
+            <textarea name="detalhes" rows="4" cols="50"
+                      placeholder="Descreva o motivo do encerramento da conta."></textarea><br><br>
+
             <button type="submit">Finalizar Conta</button>
         </form>
     </div>
     <% } %>
+    <% } else { %>
+    <p>Busque um cliente pelo CPF acima para listar as contas.</p>
     <% } %>
 
     <script>

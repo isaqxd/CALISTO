@@ -7,7 +7,7 @@
 
     // 2. Medida de segurança: se não houver cliente, volta para o login.
     if (cliente == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
         return;
     }
 %>

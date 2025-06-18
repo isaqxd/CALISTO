@@ -1,4 +1,12 @@
+<%@ page import="CALISTO.model.persistence.Usuario.Funcionario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
+    if (funcionario == null) {
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +16,7 @@
 </head>
 <body>
 <!-- Botão de voltar -->
-<a href="${pageContext.request.contextPath}/novaVida/portalfuncionario.jsp" class="btn-voltar">← Voltar</a>
+<a href="${pageContext.request.contextPath}/css/portal-cliente.css" class="btn-voltar">← Voltar</a>
 
 <h1>Cadastro de Cliente</h1>
 <form action="${pageContext.request.contextPath}/cadastrarCliente" method="post">
@@ -26,7 +34,7 @@
     <div class="input-container">
         <input type="password" id="senha-cliente" name="senha" required>
         <button type="button" class="password-toggle" onclick="togglePassword('senha-cliente')">
-            <img id="icon-senha-cliente" src="../img/iconeyeopen.png" alt="Mostrar senha" width="20">
+            <img id="icon-senha-cliente" src="../../img/iconeyeopen.png" alt="Mostrar senha" width="20">
         </button>
     </div>
 

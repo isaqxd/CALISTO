@@ -4,13 +4,16 @@
 <%
     Cliente cliente = (Cliente) session.getAttribute("cliente");
     if (cliente == null) {
-        response.sendRedirect("../login.jsp");
+        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
         return;
     }
 %>
 <!DOCTYPE html>
 <html>
-<head><title>Transferência</title></head>
+<head>
+    <title>Transferência</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portal-cliente.css">
+</head>
 <body>
 <h2>Transferência entre contas</h2>
 

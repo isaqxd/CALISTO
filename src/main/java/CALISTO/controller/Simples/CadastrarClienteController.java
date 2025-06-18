@@ -41,7 +41,7 @@ public class CadastrarClienteController extends HttpServlet {
 
             if (clienteSalvo != null) {
                 auditoriaCadastro(request);
-                response.sendRedirect("novaVida/portalfuncionario.jsp");
+                response.sendRedirect("/portalfuncionario.jsp");
             } else {
                 response.sendRedirect("test/erro.jsp");
             }

@@ -27,7 +27,7 @@ public class EncerrarContasController extends HttpServlet {
         Cliente cliente = dao.innerToRequestSession(cpf);
 
         request.setAttribute("cliente", cliente);
-        request.getRequestDispatcher("novaVida/encerrarConta.jsp").forward(request, response);
+        request.getRequestDispatcher("novaVida/portalFuncionario/encerrarConta.jsp").forward(request, response);
 
     }
 
