@@ -18,7 +18,9 @@ O **CALISTO BANK** é um sistema bancário completo criado como projeto acadêmi
 - 💸 Execução de transações como saque, depósito, transferência, taxa e rendimento;
 - 🔐 Autenticação de usuários com perfis diferenciados (cliente e funcionário).
 
-O sistema foi projetado com **Java 21**, utilizando **JDBC puro** para comunicação com um banco **MySQL**. A interface utiliza **HTML/CSS** com páginas `JSP`, e o backend é estruturado em `Servlets`.
+O sisO sistema foi projetado com **Java 21**, utilizando **JDBC puro** para comunicação com um banco **MySQL**. A interface utiliza **HTML/CSS** com páginas `JSP`, e o backend é estruturado em `Servlets`.
+
+Além disso, o projeto segue o padrão de arquitetura **MVP (Model-View-Presenter)** com uma camada de **Services** intermediando a lógica entre os controladores (`Servlets`) e os DAOs, garantindo melhor organização e manutenibilidade do código.
 
 ---
 
@@ -70,6 +72,7 @@ Organizamos as funcionalidades em 4 ondas de entrega:
 
 | Camada         | Tecnologia             |
 |----------------|------------------------|
+| 📐 Arquitetura | MVP com camada Service |
 | 💻 Backend     | Java 21, Servlets      |
 | 🗄️ Banco de Dados | MySQL + JDBC           |
 | 🎨 Interface   | HTML, CSS, JSP         |
