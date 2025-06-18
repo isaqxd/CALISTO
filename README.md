@@ -72,7 +72,8 @@ Organizamos as funcionalidades em 4 ondas de entrega:
 
 | Camada         | Tecnologia             |
 |----------------|------------------------|
-| 📐 Arquitetura | MVP com camada Service |
+| 📔 Metodologia | Lean Inception        |
+| 📐 Arquitetura | MVC com camada Service |
 | 💻 Backend     | Java 21, Servlets      |
 | 🗄️ Banco de Dados | MySQL + JDBC           |
 | 🎨 Interface   | HTML, CSS, JSP         |
