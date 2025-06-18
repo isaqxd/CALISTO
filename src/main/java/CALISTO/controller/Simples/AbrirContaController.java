@@ -1,4 +1,4 @@
-package CALISTO.controller.Portal.Simples;
+package CALISTO.controller.Simples;
 
 import CALISTO.model.dao.*;
 import CALISTO.model.persistence.Agencia.Agencia;

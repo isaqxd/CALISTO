@@ -1,4 +1,4 @@
-package CALISTO.controller.Portal;
+package CALISTO.controller.Simples;
 
 import CALISTO.model.dao.AgenciaDao;
 import CALISTO.model.persistence.Agencia.Agencia;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/selecionar-agencia")
-public class AgenciaSelectServlet extends HttpServlet {
+public class AgenciaSelectController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

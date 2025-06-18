@@ -1,4 +1,4 @@
-package CALISTO.controller.Portal;
+package CALISTO.controller.Simples;
 
 import CALISTO.model.dao.ClienteDao;
 import CALISTO.model.persistence.Usuario.Cliente;
@@ -10,7 +10,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/BuscarClientePorCpf")
-public class BuscarClientePorCpf extends HttpServlet {
+public class BuscarClientePorCpfController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

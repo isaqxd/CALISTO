@@ -1,4 +1,4 @@
-package CALISTO.controller.Portal;
+package CALISTO.controller.Simples;
 
 import CALISTO.model.dao.*;
 import CALISTO.model.persistence.Agencia.Agencia;
@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;

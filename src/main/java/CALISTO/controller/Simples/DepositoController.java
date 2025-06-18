@@ -1,10 +1,9 @@
-package CALISTO.controller.Portal.Simples;
+package CALISTO.controller.Simples;
 
-import CALISTO.model.dao.ContaCorrenteDao;
-import CALISTO.model.dao.ContaDao;
-import CALISTO.model.dao.ContaInvestimentoDao;
-import CALISTO.model.dao.ContaPoupancaDao;
+import CALISTO.model.dao.*;
 import CALISTO.model.persistence.Conta.Conta;
+import CALISTO.model.persistence.Transacao.Transacao;
+import CALISTO.model.persistence.util.TipoDeTransacao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -55,6 +54,11 @@ public class DepositoController extends HttpServlet {
             boolean sucesso = contaDao.depositar(idConta, valorDeposito);
 
             if (sucesso) {
+                //CRIA UM REGISTRO NA TABELA TRANSACAO
+                Transacao transacao = new Transacao(idConta, idConta, TipoDeTransacao.DEPOSITO, valorDeposito, "Depósito realizado com sucesso.");
+                TransacaoDao transacaoDao = new TransacaoDao();
+                transacaoDao.registrar(transacao);
+
                 request.setAttribute("mensagem", "Depósito realizado com sucesso.");
             } else {
                 request.setAttribute("mensagem", "Não foi possível realizar o depósito.");

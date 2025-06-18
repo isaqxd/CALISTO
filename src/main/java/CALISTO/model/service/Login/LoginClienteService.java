@@ -87,66 +87,6 @@ public class LoginClienteService {
         return true;
     }
 
-    public boolean validateCpfSenhaForFuncionario(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        HttpSession session = request.getSession();
-        String cpf = request.getParameter("cpf").replaceAll("[^0-9]", "");
-        session.setAttribute("cpfLogin", cpf);
-
-        String senha = request.getParameter("senha");
-        String senhaHash = generateHashMD5(senha);
-
-        String tipoUsuario = request.getParameter("tipo_usuario");
-
-        AuditoriaDao auditoriaDao = new AuditoriaDao();
-        LoginFuncionarioDao dao = new LoginFuncionarioDao();
-        Funcionario funcionario = dao.findByCpf(cpf);
-
-        Auditoria a = new Auditoria();
-        // BLOQUEIA MULTIPLAS TENTATIVAS DE LOGIN
-        if (funcionario != null && auditoriaDao.blockLoginFromAuditoria(funcionario.getIdUsuario())) {
-            a.setAcao("LOGIN_BLOQUEADO");
-            a.setDataHora(HORA_ATUAL);
-            a.setDetalhes("Login bloqueado para o CLIENTE com CPF: " + cpf);
-            a.setUsuario(funcionario);
-            auditoriaDao.save(a);
-
-            return false;
-        }
-
-        // CPF ou senha inválidos
-        if (funcionario == null || !tipoUsuario.equals(funcionario.getTipoUsuario().toString()) || !funcionario.getSenhaHash().equals(senhaHash)) {
-            a.setAcao("LOGIN_FALHA");
-            a.setDetalhes("Tentativa de login com CPF: " + cpf);
-            a.setDataHora(LocalDateTime.now());
-            if (funcionario != null) a.setUsuario(funcionario);
-            auditoriaDao.save(a);
-            return false;
-        }
-
-        // OTP ainda válida (verifica se expiracao não é nula)
-        if (funcionario.getOtpAtivo() != null && !funcionario.getOtpAtivo().isEmpty() && funcionario.getOtpExpiracao() != null && HORA_ATUAL.isBefore(funcionario.getOtpExpiracao())) {
-            a.setAcao("OTP_PEDENTE");
-            a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP ainda válida para o " + funcionario.getTipoUsuario().toString() + " com CPF: " + cpf);
-            a.setUsuario(funcionario);
-            auditoriaDao.save(a);
-            return true;
-        }
-
-        // Geração de nova OTP (verifica se expiracao é nula)
-        if (funcionario.getOtpAtivo() == null || funcionario.getOtpAtivo().isEmpty() || funcionario.getOtpExpiracao() == null || HORA_ATUAL.isAfter(funcionario.getOtpExpiracao())) {
-            a.setAcao("OTP_GERADA");
-            a.setDataHora(LocalDateTime.now());
-            a.setDetalhes("OTP gerada para o " + funcionario.getTipoUsuario().toString() + " com CPF: " + cpf);
-            a.setUsuario(funcionario);
-            auditoriaDao.save(a);
-
-            generateOTP(funcionario);
-            dao.updateOtp(funcionario);
-        }
-        return true;
-    }
-
     public boolean validateOtp(HttpServletResponse response, HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
         // Obtém o CPF do cliente da sessão
