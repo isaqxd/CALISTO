@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -522,7 +522,7 @@
 <div class="login-container">
     <div class="welcome-section">
         <div class="logo">
-            <img src="${pageContext.request.contextPath}/img/image.svg" alt="Callisto Bank" class="logo-image">
+            <img src="../img/image.svg" alt="Callisto Bank" class="logo-image"> <!-- Path ajustado para ser relativo -->
         </div>
         <h1 class="welcome-title">Bem vindo!</h1>
         <h2 class="welcome-subtitle" id="welcome-subtitle">Acesso do Cliente</h2>
@@ -536,13 +536,13 @@
     </div>
 
     <div class="form-container">
-        <form class="login-form" id="loginForm" method="post" action="${pageContext.request.contextPath}/loginCliente">
+        <form class="login-form" id="loginForm"> <!-- Removido method e action -->
             <h2 class="form-title" id="form-title">Login Cliente</h2>
 
             <div class="error-message" id="error-message"></div>
             <div class="success-message" id="success-message"></div>
 
-            <input type="hidden" name="action" id="form-action" value="verifyCredentials">
+            <!-- <input type="hidden" name="action" id="form-action" value="verifyCredentials"> Removido, não mais necessário -->
             <input type="hidden" name="tipo_usuario" value="CLIENTE">
 
             <div class="form-group" id="identifier-group">
@@ -581,7 +581,7 @@
             </div>
 
             <div class="toggle-section">
-                <button type="button" class="exit-btn" onclick="window.location.href='../views/loginselect.jsp'">Sair
+                <button type="button" class="exit-btn" onclick="goToLoginSelect()">Sair
                 </button>
             </div>
         </form>
@@ -589,8 +589,32 @@
 </div>
 
 <script>
+    // --- INÍCIO: LÓGICA DE AUTENTICAÇÃO TOTALMENTE NO CLIENT-SIDE (JAVASCRIPT) ---
+    // ATENÇÃO: Extremamente inseguro para produção. Apenas para fins de demonstração.
+
+    const mockClientDatabase = {
+        '123.456.789-00': { password: 'Cliente@123', name: 'Cliente Teste Um', requiresOtp: true, otp: '111111' },
+        '111.222.333-44': { password: 'OutroCliente@1', name: 'Cliente Teste Dois', requiresOtp: false }
+    };
+
+    const mockEmployeeDatabase = {
+        'FUN12345': { password: 'Funcionario@123', name: 'Funcionário Alfa', requiresOtp: false },
+        'FUN67890': { password: 'OutroFunc@1', name: 'Funcionário Beta', requiresOtp: true, otp: '222222' }
+    };
+
+    let currentUserForOtp = null; // Armazena dados do usuário se OTP estiver pendente
+
+    // --- FIM: LÓGICA DE AUTENTICAÇÃO TOTALMENTE NO CLIENT-SIDE ---
+
     let isFuncionarioMode = false;
     let isOTPPhase = false;
+
+    function goToLoginSelect() {
+        // Se você tiver um contextPath definido em um ambiente JSP, poderia usá-lo.
+        // Para um ambiente puramente estático, um caminho relativo ou absoluto é necessário.
+        // Assumindo que loginselect.jsp está no mesmo diretório 'views'
+        window.location.href = 'loginselect.jsp'; // ou '../views/loginselect.jsp' dependendo da estrutura
+    }
 
     function toggleMode() {
         const body = document.body;
@@ -617,9 +641,11 @@
         document.getElementById('identifier-label').textContent = 'Código do Funcionário';
         document.getElementById('identifier-input').placeholder = 'FUN00000';
         document.getElementById('login-btn').textContent = 'Entrar como Funcionário';
-        document.getElementById('loginForm').action = '${pageContext.request.contextPath}/loginFuncionario';
+        // document.getElementById('loginForm').action = ''; // Ação do formulário não é mais usada
         document.querySelector('input[name="tipo_usuario"]').value = 'FUNCIONARIO';
-        console.log('Form action set to: ' + document.getElementById('loginForm').action);
+        // Pre-fill test employee credentials
+        document.getElementById('identifier-input').value = formatFuncionarioCode('FUN12345'); // Test Employee ID
+        document.getElementById('password-input').value = 'Funcionario@123'; // Test Employee Password
     }
 
     function updateContentForCliente() {
@@ -631,14 +657,18 @@
         document.getElementById('identifier-label').textContent = 'CPF';
         document.getElementById('identifier-input').placeholder = '000.000.000-00';
         document.getElementById('login-btn').textContent = 'Entrar como Cliente';
-        document.getElementById('loginForm').action = '${pageContext.request.contextPath}/loginCliente';
+        // document.getElementById('loginForm').action = ''; // Ação do formulário não é mais usada
         document.querySelector('input[name="tipo_usuario"]').value = 'CLIENTE';
+        // Pre-fill test client credentials
+        document.getElementById('identifier-input').value = formatCPF('12345678900'); // Test CPF "123.456.789-00"
+        document.getElementById('password-input').value = 'Cliente@123';   // Test Client Password
     }
 
     function resetFormState() {
         document.getElementById('loginForm').reset();
         hideMessages();
         hideOTPSection();
+        currentUserForOtp = null;
 
         // Re-enable fields that might be disabled
         document.getElementById('identifier-input').readOnly = false;
@@ -647,7 +677,7 @@
         document.getElementById('form-note').style.display = 'block';
 
         // Reset button and action
-        document.getElementById('form-action').value = 'verifyCredentials';
+        // document.getElementById('form-action').value = 'verifyCredentials'; // Não mais necessário
         document.getElementById('login-btn').textContent = isFuncionarioMode ? 'Entrar como Funcionário' : 'Entrar como Cliente';
         isOTPPhase = false;
     }
@@ -705,7 +735,7 @@
         document.getElementById('identifier-input').readOnly = true;
 
         // Update form action and button
-        document.getElementById('form-action').value = 'verifyOTP';
+        // document.getElementById('form-action').value = 'verifyOTP'; // Não mais necessário
         document.getElementById('login-btn').textContent = 'Verificar OTP';
 
         // Focus first OTP input and setup handlers
@@ -755,74 +785,122 @@
         document.getElementById('success-message').style.display = 'none';
     }
 
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-        if (isOTPPhase) {
-            e.preventDefault(); // Prevent submit to assemble OTP first
+    function processLogin() {
+        hideMessages();
+        const identifier = document.getElementById('identifier-input').value;
+        const password = document.getElementById('password-input').value;
 
+        if (isOTPPhase) {
+            // Coletar OTP
             const otpInputs = document.querySelectorAll('.otp-input');
             let otp = '';
-            otpInputs.forEach(input => {
-                otp += input.value;
-            });
+            otpInputs.forEach(input => { otp += input.value; });
 
             if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
                 showMessage('Por favor, insira um código OTP válido de 6 dígitos.', true);
                 return;
             }
-
-            // Remove old OTP hidden input if it exists from a previous attempt
-            const existingOtpInput = this.querySelector('input[name="otp"]');
-            if (existingOtpInput) existingOtpInput.remove();
-
-            const otpInput = document.createElement('input');
-            otpInput.type = 'hidden';
-            otpInput.name = 'otp';
-            otpInput.value = otp;
-            this.appendChild(otpInput);
-
-            // Now submit the form with the new OTP value
-            this.submit();
+            verifyOtp(otp);
+        } else {
+            verifyCredentials(identifier, password);
         }
-        // If not in OTP phase, the form submits normally without prevention.
+    }
+
+    function verifyCredentials(identifier, password) {
+        const db = isFuncionarioMode ? mockEmployeeDatabase : mockClientDatabase;
+        const user = db[identifier];
+
+        if (user && user.password === password) {
+            if (user.requiresOtp) {
+                currentUserForOtp = user; // Armazena o usuário para a fase OTP
+                currentUserForOtp.identifier = identifier; // Adiciona o identificador para referência
+                showOTPSection(identifier);
+                showMessage('Credenciais válidas. Por favor, insira o código OTP.', false);
+            } else {
+                loginSuccess(user, identifier);
+            }
+        } else {
+            showMessage('Credenciais inválidas. Verifique seu ' + (isFuncionarioMode ? 'código' : 'CPF') + ' e senha.', true);
+        }
+    }
+
+    function verifyOtp(otp) {
+        console.log("Verificando OTP:", otp);
+        console.log("CurrentUserForOtp:", currentUserForOtp);
+        if (currentUserForOtp && currentUserForOtp.otp === otp) {
+            console.log("OTP válido. Chamando loginSuccess.");
+            loginSuccess(currentUserForOtp, currentUserForOtp.identifier);
+        } else {
+            console.error("OTP inválido ou currentUserForOtp não definido corretamente.");
+            showMessage('Código OTP inválido.', true);
+            // Opcional: resetar para a tela de login inicial após falha de OTP
+            // setTimeout(() => {
+            //     resetFormState();
+            //     if (isFuncionarioMode) updateContentForFuncionario(); else updateContentForCliente();
+            // }, 2000);
+        }
+    }
+
+    function loginSuccess(user, identifier) {
+        console.log("loginSuccess chamado para:", user, "Modo Funcionário:", isFuncionarioMode);
+        showMessage(`Login bem-sucedido, ${user.name}! Redirecionando...`, false);
+        // Simula o armazenamento de uma sessão
+        localStorage.setItem('loggedInUser', JSON.stringify({
+            identifier: identifier,
+            name: user.name,
+            type: isFuncionarioMode ? 'funcionario' : 'cliente'
+        }));
+
+        setTimeout(() => {
+            // Crie estas páginas HTML estáticas para simular os portais
+            // Ajuste os nomes dos arquivos para corresponderem aos seus JSPs de portal
+            const targetUrl = isFuncionarioMode ? 'portalfuncionario.jsp' : 'portalcliente.jsp';
+            console.log("Redirecionando para:", targetUrl);
+            if (isFuncionarioMode) {
+                window.location.href = 'portalfuncionario.jsp'; // Assumindo que este arquivo existe
+            } else {
+                window.location.href = 'portalcliente.jsp';
+            }
+        }, 1500);
+    }
+
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Previne o envio tradicional do formulário
+        processLogin();
     });
 
     // Check for Server Redirect Parameters on Load
     window.addEventListener('load', function () {
-        // Initial state
         hideMessages();
+        document.body.style.opacity = '0'; // Start fade-in prep
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const otpRequired = urlParams.get('otpRequired');
-        const identifier = urlParams.get('identifier');
-        const error = urlParams.get('error');
-        const lastIdentifier = urlParams.get('lastIdentifier');
+        // Lógica de URL params removida, pois o estado é gerenciado internamente
+        /*
+        let initialModeIsFuncionario = false;
+        if ((effectiveIdentifierForModeCheck && effectiveIdentifierForModeCheck.toUpperCase().startsWith('FUN')) || tipoUsuario === 'FUNCIONARIO') {
+            initialModeIsFuncionario = true;
+        }
 
-        // Check if we need to switch to employee mode based on identifier or tipo_usuario
-        const effectiveIdentifier = identifier || lastIdentifier;
-        const tipoUsuario = urlParams.get('tipo_usuario');
-
-        if ((effectiveIdentifier && effectiveIdentifier.toUpperCase().startsWith('FUN')) || tipoUsuario === 'FUNCIONARIO') {
-            if (!document.body.classList.contains('funcionario-mode')) {
-                toggleMode();
+        // Set the correct initial mode and pre-fill credentials
+        // Global 'isFuncionarioMode' starts as false.
+        if (initialModeIsFuncionario) {
+            if (!isFuncionarioMode) toggleMode(); else {
+                document.body.classList.add('funcionario-mode');
+                resetFormState(); updateContentForFuncionario();
+            }
+        } else {
+            if (isFuncionarioMode) toggleMode(); else {
+                document.body.classList.remove('funcionario-mode');
+                resetFormState(); updateContentForCliente();
             }
         }
-
-        // Handle OTP phase
-        if (otpRequired === 'true' && identifier) {
-            showOTPSection(identifier);
-            showMessage('Credenciais válidas. Por favor, insira o código OTP.', false);
-        }
-
-        // Handle error messages
-        if (error) {
-            showMessage(decodeURIComponent(error.replace(/\+/g, ' ')), true);
-            if (lastIdentifier) {
-                document.getElementById('identifier-input').value = lastIdentifier;
-            }
-        }
+        */
+        // Com a lógica de backend removida, sempre iniciamos no modo cliente padrão
+        resetFormState();
+        updateContentForCliente(); // Garante que os campos de cliente sejam preenchidos inicialmente
 
         // Fade-in animation
-        document.body.style.opacity = '0';
         setTimeout(() => {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
@@ -836,7 +914,6 @@
             toggleMode();
         }
     });
-
 </script>
 </body>
 </html>

@@ -12,7 +12,7 @@
     <header class="header" id="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="../img/image.svg" alt="Callisto Bank" class="logo-image">
+                <img src="/src/main/webapp/img/image.svg" alt="Callisto Bank" class="logo-image">
             </div>
             <nav>
                 <ul class="nav-menu">
