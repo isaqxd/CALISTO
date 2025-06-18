@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class Auditoria {
     private int idAuditoria;
-    private Usuario usuario;
+    private Usuario usuario; // ID DE USUARIO QUE FEZ A MODIFICAÇÃO
     private String acao;
     private LocalDateTime dataHora;
     private String detalhes;

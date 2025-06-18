@@ -25,7 +25,7 @@
     if (resultados != null && !resultados.isEmpty()) {
 %>
 <h2>Resultado</h2>
-<table border="1">
+<table>
     <tr>
         <th>Conta</th>
         <th>Tipo</th>
