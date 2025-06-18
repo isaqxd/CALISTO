@@ -7,7 +7,7 @@
 
     // 2. Medida de segurança: se não houver cliente, volta para o login.
     if (cliente == null) {
-        response.sendRedirect(request.getContextPath() + "/novaVida/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
         return;
     }
 %>
@@ -15,8 +15,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Portal do Cliente - <%= cliente.getNome() %>
-    </title>
+    <title>Portal do Cliente - <%= cliente.getNome() %></title>
     <%-- 3. Link para o arquivo CSS que fará a "mágica" visual --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/portalcliente.css">
 </head>
@@ -26,10 +25,8 @@
 <div class="portal-container">
 
     <div class="portal-header">
-        <h1>Bem-vindo, <%= cliente.getNome() %>
-        </h1>
-        <p>CPF: <%= cliente.getCpf() %>
-        </p>
+        <h1>Bem-vindo, <%= cliente.getNome() %></h1>
+        <p>CPF: <%= cliente.getCpf() %></p>
     </div>
 
     <%-- Menu de opções com uma classe para estilização --%>
@@ -45,6 +42,5 @@
     </ul>
 
 </div>
-
 </body>
 </html>

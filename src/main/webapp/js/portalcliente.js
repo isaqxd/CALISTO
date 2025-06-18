@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 </thead>
                 <tbody>
                     ${
-                        extrato.length === 0
-                        ? `<tr><td colspan="3" style="text-align:center;">Nenhuma movimentação.</td></tr>`
-                        : extrato.map(t => `
+            extrato.length === 0
+                ? `<tr><td colspan="3" style="text-align:center;">Nenhuma movimentação.</td></tr>`
+                : extrato.map(t => `
                             <tr>
                                 <td>${t.data}</td>
                                 <td>${t.desc}</td>
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </td>
                             </tr>
                         `).join('')
-                    }
+        }
                 </tbody>
             </table>
         `;
@@ -185,16 +185,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ extrato })
             })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'extrato.pdf';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            });
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'extrato.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                });
         };
 
         // Exportar Excel via API
@@ -204,16 +204,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ extrato })
             })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'extrato.xlsx';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            });
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'extrato.xlsx';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                });
         };
     }
 
@@ -269,17 +269,17 @@ function renderPerfilFuncionario() {
             <h3>Funcionários</h3>
             <ul>
                 ${
-                    window.funcionarios.length === 0
-                    ? '<li>Nenhum funcionário cadastrado.</li>'
-                    : window.funcionarios.map((f, i) =>
-                        `<li style="display:flex;align-items:center;gap:1rem;">
+        window.funcionarios.length === 0
+            ? '<li>Nenhum funcionário cadastrado.</li>'
+            : window.funcionarios.map((f, i) =>
+                `<li style="display:flex;align-items:center;gap:1rem;">
                             <span style="flex:1;">
                                 <b>${f.codigo}</b> - ${f.nome} (${f.cargo}) - ${f.email}
                             </span>
                             <button class="btn-excluir-func" data-idx="${i}" style="background:#bf2424;color:#fff;border:none;border-radius:6px;padding:0.3rem 0.8rem;cursor:pointer;">Excluir</button>
                         </li>`
-                    ).join('')
-                }
+            ).join('')
+    }
             </ul>
         </div>
     `;
