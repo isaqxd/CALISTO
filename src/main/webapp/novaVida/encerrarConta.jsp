@@ -1,13 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="CALISTO.model.persistence.Usuario.Cliente" %>
 <%@ page import="CALISTO.model.persistence.Conta.Conta" %>
-<%
-    Cliente cliente = (Cliente) request.getAttribute("cliente");
-    if (cliente == null) {
-        response.sendRedirect("novaVida/login.jsp");
-        return;
-    }
-%>
 <!DOCTYPE html>
 <html>
 <head>

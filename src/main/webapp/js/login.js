@@ -1,5 +1,20 @@
 let isFuncionarioMode = false;
 
+// Função para verificar parâmetros da URL e inicializar o modo correto
+function initializeModeFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode');
+
+    if (mode === 'funcionario' && !isFuncionarioMode) {
+        // Se veio da página de seleção com modo funcionário, mudar para esse modo
+        toggleMode();
+    } else if (mode === 'cliente' && isFuncionarioMode) {
+        // Se veio da página de seleção com modo cliente e está no modo funcionário, mudar para cliente
+        toggleMode();
+    }
+    // Se não há parâmetro ou já está no modo correto, não faz nada
+}
+
 // Função para alternar o modo (Cliente/Funcionário)
 function toggleMode() {
     const body = document.body;
@@ -194,6 +209,9 @@ function hideOTPOverlay() {
 
 // Inicialização da página
 document.addEventListener('DOMContentLoaded', function() {
+    // Verificar e inicializar o modo baseado na URL ANTES de outras configurações
+    initializeModeFromURL();
+
     // Configurar formatação de CPF para ambos os campos
     const cpfCliente = document.getElementById('cpf-cliente');
     const cpfFunc = document.getElementById('cpf-func');
@@ -237,6 +255,11 @@ document.addEventListener('keydown', function (e) {
         e.preventDefault();
         toggleMode();
     }
+});
+
+// Adicionar listener para mudanças no histórico (caso o usuário use botão voltar/avançar)
+window.addEventListener('popstate', function() {
+    initializeModeFromURL();
 });
 
 // Limpar campos OTP ao sair da página (evita salvamento no histórico do navegador)

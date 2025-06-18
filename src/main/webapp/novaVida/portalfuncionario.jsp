@@ -3,7 +3,7 @@
 <%
     Funcionario funcionario = (Funcionario) session.getAttribute("funcionario");
     if (funcionario == null) {
-        response.sendRedirect("novaVida/login.jsp");
+        response.sendRedirect("login.jsp");
         return;
     }
 %>
