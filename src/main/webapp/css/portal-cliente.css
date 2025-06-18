@@ -48,6 +48,34 @@ body::before {
     text-align: center;
 }
 
+/* 19. Centralização de mensagens principais */
+.mensagem-principal {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+/* Para centralizar automaticamente textos como "Olá, Fulano!" e "Seus saldos:" */
+body > h1,
+body > h2:first-of-type,
+h1:first-child,
+h2:first-child {
+    text-align: center;
+}
+
+/* Mensagens de "Nenhuma conta encontrada" centralizadas */
+p:contains("Nenhuma conta encontrada"),
+p:contains("encontrada"),
+p:last-of-type {
+    text-align: center;
+    font-style: italic;
+    color: #8C480D;
+    background: rgba(242, 185, 80, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 400px;
+}
+
 /* 3. Cabeçalhos */
 h1, h2, h3 {
     color: #8C480D;
@@ -372,4 +400,59 @@ input[required], select[required] {
     font-size: 0.9rem;
     margin-top: 0.5rem;
     display: block;
+}
+
+/* 18. Botão Voltar */
+.btn-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #8C480D;
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid #F2B950;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.btn-voltar:hover {
+    background: linear-gradient(135deg, #F2B950 0%, #BF7A24 100%);
+    color: white;
+    transform: translateX(-5px) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(191, 122, 36, 0.3);
+    border-color: #BF7A24;
+}
+
+.btn-voltar:active {
+    transform: translateX(-3px) translateY(-1px);
+}
+
+/* Responsividade para o botão voltar */
+@media (max-width: 768px) {
+    .btn-voltar {
+        top: 15px;
+        left: 15px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-voltar {
+        top: 10px;
+        left: 10px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+        border-radius: 20px;
+    }
 }

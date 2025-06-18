@@ -10,11 +10,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="../../css/portal-cliente.css">
     <title>Saque</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/novaVida/portalCliente/portalCliente.jsp" class="btn-voltar">← Voltar</a>
 <h2>Seus saldos:</h2>
-<label>Conta:</label>
 <form method="post" action="${pageContext.request.contextPath}/saque">
     <select name="idConta" id="selectConta" onchange="atualizaInformacoesConta(this)">
         <option selected disabled>Selecione uma conta</option>

@@ -10,8 +10,11 @@
 %>
 <!DOCTYPE html>
 <html>
-<head><title>Transferência</title></head>
+<head>
+    <link rel="stylesheet" href="../../css/portal-cliente.css">
+    <title>Transferência</title></head>
 <body>
+<a href="${pageContext.request.contextPath}/novaVida/portalCliente/portalCliente.jsp" class="btn-voltar">← Voltar</a>
 <h2>Transferência entre contas</h2>
 
 <form method="post" action="${pageContext.request.contextPath}/transferencia">

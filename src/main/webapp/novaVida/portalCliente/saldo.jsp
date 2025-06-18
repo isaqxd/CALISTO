@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../css/portal-cliente.css">
     <title>Saldo da Conta</title>
     <style>
         .conta-card {
@@ -29,6 +30,7 @@
     </style>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/novaVida/portalCliente/portalCliente.jsp" class="btn-voltar">← Voltar</a>
 <h1>Olá, <%= cliente.getNome() %>!</h1>
 <h2>Seus saldos:</h2>
 
