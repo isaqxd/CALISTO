@@ -61,15 +61,15 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
-label {
+.form-group label {
     display: block;
     color: #595348;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
-input[type="text"],
-select {
+.form-group input[type="text"],
+.form-group select {
     width: 100%;
     padding: 0.8rem 1rem;
     border: 2px solid #e0e0e0;
@@ -79,8 +79,8 @@ select {
     transition: all 0.3s ease;
 }
 
-input[type="text"]:focus,
-select:focus {
+.form-group input[type="text"]:focus,
+.form-group select:focus {
     outline: none;
     border-color: #BF7A24;
     box-shadow: 0 0 0 3px rgba(191, 122, 36, 0.1);
@@ -105,4 +105,15 @@ button[type="submit"]:hover {
     background: linear-gradient(135deg, #260A04 0%, #000000 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(38, 10, 4, 0.3);
+}
+
+/* Estilo para a mensagem de feedback/erro */
+.feedback-message {
+    text-align:center; 
+    color: #8C480D; 
+    font-weight: 500;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(140, 72, 13, 0.05);
+    border-radius: 8px;
 }
