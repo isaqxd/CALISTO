@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ContaPoupancaDao extends ContaDao {
 
+
     public void save(Poupanca conta) throws SQLException {
         String sqlConta = "INSERT INTO conta (numero_conta, agencia_id, saldo, tipo_conta, cliente_id) VALUES (?, ?, ?, 'POUPANCA', ?)";
         String sqlPoupanca = "INSERT INTO conta_poupanca (conta_id, taxa_rendimento, ultimo_rendimento) VALUES (?, ?, ?)";

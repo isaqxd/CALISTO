@@ -14,7 +14,6 @@ target/
 *.ipr
 
 ### CALISTO ###
-src/main/java/CALISTO/model/persistence/test
 src\main\java\CALISTO\model\persistence\util\Conexao.java
 
 ### Eclipse ###

@@ -88,7 +88,6 @@ public abstract class ContaDao {
         return false;
     }
 
-
     public double extrato(int idConta) {
         String sql = "SELECT saldo FROM conta WHERE id_conta = ?";
         try (Connection conn = Conexao.getConnection();

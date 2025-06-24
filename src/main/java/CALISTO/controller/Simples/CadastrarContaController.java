@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet("/abrirConta")
-public class AbrirContaController extends HttpServlet {
+public class CadastrarContaController extends HttpServlet {
     private static final LocalDateTime DATA_ABERTURA_CONTA_PADRAO = LocalDateTime.now();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -145,7 +145,7 @@ public class AbrirContaController extends HttpServlet {
             return;
         }
         request.setAttribute("mensagem", "Conta criada com sucesso!");
-        request.getRequestDispatcher("novaVida/portalfuncionario.jsp").forward(request, response);
+        request.getRequestDispatcher("novaVida/portalFuncionario/portalfuncionario.jsp").forward(request, response);
     }
 
     @Override
